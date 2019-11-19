@@ -26,30 +26,31 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Tambah Supplier</h3>
+              <h3 class="card-title">Edit Supplier</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-  <form role="form" action="<?php echo site_url('CSupplier/tambah') ?>" method="post">
+  <form role="form" action="<?php echo site_url('CSupplier/update') ?>" method="post">
     <div class="card-body">
       <div class="form-group">
      <label for="nama">Nama Supplier</label>
-     <input type="text" class="form-control" name="namaSupplier" required>
+     <input type="hidden" name="IDSupplier" value="<?php echo $supplier->IDSupplier?>">
+     <input type="text" class="form-control" name="namaSupplier" value="<?php echo $supplier->NamaSupplier?>" required>
     </div>
 
     <div class="form-group">
      <label for="nama">Alamat</label>
-     <textarea class="form-control" rows="3" placeholder="" name="alamatSupplier"></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="alamatSupplier"><?php echo $supplier->alamatSupplier?></textarea>
      </div>
 
     <div class="form-group">
      <label for="nama">Email Supplier</label>
-     <input type="email" class="form-control" name="emailSupplier" required>
+     <input type="email" class="form-control" name="emailSupplier" required value="<?php echo $supplier->EmailSupplier?>">
      </div>
 
      <div class="form-group">
      <label for="nama">Nomor Telephone</label>
-     <input type="text" class="form-control" name="telpSupplier" required>
+     <input type="text" class="form-control" name="telpSupplier" required value="<?php echo $supplier->noTelp?>">
      </div>
 
      <div class="card-footer">

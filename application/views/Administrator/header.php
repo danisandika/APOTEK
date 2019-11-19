@@ -34,7 +34,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -162,7 +162,7 @@
     <a href="<?php echo site_url('CDashboard/index')?>" class="brand-link">
       <img src="<?php echo base_url('assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8')?>">
-      <span class="brand-text font-weight-light">Administrator</span>
+      <span class="brand-text font-weight-primary">Administrator</span>
     </a>
 
     <!-- Sidebar -->

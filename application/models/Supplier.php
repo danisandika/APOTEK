@@ -52,7 +52,10 @@ class Supplier extends CI_Model
 
   public function delete($IDSupplier)
   {
-    return $this->db->delete($this->_table,array('IDSupplier'=>$IDSupplier));
+    $this->status = 0;
+    $this->modifiedBy = 1;
+    $this->modifiedDate = date("Y-m-d");
+    return $this->db->update($this->_table,array('IDSupplier'=>$IDSupplier));
   }
 
 }

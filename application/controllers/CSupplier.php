@@ -29,7 +29,9 @@ class CSupplier extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('Administrator/header');
+    $data['supplier']=$this->Supplier->getAll();
+    $data['title']= "Supplier";
+		$this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Supplier/vSupplier');
     $this->load->view('Administrator/footer');
 	}
@@ -45,6 +47,13 @@ class CSupplier extends CI_Controller {
     else $this->gagal();
   }
 
+  public function tSupplier()
+  {
+    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/Supplier/tSupplier');
+    $this->load->view('Administrator/footer');
+  }
+
 
   public function edit($id=null)
   {
@@ -52,9 +61,10 @@ class CSupplier extends CI_Controller {
     if(!isset($id))redirect('CSupplier/index');
 
     $supplier = $this->Supplier;
-
+    $data["supplier"]=$supplier->getByID($id);
+    $data['title']= "Supplier";
     $this->load->view('Administrator/header');
-    $this->load->view('Administrator/Supplier/eSupplier');
+    $this->load->view('Administrator/Supplier/eSupplier',$data);
     $this->load->view('Administrator/footer');
   }
 
@@ -74,7 +84,7 @@ class CSupplier extends CI_Controller {
 
   public function sukses()
   {
-    redirect(site_url('Administrator/Dashboard/index'));
+    redirect(site_url('Administrator/Supplier/index'));
   }
 
   public function gagal()

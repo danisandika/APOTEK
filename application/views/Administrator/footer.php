@@ -51,6 +51,18 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo base_url('assets/dist/js/demo.js')?>"></script>
 <!-- DataTables -->
 <script src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.js')?>"></script>
-
+<script src="<?php echo base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js')?>"></script>
+<script>
+  $(function () {
+    $('#table2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
 </body>
 </html>
