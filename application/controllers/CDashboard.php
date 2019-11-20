@@ -20,7 +20,7 @@ class CDashboard extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('Administrator/header');
+	$this->load->view('Administrator/header');
     $this->load->view('Administrator/Dashboard');
     $this->load->view('Administrator/footer');
 	}
