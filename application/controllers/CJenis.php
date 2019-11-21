@@ -18,10 +18,75 @@ class CJenis extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	 public function __construct()
+   {
+     parent::__construct();
+     $this->load->model("JenisObat");
+     $this->load->library("session");
+
+   }
+
 	public function index()
 	{
+		$data['jenis']=$this->JenisObat->getAll();
+		$data['title']= "Jenis Obat";
 		$this->load->view('Administrator/header');
-    $this->load->view('Administrator/vJenis');
+    $this->load->view('Administrator/JenisObat/vJenisObat',$data);
     $this->load->view('Administrator/footer');
 	}
+
+	public function tambah()
+  {
+
+    $jenis = $this->JenisObat;
+    $result = $jenis->save();
+    if($result>0)$this->sukses();
+    else $this->gagal();
+  }
+
+  public function tJenisObat()
+  {
+    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/JenisObat/tJenisObat');
+    $this->load->view('Administrator/footer');
+  }
+
+
+  public function edit($id=null)
+  {
+
+    if(!isset($id))redirect('CJenis/index');
+
+    $jenis = $this->JenisObat;
+    $data["jenis"]=$jenis->getByID($id);
+    $data['title']= "Jenis Obat";
+    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/JenisObat/eJenisObat',$data);
+    $this->load->view('Administrator/footer');
+  }
+
+  public function update()
+  {
+    $result = $this->JenisObat->update();
+    if($result>0)$this->sukses();
+  }
+
+  public function delete($id)
+  {
+      if(!isset($id))redirect('CJenis/index');
+      if($this->JenisObat->delete($id)){
+        redirect(site_url('Dashboard/index'));
+      }
+  }
+
+  public function sukses()
+  {
+    redirect(site_url('CJenis/index'));
+  }
+
+  public function gagal()
+  {
+    echo "<script>alert('Data Gagal Ditambahkan');</script>";
+  }
+
 }

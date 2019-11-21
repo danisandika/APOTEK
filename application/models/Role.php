@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supplier extends CI_Model
+class Role extends CI_Model
 {
-  private $_table = "supplier";
+  private $_table = "Role";
 
 
   public function __construct()
@@ -18,7 +18,7 @@ class Supplier extends CI_Model
 
   public function getByID($id)
   {
-    return $this->db->get_where($this->_table,["IDSupplier"=>$id])->row();
+    return $this->db->get_where($this->_table,["IDRole"=>$id])->row();
   }
 
 
@@ -27,10 +27,7 @@ class Supplier extends CI_Model
   {
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
-		$this->namaSupplier = $post["namaSupplier"];
-		$this->alamatSupplier = $post["alamatSupplier"];
-		$this->emailSupplier = $post["emailSupplier"];
-		$this->noTelp = $post["telpSupplier"];
+		$this->Deskripsi = $post["Deskripsi"];
     $this->status = 1;
     $this->createby = 1;
     $this->createDate = $dateNow;
@@ -41,23 +38,20 @@ class Supplier extends CI_Model
   {
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
-    $this->IDSupplier = $post["IDSupplier"];
-		$this->namaSupplier = $post["namaSupplier"];
-		$this->alamatSupplier = $post["alamatSupplier"];
-		$this->emailSupplier = $post["emailSupplier"];
-		$this->noTelp = $post["telpSupplier"];
+    $this->IDRole = $post["IDRole"];
+    $this->Deskripsi = $post["Deskripsi"];
     $this->status = 1;
     $this->modifiedby = 1;
     $this->modifiedDate = $dateNow;
-		return $this->db->update($this->_table,$this,array('IDSupplier'=>$post['IDSupplier']));
+		return $this->db->update($this->_table,$this,array('IDRole'=>$post['IDRole']));
   }
 
-  public function delete($IDSupplier)
+  public function delete($IDRole)
   {
     $this->status = 0;
     $this->modifiedBy = 1;
     $this->modifiedDate = date("Y-m-d");
-    return $this->db->update($this->_table,array('IDSupplier'=>$IDSupplier));
+    return $this->db->update($this->_table,array('IDRole'=>$IDRole));
   }
 
 }

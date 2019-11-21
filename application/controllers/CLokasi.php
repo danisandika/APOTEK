@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CSupplier extends CI_Controller {
+class CLokasi extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,39 +18,36 @@ class CSupplier extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-   public function __construct()
+	 public function __construct()
    {
      parent::__construct();
-     $this->load->model("Supplier");
+     $this->load->model("Lokasi");
      $this->load->library("session");
 
    }
 
-
 	public function index()
 	{
-    $data['supplier']=$this->Supplier->getAll();
-    $data['title']= "Supplier";
-		$this->load->view('Administrator/header',$data);
-    $this->load->view('Administrator/Supplier/vSupplier');
+		$data['lokasi']=$this->Lokasi->getAll();
+		$data['title']= "Lokasi Penyimpanan";
+		$this->load->view('Administrator/header');
+    $this->load->view('Administrator/Lokasi/vLokasi',$data);
     $this->load->view('Administrator/footer');
 	}
 
-
-
-  public function tambah()
+	public function tambah()
   {
 
-    $supplier = $this->Supplier;
-    $result = $supplier->save();
+    $lokasi = $this->Lokasi;
+    $result = $lokasi->save();
     if($result>0)$this->sukses();
     else $this->gagal();
   }
 
-  public function tSupplier()
+  public function tLokasi()
   {
     $this->load->view('Administrator/header');
-    $this->load->view('Administrator/Supplier/tSupplier');
+    $this->load->view('Administrator/Lokasi/tLokasi');
     $this->load->view('Administrator/footer');
   }
 
@@ -58,39 +55,38 @@ class CSupplier extends CI_Controller {
   public function edit($id=null)
   {
 
-    if(!isset($id))redirect('CSupplier/index');
+    if(!isset($id))redirect('CLokasi/index');
 
-    $supplier = $this->Supplier;
-    $data["supplier"]=$supplier->getByID($id);
-    $data['title']= "Supplier";
+    $lokasi = $this->Lokasi;
+    $data["lokasi"]=$lokasi->getByID($id);
+    $data['title']= "Lokasi Penyimpanan";
     $this->load->view('Administrator/header');
-    $this->load->view('Administrator/Supplier/eSupplier',$data);
+    $this->load->view('Administrator/Lokasi/eLokasi',$data);
     $this->load->view('Administrator/footer');
   }
 
   public function update()
   {
-    $result = $this->Supplier->update();
+    $result = $this->Lokasi->update();
     if($result>0)$this->sukses();
   }
 
   public function delete($id)
   {
-      if(!isset($id))redirect('CSupplier/index');
-      if($this->Supplier->delete($id)){
-        redirect(site_url('Dashboard/index'));
+      if(!isset($id))redirect('CLokasi/index');
+      if($this->Lokasi->delete($id)){
+        redirect(site_url('CLokasi/index'));
       }
   }
 
   public function sukses()
   {
-    redirect(site_url('CSupplier/index'));
+    redirect(site_url('CLokasi/index'));
   }
 
   public function gagal()
   {
     echo "<script>alert('Data Gagal Ditambahkan');</script>";
   }
-
 
 }
