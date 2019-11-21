@@ -43,25 +43,38 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">User Profil</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users-cog mr-2"></i> Edit Profil
+
+          </a>
+
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-logout mr-2"></i> Log Out
+
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">User Profil</a>
+        </div>
+      </li>
+
+
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -120,6 +133,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
+
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -196,37 +210,20 @@
           </li>
 
 		 <li class="nav-item">
-            <a href="jenisObat.aspx" class="nav-link <?php echo $this->uri->segment(1)=='CJenis'? 'active':''?>">
+            <a href="<?php echo site_url('CJenis')?>" class="nav-link <?php echo $this->uri->segment(1)=='CJenis'? 'active':''?>">
               <i class="nav-icon fas fa-capsules"></i>
               <p>Jenis Obat</p>
             </a>
           </li>
            <li class="nav-item">
-            <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CLokasi'? 'active':''?>">
+            <a href="<?php echo site_url('CLokasi')?>" class="nav-link <?php echo $this->uri->segment(1)=='CLokasi'? 'active':''?>">
               <i class="nav-icon fas fa-table"></i>
               <p>Lokasi Penyimpanan</p>
             </a>
           </li>
-		  <li class="nav-item">
-            <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CKaryawan'? 'active':''?>">
-              <i class="nav-icon fas fa-user-alt"></i>
-              <p>Karyawan</p>
-            </a>
-          </li>
-		   <li class="nav-item">
-            <a href="<?php echo site_url('CSupplier')?>" class="nav-link <?php echo $this->uri->segment(1)=='CSupplier'? 'active':''?>">
-              <i class="nav-icon fas fa-user-alt"></i>
-              <p>Supplier</p>
-            </a>
-          </li>
-           <li class="nav-item">
-            <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CMember'? 'active':''?>">
-              <i class="nav-icon fas fa-user"></i>
-              <p>User Member</p>
-            </a>
-          </li>
+
             <li class="nav-item">
-            <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CRole'? 'active':''?>">
+            <a href="<?php echo site_url('CRole')?>" class="nav-link <?php echo $this->uri->segment(1)=='CRole'? 'active':''?>">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>Role</p>
             </a>
@@ -237,6 +234,25 @@
               <p>Management Keuangan</p>
             </a>
           </li>
+          <li class="nav-header">User</li>
+          <li class="nav-item">
+                <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CKaryawan'? 'active':''?>">
+                  <i class="nav-icon fas fa-user-alt"></i>
+                  <p>Karyawan</p>
+                </a>
+              </li>
+    		   <li class="nav-item">
+                <a href="<?php echo site_url('CSupplier')?>" class="nav-link <?php echo $this->uri->segment(1)=='CSupplier'? 'active':''?>">
+                  <i class="nav-icon fas fa-user-alt"></i>
+                  <p>Supplier</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CMember'? 'active':''?>">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>User Member</p>
+                </a>
+              </li>
           </ul>
       </nav>
       <!-- /.sidebar-menu -->

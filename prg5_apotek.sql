@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Nov 2019 pada 10.05
+-- Waktu pembuatan: 21 Nov 2019 pada 01.36
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `prg4_apotek`
+-- Database: `prg5_apotek`
 --
 
 -- --------------------------------------------------------
@@ -72,7 +72,7 @@ CREATE TABLE `detailtransaksi` (
 --
 
 CREATE TABLE `jenisobat` (
-  `IDJenis` int(11) NOT NULL ,
+  `IDJenis` int(11) NOT NULL,
   `namaJenis` varchar(50) DEFAULT NULL,
   `statusJenis` int(11) DEFAULT NULL,
   `Deskripsi` longtext DEFAULT NULL,
@@ -86,6 +86,9 @@ CREATE TABLE `jenisobat` (
 -- Dumping data untuk tabel `jenisobat`
 --
 
+INSERT INTO `jenisobat` (`IDJenis`, `namaJenis`, `statusJenis`, `Deskripsi`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'Batuk', 1, 'Dari Daun Mint guna meredakan batuk', 1, '2019-11-20', NULL, NULL),
+(2, 'Pusing', 1, 'Meredakan Sakit Pusing', 1, '2019-11-20', 1, '2019-11-20');
 
 -- --------------------------------------------------------
 
@@ -94,12 +97,19 @@ CREATE TABLE `jenisobat` (
 --
 
 CREATE TABLE `login` (
-  `IDLogin` int(11) NOT NULL ,
+  `IDLogin` int(11) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `IDUser` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `login`
+--
+
+INSERT INTO `login` (`IDLogin`, `Username`, `Password`, `IDUser`, `status`) VALUES
+(1, 'danisandika', 'danis', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -108,7 +118,7 @@ CREATE TABLE `login` (
 --
 
 CREATE TABLE `lokasi_penyimpanan` (
-  `IDLokasi` int(11) NOT NULL ,
+  `IDLokasi` int(11) NOT NULL,
   `Nama_Lokasi` varchar(50) DEFAULT NULL,
   `tempatLokasi` varchar(50) DEFAULT NULL,
   `Deskripsi` longtext DEFAULT NULL,
@@ -123,7 +133,8 @@ CREATE TABLE `lokasi_penyimpanan` (
 -- Dumping data untuk tabel `lokasi_penyimpanan`
 --
 
-
+INSERT INTO `lokasi_penyimpanan` (`IDLokasi`, `Nama_Lokasi`, `tempatLokasi`, `Deskripsi`, `Status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'A1', 'Rak A', 'Gud', 1, 1, '2019-11-20 00:00:00', 1, '2019-11-20 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -132,7 +143,7 @@ CREATE TABLE `lokasi_penyimpanan` (
 --
 
 CREATE TABLE `management_uang` (
-  `IDManagement` int(11) NOT NULL ,
+  `IDManagement` int(11) NOT NULL,
   `tanggalTransaksi` datetime NOT NULL,
   `Debit` decimal(19,4) DEFAULT NULL,
   `Kredit` decimal(19,4) DEFAULT NULL,
@@ -151,7 +162,7 @@ CREATE TABLE `management_uang` (
 --
 
 CREATE TABLE `obat` (
-  `IDObat` int(11) NOT NULL ,
+  `IDObat` int(11) NOT NULL,
   `namaObat` varchar(50) NOT NULL,
   `IDJenis` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
@@ -167,11 +178,6 @@ CREATE TABLE `obat` (
   `ModifiedBy` int(11) DEFAULT NULL,
   `ModifiedDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `obat`
---
-
 
 -- --------------------------------------------------------
 
@@ -194,7 +200,7 @@ CREATE TABLE `pembelian` (
 --
 
 CREATE TABLE `role` (
-  `IDRole` int(11) NOT NULL ,
+  `IDRole` int(11) NOT NULL,
   `Deskripsi` varchar(50) NOT NULL,
   `status` int(11) NOT NULL,
   `CreateBy` int(11) NOT NULL,
@@ -207,6 +213,8 @@ CREATE TABLE `role` (
 -- Dumping data untuk tabel `role`
 --
 
+INSERT INTO `role` (`IDRole`, `Deskripsi`, `status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'Admin', 1, 1, '2019-11-20 00:00:00', 1, '2019-11-20 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -215,7 +223,7 @@ CREATE TABLE `role` (
 --
 
 CREATE TABLE `supplier` (
-  `IDSupplier` int(11) NOT NULL ,
+  `IDSupplier` int(11) NOT NULL,
   `NamaSupplier` varchar(50) NOT NULL,
   `AlamatSupplier` varchar(100) DEFAULT NULL,
   `EmailSupplier` varchar(30) DEFAULT NULL,
@@ -226,10 +234,6 @@ CREATE TABLE `supplier` (
   `ModifiedBy` int(11) DEFAULT NULL,
   `ModifiedDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `supplier`
---
 
 -- --------------------------------------------------------
 
@@ -265,6 +269,13 @@ CREATE TABLE `user` (
   `ModifiedDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`IDUser`, `Nama`, `Alamat`, `NoTelp`, `TglLahir`, `Email`, `status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'Danis Andika ', 'Jakarta', '0822687127', '2019-11-05', 'danis@gmail.com', 1, 1, '2019-11-21 00:00:00', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -275,6 +286,13 @@ CREATE TABLE `userlogin` (
   `IDrole` int(11) NOT NULL,
   `IDLogin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `userlogin`
+--
+
+INSERT INTO `userlogin` (`IDrole`, `IDLogin`) VALUES
+(1, 1);
 
 --
 -- Indexes for dumped tables
@@ -306,32 +324,32 @@ ALTER TABLE `detailtransaksi`
 -- Indeks untuk tabel `jenisobat`
 --
 ALTER TABLE `jenisobat`
-  ADD PRIMARY KEY (`IDJenis`) auto_increment;
+  ADD PRIMARY KEY (`IDJenis`);
 
 --
 -- Indeks untuk tabel `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`IDLogin`) auto_increment,
+  ADD PRIMARY KEY (`IDLogin`),
   ADD KEY `FK_Login_User` (`IDUser`);
 
 --
 -- Indeks untuk tabel `lokasi_penyimpanan`
 --
 ALTER TABLE `lokasi_penyimpanan`
-  ADD PRIMARY KEY (`IDLokasi`) auto_increment;
+  ADD PRIMARY KEY (`IDLokasi`);
 
 --
 -- Indeks untuk tabel `management_uang`
 --
 ALTER TABLE `management_uang`
-  ADD PRIMARY KEY (`IDManagement`) auto_increment;
+  ADD PRIMARY KEY (`IDManagement`);
 
 --
 -- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  ADD PRIMARY KEY (`IDObat`) auto_increment,
+  ADD PRIMARY KEY (`IDObat`),
   ADD KEY `FK_Obat_JenisObat` (`IDJenis`),
   ADD KEY `FK_Obat_Lokasi_Penyimpanan` (`IDLokasi`);
 
@@ -347,26 +365,26 @@ ALTER TABLE `pembelian`
 -- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
-  ADD PRIMARY KEY (`IDRole`) auto_increment;
+  ADD PRIMARY KEY (`IDRole`);
 
 --
 -- Indeks untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  ADD PRIMARY KEY (`IDSupplier`) auto_increment;
+  ADD PRIMARY KEY (`IDSupplier`);
 
 --
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`IDTransaksi`) ,
+  ADD PRIMARY KEY (`IDTransaksi`),
   ADD KEY `FK_Transaksi_User` (`IDKaryawan`);
 
 --
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`IDUser`) auto_increment;
+  ADD PRIMARY KEY (`IDUser`);
 
 --
 -- Indeks untuk tabel `userlogin`
@@ -374,6 +392,58 @@ ALTER TABLE `user`
 ALTER TABLE `userlogin`
   ADD PRIMARY KEY (`IDrole`,`IDLogin`),
   ADD KEY `FK_UserLogin_Login` (`IDLogin`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `jenisobat`
+--
+ALTER TABLE `jenisobat`
+  MODIFY `IDJenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `login`
+--
+ALTER TABLE `login`
+  MODIFY `IDLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `lokasi_penyimpanan`
+--
+ALTER TABLE `lokasi_penyimpanan`
+  MODIFY `IDLokasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `management_uang`
+--
+ALTER TABLE `management_uang`
+  MODIFY `IDManagement` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `obat`
+--
+ALTER TABLE `obat`
+  MODIFY `IDObat` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `role`
+--
+ALTER TABLE `role`
+  MODIFY `IDRole` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `IDSupplier` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `IDUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
