@@ -72,7 +72,7 @@ CREATE TABLE `detailtransaksi` (
 --
 
 CREATE TABLE `jenisobat` (
-  `IDJenis` int(11) NOT NULL ,
+  `IDJenis` int(11) NOT NULL,
   `namaJenis` varchar(50) DEFAULT NULL,
   `statusJenis` int(11) DEFAULT NULL,
   `Deskripsi` longtext DEFAULT NULL,
@@ -86,6 +86,9 @@ CREATE TABLE `jenisobat` (
 -- Dumping data untuk tabel `jenisobat`
 --
 
+INSERT INTO `jenisobat` (`IDJenis`, `namaJenis`, `statusJenis`, `Deskripsi`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'Terlarang', 0, 'Obat', 1, '2019-11-17', 1, '2019-11-17'),
+(2, 'Obat Obatan', 1, 'Adalah Suatu Obat yang bagus', 1, '2019-11-17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,7 @@ CREATE TABLE `jenisobat` (
 --
 
 CREATE TABLE `login` (
-  `IDLogin` int(11) NOT NULL ,
+  `IDLogin` int(11) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `IDUser` int(11) NOT NULL,
@@ -108,7 +111,7 @@ CREATE TABLE `login` (
 --
 
 CREATE TABLE `lokasi_penyimpanan` (
-  `IDLokasi` int(11) NOT NULL ,
+  `IDLokasi` int(11) NOT NULL,
   `Nama_Lokasi` varchar(50) DEFAULT NULL,
   `tempatLokasi` varchar(50) DEFAULT NULL,
   `Deskripsi` longtext DEFAULT NULL,
@@ -123,7 +126,8 @@ CREATE TABLE `lokasi_penyimpanan` (
 -- Dumping data untuk tabel `lokasi_penyimpanan`
 --
 
-
+INSERT INTO `lokasi_penyimpanan` (`IDLokasi`, `Nama_Lokasi`, `tempatLokasi`, `Deskripsi`, `Status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'GD2', 'Lokasi 2 sebelah kanan', 'khusus obat keras', 1, 1, '2019-11-20 11:48:11', 1, '2019-11-20 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -132,7 +136,7 @@ CREATE TABLE `lokasi_penyimpanan` (
 --
 
 CREATE TABLE `management_uang` (
-  `IDManagement` int(11) NOT NULL ,
+  `IDManagement` int(11) NOT NULL,
   `tanggalTransaksi` datetime NOT NULL,
   `Debit` decimal(19,4) DEFAULT NULL,
   `Kredit` decimal(19,4) DEFAULT NULL,
@@ -151,7 +155,7 @@ CREATE TABLE `management_uang` (
 --
 
 CREATE TABLE `obat` (
-  `IDObat` int(11) NOT NULL ,
+  `IDObat` int(11) NOT NULL,
   `namaObat` varchar(50) NOT NULL,
   `IDJenis` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
@@ -172,6 +176,9 @@ CREATE TABLE `obat` (
 -- Dumping data untuk tabel `obat`
 --
 
+INSERT INTO `obat` (`IDObat`, `namaObat`, `IDJenis`, `status`, `JumlahObat`, `Keterangan`, `IDLokasi`, `Satuan`, `Harga`, `Expired`, `Foto`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(17, 'Paracetamol', 1, NULL, NULL, 'Demam', 1, 'Butir', '1300.0000', '2019-11-20', 'a', 1, '2019-11-20 00:00:00', NULL, NULL),
+(18, 'Dikomix', 2, 1, NULL, 'Batuk', 1, 'Butir', '1300.0000', '2019-01-20', 'as', 1, '2019-11-20 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -194,7 +201,7 @@ CREATE TABLE `pembelian` (
 --
 
 CREATE TABLE `role` (
-  `IDRole` int(11) NOT NULL ,
+  `IDRole` int(11) NOT NULL,
   `Deskripsi` varchar(50) NOT NULL,
   `status` int(11) NOT NULL,
   `CreateBy` int(11) NOT NULL,
@@ -207,6 +214,9 @@ CREATE TABLE `role` (
 -- Dumping data untuk tabel `role`
 --
 
+INSERT INTO `role` (`IDRole`, `Deskripsi`, `status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'Kasir', 1, 1, '2019-11-20 04:59:48', 1, '2019-11-20 05:04:54'),
+(2, 'Admin', 1, 1, '2019-11-20 14:03:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,7 +225,7 @@ CREATE TABLE `role` (
 --
 
 CREATE TABLE `supplier` (
-  `IDSupplier` int(11) NOT NULL ,
+  `IDSupplier` int(11) NOT NULL,
   `NamaSupplier` varchar(50) NOT NULL,
   `AlamatSupplier` varchar(100) DEFAULT NULL,
   `EmailSupplier` varchar(30) DEFAULT NULL,
@@ -230,6 +240,9 @@ CREATE TABLE `supplier` (
 --
 -- Dumping data untuk tabel `supplier`
 --
+
+INSERT INTO `supplier` (`IDSupplier`, `NamaSupplier`, `AlamatSupplier`, `EmailSupplier`, `noTelp`, `Status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'PT.PETROKIMIA', 'Surabaya', 'petro@gmail.com', '0810920312', 1, 1, '2019-11-18 00:00:00', 1, '2019-11-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -306,32 +319,32 @@ ALTER TABLE `detailtransaksi`
 -- Indeks untuk tabel `jenisobat`
 --
 ALTER TABLE `jenisobat`
-  ADD PRIMARY KEY (`IDJenis`) auto_increment;
+  ADD PRIMARY KEY (`IDJenis`);
 
 --
 -- Indeks untuk tabel `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`IDLogin`) auto_increment,
+  ADD PRIMARY KEY (`IDLogin`),
   ADD KEY `FK_Login_User` (`IDUser`);
 
 --
 -- Indeks untuk tabel `lokasi_penyimpanan`
 --
 ALTER TABLE `lokasi_penyimpanan`
-  ADD PRIMARY KEY (`IDLokasi`) auto_increment;
+  ADD PRIMARY KEY (`IDLokasi`);
 
 --
 -- Indeks untuk tabel `management_uang`
 --
 ALTER TABLE `management_uang`
-  ADD PRIMARY KEY (`IDManagement`) auto_increment;
+  ADD PRIMARY KEY (`IDManagement`);
 
 --
 -- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  ADD PRIMARY KEY (`IDObat`) auto_increment,
+  ADD PRIMARY KEY (`IDObat`),
   ADD KEY `FK_Obat_JenisObat` (`IDJenis`),
   ADD KEY `FK_Obat_Lokasi_Penyimpanan` (`IDLokasi`);
 
@@ -347,26 +360,26 @@ ALTER TABLE `pembelian`
 -- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
-  ADD PRIMARY KEY (`IDRole`) auto_increment;
+  ADD PRIMARY KEY (`IDRole`);
 
 --
 -- Indeks untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  ADD PRIMARY KEY (`IDSupplier`) auto_increment;
+  ADD PRIMARY KEY (`IDSupplier`);
 
 --
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`IDTransaksi`) ,
+  ADD PRIMARY KEY (`IDTransaksi`),
   ADD KEY `FK_Transaksi_User` (`IDKaryawan`);
 
 --
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`IDUser`) auto_increment;
+  ADD PRIMARY KEY (`IDUser`);
 
 --
 -- Indeks untuk tabel `userlogin`

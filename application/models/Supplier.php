@@ -47,8 +47,6 @@ class Supplier extends CI_Model
 		$this->emailSupplier = $post["emailSupplier"];
 		$this->noTelp = $post["telpSupplier"];
     $this->status = 1;
-    $this->modifiedby = 1;
-    $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDSupplier'=>$post['IDSupplier']));
   }
 

@@ -18,76 +18,10 @@ class CRole extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-
-	 public function __construct()
-   {
-     parent::__construct();
-     $this->load->model("Role");
-     $this->load->library("session");
-   }
-
 	public function index()
 	{
-		$data['role']=$this->Role->getAll();
-		$data['title']= "Role";
 		$this->load->view('Administrator/header');
-    $this->load->view('Administrator/Role/vRole',$data);
+    $this->load->view('Administrator/vRole');
     $this->load->view('Administrator/footer');
 	}
-
-
-		public function tambah()
-	  {
-
-	    $role = $this->Role;
-	    $result = $role->save();
-	    if($result>0)$this->sukses();
-	    else $this->gagal();
-	  }
-
-	  public function tRole()
-	  {
-	    $this->load->view('Administrator/header');
-	    $this->load->view('Administrator/Role/tRole');
-	    $this->load->view('Administrator/footer');
-	  }
-
-
-	  public function edit($id=null)
-	  {
-
-	    if(!isset($id))redirect('CRole/index');
-
-	    $role = $this->Role;
-	    $data["role"]=$role->getByID($id);
-	    $data['title']= "Role";
-	    $this->load->view('Administrator/header');
-	    $this->load->view('Administrator/Role/eRole',$data);
-	    $this->load->view('Administrator/footer');
-	  }
-
-	  public function update()
-	  {
-	    $result = $this->Role->update();
-	    if($result>0)$this->sukses();
-	  }
-
-	  public function delete($id)
-	  {
-	      if(!isset($id))redirect('CRole/index');
-	      if($this->Role->delete($id)){
-	        redirect(site_url('CRole/index'));
-	      }
-	  }
-
-	  public function sukses()
-	  {
-	    redirect(site_url('CRole/index'));
-	  }
-
-	  public function gagal()
-	  {
-	    echo "<script>alert('Data Gagal Ditambahkan');</script>";
-	  }
-
 }

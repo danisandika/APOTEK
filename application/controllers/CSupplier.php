@@ -84,7 +84,7 @@ class CSupplier extends CI_Controller {
 
   public function sukses()
   {
-    redirect(site_url('CSupplier/index'));
+    redirect(site_url('Administrator/Supplier/index'));
   }
 
   public function gagal()
