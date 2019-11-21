@@ -22,10 +22,11 @@ class CUser extends CI_Controller {
    {
      parent::__construct();
      $this->load->model("User");
+	 $this->load->model("Role");
+	 $this->load->model("Login");
      $this->load->library("session");
 
    }
-
 
 	public function index()
 	{
@@ -37,17 +38,20 @@ class CUser extends CI_Controller {
 	}
 
 
-
-  public function tambah()
-  {
-
+	private $_table = "login";
+    
+	public function tambah()
+    {
     $user = $this->User;
     $result = $user->save();
+	
     if($result>0)$this->sukses();
     else $this->gagal();
+	
+	
   }
 
-  public function tSupplier()
+  public function tUser()
   {
     $this->load->view('Administrator/header');
     $this->load->view('Administrator/User/tUser');
@@ -91,6 +95,8 @@ class CUser extends CI_Controller {
   {
     echo "<script>alert('Data Gagal Ditambahkan');</script>";
   }
+  
+  
 
 
 }
