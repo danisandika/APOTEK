@@ -24,6 +24,12 @@ class CJenis extends CI_Controller {
      $this->load->model("JenisObat");
      $this->load->library("session");
 
+		 if($this->session->userdata('user_role') != 'Admin')
+		 {
+			 echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
+			 redirect(base_url('CLogin'));
+		 }
+
    }
 
 	public function index()
@@ -75,7 +81,7 @@ class CJenis extends CI_Controller {
   {
       if(!isset($id))redirect('CJenis/index');
       if($this->JenisObat->delete($id)){
-        redirect(site_url('Dashboard/index'));
+        redirect(site_url('CJenis/index'));
       }
   }
 

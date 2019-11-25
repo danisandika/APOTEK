@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CDashboard extends CI_Controller {
+class CEditProfil extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,7 +23,6 @@ class CDashboard extends CI_Controller {
    {
      parent::__construct();
      $this->load->model("JenisObat");
-     $this->load->library("session");
 
 		 if($this->session->userdata('user_role') != 'Admin')
  		 {
@@ -35,7 +34,7 @@ class CDashboard extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('Administrator/header');
-    $this->load->view('Administrator/Dashboard');
+    $this->load->view('Administrator/EditProfil');
     $this->load->view('Administrator/footer');
 
 

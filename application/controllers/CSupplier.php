@@ -23,6 +23,11 @@ class CSupplier extends CI_Controller {
      parent::__construct();
      $this->load->model("Supplier");
      $this->load->library("session");
+    if($this->session->userdata('user_role') != 'Admin')
+    {
+      echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
+      redirect(base_url('CLogin'));
+    }
 
    }
 
@@ -78,7 +83,7 @@ class CSupplier extends CI_Controller {
   {
       if(!isset($id))redirect('CSupplier/index');
       if($this->Supplier->delete($id)){
-        redirect(site_url('Dashboard/index'));
+        redirect(site_url('CDashboard/index'));
       }
   }
 

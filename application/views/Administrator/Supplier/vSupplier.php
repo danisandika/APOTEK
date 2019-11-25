@@ -1,4 +1,4 @@
-
+<?php $this->load->view('modal.php')?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -47,7 +47,7 @@
               <tr>
                   <td><?php $i++; echo $i?></td>
                   <td><?php echo $s->NamaSupplier?></td>
-                  <td><?php echo $s->alamatSupplier?></td>
+                  <td><?php echo $s->AlamatSupplier?></td>
                   <td><?php echo $s->EmailSupplier?></td>
                   <td><?php echo $s->noTelp?></td>
                   <td>

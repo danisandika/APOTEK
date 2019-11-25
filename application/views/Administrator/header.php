@@ -43,7 +43,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
-
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link"><?php echo $this->session->userdata('user_username'); ?></a>
+      </li>
     </ul>
 
 
@@ -59,14 +61,14 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">User Profil</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="<?php echo site_url('CEditProfil')?>" class="dropdown-item">
             <i class="fas fa-users-cog mr-2"></i> Edit Profil
 
           </a>
 
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-logout mr-2"></i> Log Out
+          <a href="<?php echo site_url('CLogin/logout')?>" class="dropdown-item">
+            <i class="fas fa-sign-out-alt mr-2"></i> Log Out
 
           </a>
           <div class="dropdown-divider"></div>

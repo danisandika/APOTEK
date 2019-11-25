@@ -13,7 +13,8 @@ class Supplier extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get($this->_table)->result();
+    return $this->db->get_where($this->_table,["Status"=>1])->result();
+  //  return $this->db->get($this->_table)->result();
   }
 
   public function getByID($id)
@@ -54,10 +55,11 @@ class Supplier extends CI_Model
 
   public function delete($IDSupplier)
   {
-    $this->status = 0;
+    $post = $this->input->post();
+    $this->Status = 0;
     $this->modifiedBy = 1;
-    $this->modifiedDate = date("Y-m-d");
-    return $this->db->update($this->_table,array('IDSupplier'=>$IDSupplier));
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDSupplier'=>$IDSupplier));
   }
 
 }
