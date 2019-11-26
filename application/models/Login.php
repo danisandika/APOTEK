@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Model
 {
-  private $_table = "login";
-
+  private $_table = "user";
+  private $__table = "role";
 
   public function __construct()
   {
@@ -21,5 +21,11 @@ class Login extends CI_Model
     return $query->row();
 
   }
+
+  public function getRoleID($IDRole)
+  {
+    return $this->db->get_where($this->__table,["IDRole"=>$IDRole])->row();
+  }
+
 
 }

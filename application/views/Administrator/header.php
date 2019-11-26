@@ -230,6 +230,12 @@
               <p>Role</p>
             </a>
           </li>
+          <li class="nav-item">
+          <a href="<?php echo site_url('CInfo')?>" class="nav-link <?php echo $this->uri->segment(1)=='CInfo'? 'active':''?>">
+            <i class="nav-icon fas fa-newspaper"></i>
+            <p>Info</p>
+          </a>
+        </li>
             <li class="nav-item">
             <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CManagement'? 'active':''?>">
               <i class="nav-icon fas fa-money-check"></i>

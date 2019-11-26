@@ -25,8 +25,6 @@ class CLogin extends CI_Controller {
   {
     parent::__construct();
     $this->load->model("Login");
-    $this->load->model("UserLogin");
-    $this->load->model("Role");
   }
 
 
@@ -37,25 +35,25 @@ class CLogin extends CI_Controller {
     if(isset($post["username"])&&isset($post["pass"]))
     {
       //cek user
-      $userLogin = $this->UserLogin;
-      $user = $this->Login;
-      $userRole = $this->Role;
-      $data = $user->getByUsernamePassword();
-      $datauserLogin = $userLogin->getRoleID($data->IDLogin);
+      $login= $this->Login;
 
-      if($datauserLogin != null)
+      $dataUser = $login->getByUsernamePassword();
+      //$dataUser = $user->getByUsernamePassword();
+      $dataRole = $login->getRoleID($dataUser->IDRole);
+
+      if($dataRole != null)
       {
         //Adding data to Session
-        $dataRole = $userRole->getByID($datauserLogin->IDrole);
-
-        $username=$data->username;
-        $role = $dataRole->Deskripsi;
-        $userID=$data->$IDUser;
+        $username= $dataUser->username;
+        $role    = $dataRole->Deskripsi;
+        $userID  = $dataUser->IDUser;
+        $roleID  = $dataRole->IDRole;
 
         $newdata = array(
           'user_username'=>$Username,
           'user_role'=>$role,
-          'user_userID'=>$userID
+          'user_userID'=>$userID,
+          'user_roleID'=>$roleID
         );
         $this->session->set_userdata($newdata);
 
