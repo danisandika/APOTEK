@@ -205,7 +205,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CObat'? 'active':''?>">
+            <a href="<?php echo site_url('CObat')?>" class="nav-link <?php echo $this->uri->segment(1)=='CObat'? 'active':''?>">
               <i class="nav-icon fas fa-capsules"></i>
               <p>Obat-Obatan</p>
             </a>

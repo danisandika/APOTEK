@@ -42,16 +42,47 @@
      <label for="nama">Alamat</label>
      <textarea class="form-control" rows="3" placeholder="" name="Alamat"><?php echo $user->Alamat?></textarea>
      </div>
-
-    <div class="form-group">
-     <label for="nama">Email </label>
-     <input type="email" class="form-control" name="Email" required value="<?php echo $Email->Email?>">
+	 
+	 <div class="form-group">
+     <label for="nama">Tanggal Lahir</label>
+     <input type="date" class="form-control" name="TglLahir" value="<?php echo $user->TglLahir?>" required>
+     </div>
+	 
+	 <div class="form-group">
+     <label for="nama">Email</label>
+     <input type="email" class="form-control" name="Email" value="<?php echo $user->Email?>" required>
      </div>
 
      <div class="form-group">
      <label for="nama">Nomor Telephone</label>
-     <input type="text" class="form-control" name="NoTelp" required value="<?php echo $NoTelp->NoTelp?>">
+     <input type="text" class="form-control" name="NoTelp" required value="<?php echo $user->NoTelp?>">
      </div>
+	 
+	 <div class="form-group">
+     <label for="nama">Username </label>
+     <input type="text" class="form-control" name="Username" required>
+     </div>
+	 
+	 <div class="form-group">
+     <label for="nama">Password </label>
+     <input type="text" class="form-control" name="Password" required>
+     </div>
+	 
+	<div class="form-group">
+        <label for="role">Role</label>										
+		<select name="IDRole" class="form-control" style="width:100%;" required >
+		<option value="" disabled selected>--- Select One ---</option>
+			<?php
+			$connect = mysqli_connect("localhost", "root", "","prg5_apotek");
+			mysqli_select_db($connect,"prg5_apotek");
+			$sql = mysqli_query($connect,"SELECT Deskripsi FROM Role group by IDRole ");
+			if(mysqli_num_rows($sql) > 0){
+			while($row = mysqli_fetch_array($sql)) { ?>
+			<option><?php echo $row ['Deskripsi'] ?></option>
+			<?php } ?>
+			<?php } ?>
+			</select>
+	</div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

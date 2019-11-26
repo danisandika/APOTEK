@@ -22,13 +22,11 @@ class Role extends CI_Model
     return $this->db->get_where($this->_table,["IDRole"=>$id])->row();
   }
 
-
-
   public function save()
   {
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
-		$this->Deskripsi = $post["Deskripsi"];
+	$this->Deskripsi = $post["Deskripsi"];
     $this->status = 1;
     $this->createby = 1;
     $this->createDate = $dateNow;

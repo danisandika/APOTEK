@@ -21,6 +21,18 @@ class Login extends CI_Model
     return $query->row();
 
   }
+  
+  public function save()
+  {
+    $post = $this->input->post();
+		$this->username = $post["Username"];
+		$this->password = $post["Password"];
+		$this->IDUser = $post["IDUser"];	
+		$this->status = 1;
+		return $this->db->insert($this->_table,$this);
+  }
+
+  
 
   public function getRoleID($IDRole)
   {
