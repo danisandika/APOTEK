@@ -28,7 +28,7 @@ class Supplier extends CI_Model
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
 		$this->namaSupplier = $post["namaSupplier"];
-		$this->alamatSupplier = $post["alamatSupplier"];
+		$this->alamatSupplier = $post["AlamatSupplier"];
 		$this->emailSupplier = $post["emailSupplier"];
 		$this->noTelp = $post["telpSupplier"];
     $this->status = 1;
