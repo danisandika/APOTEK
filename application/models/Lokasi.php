@@ -13,7 +13,8 @@ class Lokasi extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get($this->_table)->result();
+    //return $this->db->get($this->_table)->result();
+    return $this->db->get_where($this->_table,["Status"=>1])->result();
   }
 
   public function getByID($id)
@@ -54,8 +55,8 @@ class Lokasi extends CI_Model
   {
     $this->status = 0;
     $this->modifiedBy = 1;
-    $this->modifiedDate = date("Y-m-d");
-    return $this->db->update($this->_table,array('IDLokasi'=>$IDLokasi));
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDLokasi'=>$IDLokasi));
   }
 
 }

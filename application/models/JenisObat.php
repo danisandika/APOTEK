@@ -13,7 +13,8 @@ class JenisObat extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get($this->_table)->result();
+    return $this->db->get_where($this->_table,["statusJenis"=>1])->result();
+    //return $this->db->get($this->_table)->result();
   }
 
   public function getByID($id)
@@ -50,10 +51,10 @@ class JenisObat extends CI_Model
 
   public function delete($IDJenis)
   {
-    $this->status = 0;
+    $this->statusJenis = 0;
     $this->modifiedBy = 1;
-    $this->modifiedDate = date("Y-m-d");
-    return $this->db->update($this->_table,array('IDJenis'=>$IDJenis));
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDJenis'=>$IDJenis));
   }
 
 }

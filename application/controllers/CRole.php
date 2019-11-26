@@ -24,6 +24,11 @@ class CRole extends CI_Controller {
      parent::__construct();
      $this->load->model("Role");
      $this->load->library("session");
+		if($this->session->userdata('user_role') != 'Admin')
+		{
+			echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
+			redirect(base_url('CLogin'));
+		}
    }
 
 	public function index()

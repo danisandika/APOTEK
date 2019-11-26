@@ -13,9 +13,7 @@ class UserLogin extends CI_Model
 
   public function getRoleID($LoginID)
   {
-    $post1 = $this->input->post();
-    $query = $this->db->get_where($this->_table,["IDLogin"=>$LoginID]);
-    return $query->row();
+    return $this->db->get_where($this->_table,["IDLogin"=>$LoginID])->row();
   }
 
 }

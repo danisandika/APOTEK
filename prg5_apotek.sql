@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Nov 2019 pada 01.36
+-- Waktu pembuatan: 21 Nov 2019 pada 13.34
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -88,7 +88,7 @@ CREATE TABLE `jenisobat` (
 
 INSERT INTO `jenisobat` (`IDJenis`, `namaJenis`, `statusJenis`, `Deskripsi`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
 (1, 'Batuk', 1, 'Dari Daun Mint guna meredakan batuk', 1, '2019-11-20', NULL, NULL),
-(2, 'Pusing', 1, 'Meredakan Sakit Pusing', 1, '2019-11-20', 1, '2019-11-20');
+(2, 'Pusing', 0, 'Meredakan Sakit Pusing', 1, '2019-11-20', 1, '2019-11-21');
 
 -- --------------------------------------------------------
 
@@ -214,7 +214,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`IDRole`, `Deskripsi`, `status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
-(1, 'Admin', 1, 1, '2019-11-20 00:00:00', 1, '2019-11-20 00:00:00');
+(1, 'Admin', 1, 1, '2019-11-20 00:00:00', 1, '2019-11-20 00:00:00'),
+(2, 'Karyawan12', 1, 1, '2019-11-21 00:00:00', 1, '2019-11-21 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -234,6 +235,13 @@ CREATE TABLE `supplier` (
   `ModifiedBy` int(11) DEFAULT NULL,
   `ModifiedDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `supplier`
+--
+
+INSERT INTO `supplier` (`IDSupplier`, `NamaSupplier`, `AlamatSupplier`, `EmailSupplier`, `noTelp`, `Status`, `CreateBy`, `CreateDate`, `ModifiedBy`, `ModifiedDate`) VALUES
+(1, 'PT.UltraFlu33', 'po', 'ultraflu@gmail.com', '43333', 1, 1, '2019-11-21 00:00:00', 1, '2019-11-21 07:26:37');
 
 -- --------------------------------------------------------
 
@@ -431,13 +439,13 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT untuk tabel `role`
 --
 ALTER TABLE `role`
-  MODIFY `IDRole` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDRole` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `IDSupplier` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDSupplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

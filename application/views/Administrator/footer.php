@@ -64,5 +64,11 @@ $.widget.bridge('uibutton', $.ui.button)
     });
   });
 </script>
+<script type="text/javascript">
+function deleteConfirm(url){
+$('#btn-delete').attr('href', url);
+$('#deleteModal').modal();
+}
+</script>
 </body>
 </html>
