@@ -45,10 +45,10 @@
 			<?php
 			$connect = mysqli_connect("localhost", "root", "","prg5_apotek");
 			mysqli_select_db($connect,"prg5_apotek");
-			$sql = mysqli_query($connect,"SELECT namaJenis FROM jenisObat group by IDJenis ");
+			$sql = mysqli_query($connect,"SELECT IDJenis FROM jenisObat group by IDJenis ");
 			if(mysqli_num_rows($sql) > 0){
 			while($row = mysqli_fetch_array($sql)) { ?>
-			<option><?php echo $row ['namaJenis'] ?></option>
+			<option><?php echo $row ['IDJenis'] ?></option>
 			<?php } ?>
 			<?php } ?>
 			</select>
@@ -61,7 +61,7 @@
 
      <div class="form-group">
      <label for="nama">Keterangan</label>
-     <input type="text" class="form-control" name="keterangan" required value="<?php echo $obat->keterangan?>">
+     <input type="text" class="form-control" name="Keterangan" required value="<?php echo $obat->Keterangan?>">
      </div>
 
     <div class="form-group">
@@ -71,10 +71,10 @@
 			<?php
 			$connect = mysqli_connect("localhost", "root", "","prg5_apotek");
 			mysqli_select_db($connect,"prg5_apotek");
-			$sql = mysqli_query($connect,"SELECT Nama_Lokasi FROM lokasi_penyimpanan group by IDLokasi ");
+			$sql = mysqli_query($connect,"SELECT IDLokasi FROM lokasi_penyimpanan group by IDLokasi ");
 			if(mysqli_num_rows($sql) > 0){
 			while($row = mysqli_fetch_array($sql)) { ?>
-			<option><?php echo $row ['Nama_Lokasi'] ?></option>
+			<option><?php echo $row ['IDLokasi'] ?></option>
 			<?php } ?>
 			<?php } ?>
 			</select>
@@ -83,25 +83,25 @@
 	 
 	<div class="form-group">
      <label for="nama">Satuan</label>
-     <textarea class="form-control" rows="3" placeholder="" name="satuan"><?php echo $obat->satuan?></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Satuan"><?php echo $obat->Satuan?></textarea>
      </div>
 	 
 	 
 	 <div class="form-group">
      <label for="nama">Harga</label>
-     <textarea class="form-control" rows="3" placeholder="" name="harga"><?php echo $obat->harga?></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Harga"><?php echo $obat->Harga?></textarea>
      </div>
 	 
 	 
 	 <div class="form-group">
      <label for="nama">Expired</label>
-     <textarea class="form-control" rows="3" placeholder="" name="Expired"><?php echo $obat->expired?></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Expired"><?php echo $obat->Expired?></textarea>
      </div>
 	 
 	 
 	<div class="form-group">
      <label for="nama">Foto</label>
-     <textarea class="form-control" rows="3" placeholder="" name="foto"><?php echo $obat->foto?></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Foto"><?php echo $obat->Foto?></textarea>
      </div>
 
      <div class="card-footer">

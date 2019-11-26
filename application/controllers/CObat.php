@@ -37,7 +37,7 @@ class CObat extends CI_Controller {
     else $this->gagal();
   }
 
-  public function tSupplier()
+  public function tObat()
   {
     $this->load->view('Administrator/header');
     $this->load->view('Administrator/Obat/tObat');

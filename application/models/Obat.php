@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supplier extends CI_Model
+class Obat extends CI_Model
 {
-  private $_table = "supplier";
+  private $_table = "obat";
 
 
   public function __construct()
@@ -19,7 +19,7 @@ class Supplier extends CI_Model
 
   public function getByID($id)
   {
-    return $this->db->get_where($this->_table,["IDSupplier"=>$id])->row();
+    return $this->db->get_where($this->_table,["IDObat"=>$id])->row();
   }
 
 
@@ -28,10 +28,16 @@ class Supplier extends CI_Model
   {
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
-		$this->namaSupplier = $post["namaSupplier"];
-		$this->alamatSupplier = $post["AlamatSupplier"];
-		$this->emailSupplier = $post["emailSupplier"];
-		$this->noTelp = $post["telpSupplier"];
+		$this->namaObat = $post["namaObat"];
+		$this->IDJenis = $post["IDJenis"];
+		$this->JumlahObat = $post["JumlahObat"];
+		$this->keterangan = $post["keterangan"];
+		$this->IDLokasi = $post["IDLokasi"];
+		$this->Satuan = $post["satuan"];
+		$this->Harga = $post["harga"];
+		$this->Expired = $post["Expired"];
+		$this->Foto = $post["foto"];
+		
     $this->status = 1;
     $this->createby = 1;
     $this->createDate = $dateNow;
@@ -42,24 +48,29 @@ class Supplier extends CI_Model
   {
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
-    $this->IDSupplier = $post["IDSupplier"];
-		$this->namaSupplier = $post["namaSupplier"];
-		$this->alamatSupplier = $post["alamatSupplier"];
-		$this->emailSupplier = $post["emailSupplier"];
-		$this->noTelp = $post["telpSupplier"];
+    $this->IDObat = $post["IDObat"];
+		$this->namaObat = $post["namaObat"];
+		$this->IDJenis = $post["IDJenis"];
+		$this->JumlahObat = $post["JumlahObat"];
+		$this->Keterangan = $post["Keterangan"];
+		$this->IDLokasi = $post["IDLokasi"];
+		$this->Satuan = $post["Satuan"];
+		$this->Harga = $post["Harga"];
+		$this->Expired = $post["Expired"];
+		$this->Foto = $post["Foto"];
     $this->status = 1;
     $this->modifiedby = 1;
     $this->modifiedDate = $dateNow;
-		return $this->db->update($this->_table,$this,array('IDSupplier'=>$post['IDSupplier']));
+		return $this->db->update($this->_table,$this,array('IDObat'=>$post['IDObat']));
   }
 
-  public function delete($IDSupplier)
+  public function delete($IDObat)
   {
     $post = $this->input->post();
     $this->Status = 0;
     $this->modifiedBy = 1;
     $this->modifiedDate = date("Y-m-d H:i:s");
-    return $this->db->update($this->_table,$this,array('IDSupplier'=>$IDSupplier));
+    return $this->db->update($this->_table,$this,array('IDObat'=>$IDObat));
   }
 
 }

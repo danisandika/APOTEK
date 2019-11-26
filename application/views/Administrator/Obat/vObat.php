@@ -28,7 +28,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <a href="<?php echo site_url('CSupplier/tSupplier')?>" class="btn btn-primary"><span class="fas fa-plus"></span> | Tambah</a>
+          <a href="<?php echo site_url('CObat/tObat')?>" class="btn btn-primary"><span class="fas fa-plus"></span> | Tambah</a>
           <table id="table2" class="table table-bordered table-hover">
             <thead>
             <tr>
@@ -50,7 +50,7 @@
 
             <tbody>
               <?php $i=0?>
-              <?php foreach ($supplier as $s) { ?>
+              <?php foreach ($obat as $s) { ?>
               <tr>
                   <td><?php $i++; echo $i?></td>
                   <td><?php echo $s->namaObat?></td>
@@ -59,7 +59,7 @@
                   <td><?php echo $s->JumlahObat?></td>
 				  <td><?php echo $s->Keterangan?></td>  
 				  <td><?php echo $s->IDLokasi?></td>
-				  <td><?php echo $s->satuan?></td>
+				  <td><?php echo $s->Satuan?></td>
 				  <td><?php echo $s->Harga?></td>
 				  <td><?php echo $s->Expired?></td>
 				  <td><?php echo $s->Foto?></td>
