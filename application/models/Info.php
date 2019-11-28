@@ -13,7 +13,7 @@ class Info extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get_where($this->_table,array('createBy' => $this->session->userdata('user_username'), 'status' => 1))->result();
+    return $this->db->get_where($this->_table,array('createBy' => $this->session->userdata('user_userID'), 'status' => 1))->result();
   }
 
   public function getByID($id)

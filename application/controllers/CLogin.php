@@ -39,10 +39,10 @@ class CLogin extends CI_Controller {
 
       $dataUser = $login->getByUsernamePassword();
       //$dataUser = $user->getByUsernamePassword();
-      $dataRole = $login->getRoleID($dataUser->IDRole);
 
-      if($dataRole != null)
+      if($dataUser != null && $dataUser->status == 1)
       {
+        $dataRole = $login->getRoleID($dataUser->IDRole);
         //Adding data to Session
         $username= $dataUser->username;
         $role    = $dataRole->Deskripsi;

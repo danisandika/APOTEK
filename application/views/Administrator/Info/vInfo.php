@@ -35,6 +35,9 @@
               <th>No</th>
               <th>Judul</th>
               <th>Kategori</th>
+              <th>Content</th>
+              <th>Waktu Post</th>
+
               <th colspan="2">Aksi</th>
             </tr>
             </thead>
@@ -46,10 +49,12 @@
                   <td><?php $i++; echo $i?></td>
                   <td><?php echo $s->Judul?></td>
                   <td><?php echo $s->Kategori?></td>
+                  <td><?php echo $s->Konten?></td>
+                  <td><?php echo $s->waktuPost?></td>
 
                   <td>
-                  <a href="<?php echo site_url('CInfo/edit/'.$s->IDInfo) ?>" class="btn btn-success"><span class="fas fa-edit"></span> | Edit</a>
-                  <a onclick="deleteConfirm('<?php echo site_url('CInfo/delete/'.$s->IDInfo) ?>')" href="#" class="btn btn-danger"><span class="fas fa-trash"></span> | Delete</a>
+                  <a href="<?php echo site_url('CJenis/edit/'.$s->IDInfo) ?>" class="btn btn-success"><span class="fas fa-edit"></span> | Edit</a>
+                  <a onclick="deleteConfirm('<?php echo site_url('CJenis/delete/'.$s->IDInfo) ?>')" href="#" class="btn btn-danger"><span class="fas fa-trash"></span> | Delete</a>
                   </td>
               </tr>
             <?php } ?>
