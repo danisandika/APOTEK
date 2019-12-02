@@ -37,7 +37,7 @@
               <th>Alamat</th>
               <th>Email</th>
               <th>No Telepon</th>
-              <th colspan="2">Aksi</th>
+              <th>Aksi</th>
             </tr>
             </thead>
 

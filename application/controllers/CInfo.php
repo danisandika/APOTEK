@@ -24,6 +24,7 @@ class CInfo extends CI_Controller {
      parent::__construct();
      $this->load->model("Info");
      $this->load->library("session");
+		 $this->load->helper(array('string','text'));
 		if($this->session->userdata('user_role') != 'Admin')
 		{
 			echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
@@ -41,23 +42,16 @@ class CInfo extends CI_Controller {
 	}
 
 
-<<<<<<< HEAD
-	public function tambah()
-	{
-=======
+
 		public function tambah()
 	  {
->>>>>>> ca20538f60eeb485cb624996cd9d50ae5fdf6fe0
 
 	    $info = $this->Info;
 	    $result = $info->save();
 	    if($result>0)$this->sukses();
 	    else $this->gagal();
-<<<<<<< HEAD
-	}
-=======
+
 	  }
->>>>>>> ca20538f60eeb485cb624996cd9d50ae5fdf6fe0
 
 	  public function tInfo()
 	  {
@@ -70,7 +64,7 @@ class CInfo extends CI_Controller {
 	  public function edit($id=null)
 	  {
 
-<<<<<<< HEAD
+
 	    if(!isset($id))redirect('CInfo/index');
 
 	    $info = $this->Info;
@@ -78,49 +72,27 @@ class CInfo extends CI_Controller {
 	    $data['title']= "Info";
 	    $this->load->view('Administrator/header');
 	    $this->load->view('Administrator/Info/eInfo',$data);
-=======
-	    if(!isset($id))redirect('CRole/index');
-
-	    $role = $this->Role;
-	    $data["role"]=$role->getByID($id);
-	    $data['title']= "Role";
-	    $this->load->view('Administrator/header');
-	    $this->load->view('Administrator/Role/eRole',$data);
->>>>>>> ca20538f60eeb485cb624996cd9d50ae5fdf6fe0
 	    $this->load->view('Administrator/footer');
 	  }
 
 	  public function update()
 	  {
-<<<<<<< HEAD
+
 	    $result = $this->Info->update();
-=======
-	    $result = $this->Role->update();
->>>>>>> ca20538f60eeb485cb624996cd9d50ae5fdf6fe0
 	    if($result>0)$this->sukses();
 	  }
 
 	  public function delete($id)
 	  {
-<<<<<<< HEAD
 	      if(!isset($id))redirect('CInfo/index');
 	      if($this->Info->delete($id)){
 	        redirect(site_url('CInfo/index'));
-=======
-	      if(!isset($id))redirect('CRole/index');
-	      if($this->Role->delete($id)){
-	        redirect(site_url('CRole/index'));
->>>>>>> ca20538f60eeb485cb624996cd9d50ae5fdf6fe0
 	      }
 	  }
 
 	  public function sukses()
 	  {
-<<<<<<< HEAD
 	    redirect(site_url('CInfo/index'));
-=======
-	    redirect(site_url('CRole/index'));
->>>>>>> ca20538f60eeb485cb624996cd9d50ae5fdf6fe0
 	  }
 
 	  public function gagal()

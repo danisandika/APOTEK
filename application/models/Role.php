@@ -17,6 +17,7 @@ class Role extends CI_Model
     return $this->db->get_where($this->_table,["status"=>1])->result();
   }
 
+
   public function getByID($id)
   {
     return $this->db->get_where($this->_table,["IDRole"=>$id])->row();

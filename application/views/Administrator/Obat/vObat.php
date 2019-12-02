@@ -43,8 +43,8 @@
 			  <th>Harga</th>
 			  <th>Expired</th>
 			  <th>Foto</th>
-			  
-			<th colspan="2">Aksi</th>
+
+			<th>Aksi</th>
             </tr>
             </thead>
 
@@ -57,7 +57,7 @@
                   <td><?php echo $s->IDJenis?></td>
                   <td><?php echo $s->status?></td>
                   <td><?php echo $s->JumlahObat?></td>
-				  <td><?php echo $s->Keterangan?></td>  
+				  <td><?php echo $s->Keterangan?></td>
 				  <td><?php echo $s->IDLokasi?></td>
 				  <td><?php echo $s->Satuan?></td>
 				  <td><?php echo $s->Harga?></td>

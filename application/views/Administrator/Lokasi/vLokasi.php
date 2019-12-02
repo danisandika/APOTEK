@@ -36,7 +36,7 @@
               <th>Nama Lokasi</th>
               <th>tempat Lokasi</th>
               <th>Deskripsi</th>
-              <th colspan="2">Aksi</th>
+              <th>Aksi</th>
             </tr>
             </thead>
 

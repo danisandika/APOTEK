@@ -242,16 +242,10 @@
               <p>Management Keuangan</p>
             </a>
           </li>
-		  <li class="nav-item">
-            <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CManagement'? 'active':''?>">
-              <i class="nav-icon fas fa-star"></i>
-              <p>Info Kesehatan</p>
-            </a>
-          </li>
-		  
+
           <li class="nav-header">User</li>
           <li class="nav-item">
-                <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CKaryawan'? 'active':''?>">
+                <a href="<?php echo site_url('CUser')?>" class="nav-link <?php echo $this->uri->segment(1)=='CUser'? 'active':''?>">
                   <i class="nav-icon fas fa-user-alt"></i>
                   <p>Karyawan</p>
                 </a>

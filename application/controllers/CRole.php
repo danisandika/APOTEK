@@ -31,6 +31,7 @@ class CRole extends CI_Controller {
 		}
    }
 
+
 	public function index()
 	{
 		$data['role']=$this->Role->getAll();

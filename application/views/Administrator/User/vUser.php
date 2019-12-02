@@ -38,7 +38,8 @@
               <th>No Telp</th>
               <th>Tanggal Lahir</th>
               <th>Email</th>
-			  <th colspan="2">Aksi</th>
+              <th>Role</th>
+			        <th>Aksi</th>
             </tr>
             </thead>
 
@@ -51,7 +52,21 @@
                   <td><?php echo $s->Alamat?></td>
                   <td><?php echo $s->NoTelp?></td>
                   <td><?php echo $s->TglLahir?></td>
-				  <td><?php echo $s->Email?></td>
+				          <td><?php echo $s->Email?></td>
+                  <?php
+                  if($s->IDRole == 1)
+                  {
+                    echo "<td><span class='badge bg-primary'>Admin</span></td>";
+                  }
+                  else if($s->IDRole == 2)
+                  {
+                    echo "<td><span class='badge bg-success'>Karyawan</span></td>";
+                  }
+                  else if($s->IDRole == 3)
+                  {
+                    echo "<td><span class='badge bg-warning'>Manager</span></td>";
+                  }
+                  ?>
                   <td>
                   <a href="<?php echo site_url('CUser/edit/'.$s->IDUser) ?>" class="btn btn-success"><span class="fas fa-edit"></span> | Edit</a>
                   <a onclick="deleteConfirm('<?php echo site_url('CUser/delete/'.$s->IDUser) ?>')" href="#" class="btn btn-danger"><span class="fas fa-trash"></span> | Delete</a>

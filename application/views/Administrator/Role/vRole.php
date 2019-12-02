@@ -34,7 +34,7 @@
             <tr>
               <th>No</th>
               <th>Nama Jenis Obat</th>
-              <th colspan="2">Aksi</th>
+              <th>Aksi</th>
             </tr>
             </thead>
 
