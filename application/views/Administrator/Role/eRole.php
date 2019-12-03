@@ -32,11 +32,15 @@
             <!-- form start -->
   <form role="form" action="<?php echo site_url('CRole/update') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
+      <div class="row form-group">
         <input type="hidden" name="IDRole" value="<?php echo $role->IDRole?>">
-     <label for="nama">Nama Role</label>
+		<div class="col-md-3">
+			<label for="nama">Nama Role</label>
+		</div>
+		<div class="col-md-5">
      <input type="text" class="form-control" name="Deskripsi" required value="<?php echo $role->Deskripsi?>">
     </div>
+	</div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

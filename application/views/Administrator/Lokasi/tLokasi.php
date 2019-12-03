@@ -22,7 +22,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-12">
+        <div class="col-md-8">
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
@@ -32,25 +32,39 @@
             <!-- form start -->
             <form role="form" action="<?php echo site_url('CLokasi/tambah') ?>" method="post">
               <div class="card-body">
-                <div class="form-group">
+                <div class="row form-group">
+				<div class="col col-md-3">
                   <label for="nama">Nama </label>
-               <input type="text" class="form-control" name="namaLokasi" required value="">
-              </div>
-              <div class="form-group">
-             <label for="nama">tempat Lokasi </label>
+				</div>
+				<div class="col col-md-5">
+				  <input type="text" class="form-control" name="namaLokasi" required value="">
+				</div>
+			  </div>
+			  
+			<div class="row form-group">
+			<div class="col col-md-3">
+				<label for="nama">Tempat Lokasi </label>
+			</div>
+			<div class="col col-md-5">
              <input type="text" class="form-control" name="tempatLokasi" required value="">
             </div>
-              <div class="form-group">
+			</div>
+			
+            <div class="row form-group">
+			<div class="col col-md-3">
                <label for="nama">Deskripsi</label>
+			</div>
+			<div class="col col-md-8">
                <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"></textarea>
-               </div>
+            </div>
+			</div>
 
-               <div class="card-footer">
+            <div class="card-footer">
                  <button type="submit" class="btn btn-primary">Submit</button>
                  <button type="reset" class="btn btn-danger">Cancel</button>
-               </div>
-              </div>
-               </form>
+            </div>
+            </div>
+        </form>
      </div>
    </div>
   </div>

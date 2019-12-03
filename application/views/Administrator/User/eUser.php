@@ -32,44 +32,73 @@
             <!-- form start -->
   <form role="form" action="<?php echo site_url('CUser/update') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
+      <div class="row form-group">
+	  <div class="col-md-3">
      <label for="nama">Nama User</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="hidden" name="IDUser" value="<?php echo $user->IDUser?>">
      <input type="text" class="form-control" name="Nama" value="<?php echo $user->Nama?>" required>
     </div>
+	</div>
 
-    <div class="form-group">
+    <div class="row form-group">
+	<div class="col-md-3">
      <label for="nama">Alamat</label>
+	 </div>
+	 <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="Alamat"><?php echo $user->Alamat?></textarea>
      </div>
+	 </div>
 	 
-	 <div class="form-group">
+	 <div class="row form-group">
+	 <div class="col-md-3">
      <label for="nama">Tanggal Lahir</label>
+	 </div>
+	 <div class="col-md-3">
      <input type="date" class="form-control" name="TglLahir" value="<?php echo $user->TglLahir?>" required>
      </div>
+	 </div>
 	 
-	 <div class="form-group">
+	 <div class="row form-group">
+	 <div class="col-md-3">
      <label for="nama">Email</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="email" class="form-control" name="Email" value="<?php echo $user->Email?>" required>
      </div>
-
-     <div class="form-group">
-     <label for="nama">Nomor Telephone</label>
+	</div>
+	
+     <div class="row form-group">
+	 <div class="col-md-3">
+     <label for="nama">Nomor Telephone</label></div>
+	 <div class="col-md-5">
      <input type="text" class="form-control" name="NoTelp" required value="<?php echo $user->NoTelp?>">
      </div>
+	 </div>
 	 
-	 <div class="form-group">
-     <label for="nama">Username </label>
+	 <div class="row form-group">
+     <div class="col-md-3">
+	 <label for="nama">Username </label>
+	 </div>
+	 <div class="col-md-5">
      <input type="text" class="form-control" name="Username" required>
      </div>
+	 </div>
 	 
-	 <div class="form-group">
-     <label for="nama">Password </label>
+	 <div class="row form-group">
+	 <div class="col-md-3">
+     <label for="nama">Password </label></div>
+	 <div class="col-md-5">
      <input type="text" class="form-control" name="Password" required>
      </div>
+	 </div>
 	 
-	<div class="form-group">
-        <label for="role">Role</label>										
+	<div class="row form-group">
+	<div class="col-md-3">
+        <label for="role">Role</label>	
+	</div>
+	<div class="col-md-5">
 		<select name="IDRole" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Select One ---</option>
 			<?php
@@ -82,6 +111,7 @@
 			<?php } ?>
 			<?php } ?>
 			</select>
+	</div>
 	</div>
 
      <div class="card-footer">

@@ -32,21 +32,33 @@
             <!-- form start -->
   <form role="form" action="<?php echo site_url('CInfo/update') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
+      <div class="row form-group">
+	  <div class="col-md-3">
      <label for="nama">Judul</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="hidden" name="IDInfo" value="<?php echo $info->IDInfo?>">
      <input type="text" class="form-control" name="Judul" value="<?php echo $info->Judul?>" required>
     </div>
+	</div>
 
-    <div class="form-group">
+    <div class="row form-group">
+	<div class="col-md-3">
      <label for="nama">Foto</label>
+	 </div>
+	 <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="Foto"><?php echo $info->Foto?></textarea>
      </div>
+	 </div>
 
-    <div class="form-group">
-     <label for="nama">Deskripsi</label>
+    <div class="row form-group">
+     <div class="col-md-3">
+	 <label for="nama">Deskripsi</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="email" class="form-control" name="Deskripsi" required value="<?php echo $info->Deskripsi?>">
      </div>
+	 </div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

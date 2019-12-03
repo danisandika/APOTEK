@@ -32,16 +32,24 @@
             <!-- form start -->
   <form role="form" action="<?php echo site_url('CJenis/update') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
+      <div class="row form-group">
         <input type="hidden" name="IDJenis" value="<?php echo $jenis->IDJenis?>">
-     <label for="nama">Nama Jenis Obat</label>
-     <input type="text" class="form-control" name="namaJenis" required value="<?php echo $jenis->namaJenis?>">
+     <div class="col-md-3">
+	 <label for="nama">Nama Jenis Obat</label>
+     </div>
+	 <div class="col-md-5">
+	 <input type="text" class="form-control" name="namaJenis" required value="<?php echo $jenis->namaJenis?>">
     </div>
+	</div>
 
-    <div class="form-group">
+    <div class="row form-group">
+	<div class="col-md-3">
      <label for="nama">Deskripsi</label>
+	 </div>
+	 <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"><?php echo $jenis->Deskripsi?></textarea>
      </div>
+	 </div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

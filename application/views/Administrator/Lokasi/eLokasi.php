@@ -22,7 +22,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-12">
+        <div class="col-md-8">
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
@@ -32,20 +32,35 @@
             <!-- form start -->
   <form role="form" action="<?php echo site_url('CLokasi/update') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
-        <input type="hidden" name="IDLokasi" value="<?php echo $lokasi->IDLokasi?>">
-     <label for="nama">Nama </label>
+    
+	<div class="row form-group">
+         <input type="hidden" name="IDLokasi" value="<?php echo $lokasi->IDLokasi?>">
+	<div class="col col-md-3">
+	 <label for="nama">Nama </label>
+	 </div>
+	 <div class="col col-md-5">
      <input type="text" class="form-control" name="namaLokasi" required value="<?php echo $lokasi->Nama_Lokasi?>">
-    </div>
-    <div class="form-group">
+	</div>  
+	</div>
+	
+    <div class="row form-group">
+	<div class="col col-md-3">
    <label for="nama">tempat Lokasi </label>
+   </div>
+   <div class="col col-md-5">
    <input type="text" class="form-control" name="tempatLokasi" required value="<?php echo $lokasi->tempatLokasi?>">
-  </div>
-    <div class="form-group">
+   </div>
+   </div>
+   
+    <div class="row form-group">
+	<div class="col col-md-3">
      <label for="nama">Deskripsi</label>
+	 </div>
+	 <div class="col col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"><?php echo $lokasi->Deskripsi?></textarea>
      </div>
-
+	 </div>
+	 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>
        <button type="reset" class="btn btn-danger">Cancel</button>

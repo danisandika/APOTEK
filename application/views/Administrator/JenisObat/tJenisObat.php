@@ -32,15 +32,23 @@
             <!-- form start -->
   <form role="form" action="<?php echo site_url('CJenis/tambah') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
+      <div class="row form-group">
+	  <div class="col-md-3">
      <label for="nama">Nama Jenis Obat</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="text" class="form-control" name="namaJenis" required>
     </div>
+	</div>
 
-    <div class="form-group">
-     <label for="nama">Deskripsi</label>
+    <div class="row form-group">
+     <div class="col-md-3">
+	 <label for="nama">Deskripsi</label>
+	 </div>
+	 <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"></textarea>
      </div>
+	 </div>
 
 
 

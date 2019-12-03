@@ -32,14 +32,21 @@
             <!-- form start -->
 	<form role="form" action="<?php echo site_url('CObat/update') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
+      <div class="row form-group">
+	  <div class="col-md-3">
      <label for="nama">Nama Obat</label>
+	  </div>
+	   <div class="col-md-5">
      <input type="hidden" name="IDObat" value="<?php echo $obat->IDObat?>">
      <input type="text" class="form-control" name="namaObat" value="<?php echo $obat->namaObat?>" required>
     </div>
+	</div>
 
-    <div class="form-group">
-        <label for="IDJenis">ID Jenis</label>										
+    <div class="row form-group">
+	 <div class="col-md-3">
+        <label for="IDJenis">ID Jenis</label>
+	</div>
+	 <div class="col-md-5">
 		<select name="IDJenis" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Select One ---</option>
 			<?php
@@ -53,19 +60,31 @@
 			<?php } ?>
 			</select>
 	</div>
+	</div>
 
-    <div class="form-group">
+    <div class="row form-group">
+	 <div class="col-md-3">
      <label for="nama">Jumlah Obat</label>
+	 </div>
+	  <div class="col-md-5">
      <input type="jumlah" class="form-control" name="JumlahObat" required value="<?php echo $obat->JumlahObat?>">
      </div>
+	 </div>
 
-     <div class="form-group">
+     <div class="row form-group">
+	  <div class="col-md-3">
      <label for="nama">Keterangan</label>
+	 </div>
+	  <div class="col-md-5">
      <input type="text" class="form-control" name="Keterangan" required value="<?php echo $obat->Keterangan?>">
      </div>
+	 </div>
 
-    <div class="form-group">
-        <label for="IDLokasi">ID Lokasi</label>										
+    <div class="row form-group">
+	 <div class="col-md-3">
+        <label for="IDLokasi">ID Lokasi</label>	
+	</div>
+	 <div class="col-md-5">
 		<select name="IDLokasi" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Select One ---</option>
 			<?php
@@ -79,32 +98,52 @@
 			<?php } ?>
 			</select>
 	</div>
-
+	</div>
 	 
-	<div class="form-group">
+	<div class="row form-group">
+	 <div class="col-md-3">
      <label for="nama">Satuan</label>
-     <textarea class="form-control" rows="3" placeholder="" name="Satuan"><?php echo $obat->Satuan?></textarea>
+	 </div>
+	  <div class="col-md-5">
+	  <select name="Satuan" class="form-control" style="width:100;%" required>
+		<option value="" disabled selected>--Pilih Satuan-- </option>
+		<option value="Butir">Butir</option>
+		<option value="Butir">Botol</option>
+		<option value="Butir">Strip</option></select>    	
      </div>
+	 </div>
 	 
 	 
-	 <div class="form-group">
+	 <div class="row form-group">
+	 <div class="col-md-3">
      <label for="nama">Harga</label>
+	 </div>
+	 <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="Harga"><?php echo $obat->Harga?></textarea>
      </div>
+	 </div>
 	 
 	 
-	 <div class="form-group">
+	 <div class="row form-group">
+	 <div class="col-md-3">
      <label for="nama">Expired</label>
-     <textarea class="form-control" rows="3" placeholder="" name="Expired"><?php echo $obat->Expired?></textarea>
+	 </div>
+	 <div class="col-md-5">
+     <textarea class="form-control" rows="1" placeholder="" name="Expired"><?php echo $obat->Expired?></textarea>
      </div>
+	 </div>
 	 
 	 
-	<div class="form-group">
+	<div class="row form-group">
+	<div class="col-md-3">
      <label for="nama">Foto</label>
+	 </div>
+	 <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="Foto"><?php echo $obat->Foto?></textarea>
      </div>
+	 </div>
 
-     <div class="card-footer">
+     <div class="row card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>
        <button type="reset" class="btn btn-danger">Cancel</button>
      </div>

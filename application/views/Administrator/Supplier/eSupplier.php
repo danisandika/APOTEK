@@ -32,26 +32,42 @@
             <!-- form start -->
   <form role="form" action="<?php echo site_url('CSupplier/update') ?>" method="post">
     <div class="card-body">
-      <div class="form-group">
+      <div class="row form-group">
+	  <div class="col-md-3">
      <label for="nama">Nama Supplier</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="hidden" name="IDSupplier" value="<?php echo $supplier->IDSupplier?>">
      <input type="text" class="form-control" name="namaSupplier" value="<?php echo $supplier->NamaSupplier?>" required>
     </div>
+	</div>
 
-    <div class="form-group">
+    <div class="row form-group">
+	<div class="col-md-3">
      <label for="nama">Alamat</label>
+	 </div>
+	 <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="alamatSupplier"><?php echo $supplier->alamatSupplier?></textarea>
      </div>
+	 </div>
 
-    <div class="form-group">
+    <div class="row form-group">
+	<div class="col-md-3">
      <label for="nama">Email Supplier</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="email" class="form-control" name="emailSupplier" required value="<?php echo $supplier->EmailSupplier?>">
      </div>
+	 </div>
 
-     <div class="form-group">
+     <div class="row form-group">
+	 <div class="col-md-3">
      <label for="nama">Nomor Telephone</label>
+	 </div>
+	 <div class="col-md-5">
      <input type="text" class="form-control" name="telpSupplier" required value="<?php echo $supplier->noTelp?>">
      </div>
+	 </div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>
