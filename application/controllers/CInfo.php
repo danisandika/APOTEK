@@ -24,6 +24,7 @@ class CInfo extends CI_Controller {
      parent::__construct();
      $this->load->model("Info");
      $this->load->library("session");
+		 $this->load->helper(array('string','text'));
 		if($this->session->userdata('user_role') != 'Admin')
 		{
 			echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
@@ -41,6 +42,7 @@ class CInfo extends CI_Controller {
 	}
 
 
+
 		public function tambah()
 	  {
 
@@ -48,6 +50,7 @@ class CInfo extends CI_Controller {
 	    $result = $info->save();
 	    if($result>0)$this->sukses();
 	    else $this->gagal();
+
 	  }
 
 	  public function tInfo()
@@ -61,33 +64,35 @@ class CInfo extends CI_Controller {
 	  public function edit($id=null)
 	  {
 
-	    if(!isset($id))redirect('CRole/index');
 
-	    $role = $this->Role;
-	    $data["role"]=$role->getByID($id);
-	    $data['title']= "Role";
+	    if(!isset($id))redirect('CInfo/index');
+
+	    $info = $this->Info;
+	    $data["info"]=$info->getByID($id);
+	    $data['title']= "Info";
 	    $this->load->view('Administrator/header');
-	    $this->load->view('Administrator/Role/eRole',$data);
+	    $this->load->view('Administrator/Info/eInfo',$data);
 	    $this->load->view('Administrator/footer');
 	  }
 
 	  public function update()
 	  {
-	    $result = $this->Role->update();
+
+	    $result = $this->Info->update();
 	    if($result>0)$this->sukses();
 	  }
 
 	  public function delete($id)
 	  {
-	      if(!isset($id))redirect('CRole/index');
-	      if($this->Role->delete($id)){
-	        redirect(site_url('CRole/index'));
+	      if(!isset($id))redirect('CInfo/index');
+	      if($this->Info->delete($id)){
+	        redirect(site_url('CInfo/index'));
 	      }
 	  }
 
 	  public function sukses()
 	  {
-	    redirect(site_url('CRole/index'));
+	    redirect(site_url('CInfo/index'));
 	  }
 
 	  public function gagal()

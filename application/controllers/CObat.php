@@ -7,13 +7,14 @@ class CObat extends CI_Controller {
    {
      parent::__construct();
      $this->load->model("Obat");
+     $this->load->model("JenisObat");
+     $this->load->model("Lokasi");
      $this->load->library("session");
     if($this->session->userdata('user_role') != 'Admin')
     {
       echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
       redirect(base_url('CLogin'));
     }
-
    }
 
 
@@ -39,8 +40,10 @@ class CObat extends CI_Controller {
 
   public function tObat()
   {
+    $data["jenis"]=$this->JenisObat->getAll();
+    $data["lokasi"]=$this->Lokasi->getAll();
     $this->load->view('Administrator/header');
-    $this->load->view('Administrator/Obat/tObat');
+    $this->load->view('Administrator/Obat/tObat',$data);
     $this->load->view('Administrator/footer');
   }
 

@@ -22,8 +22,8 @@ class CUser extends CI_Controller {
    {
      parent::__construct();
      $this->load->model("User");
-	 $this->load->model("Role");
-	 $this->load->model("Login");
+  	 $this->load->model("Role");
+  	 $this->load->model("Login");
      $this->load->library("session");
 
    }
@@ -38,23 +38,23 @@ class CUser extends CI_Controller {
 	}
 
 
-	private $_table = "login";
-    
+	private $_table = "User";
+
 	public function tambah()
     {
+    $password = $this->generateRandomString();
     $user = $this->User;
-    $result = $user->save();
-	
-    if($result>0)$this->sukses();
+    $sendEmail = $this->send($password);
+    $result = $user->save($password);
+    if($result>0 && $sendEmail>0)$this->sukses();
     else $this->gagal();
-	
-	
   }
 
   public function tUser()
   {
+    $data['role']=$this->Role->getAll();
     $this->load->view('Administrator/header');
-    $this->load->view('Administrator/User/tUser');
+    $this->load->view('Administrator/User/tUser',$data);
     $this->load->view('Administrator/footer');
   }
 
@@ -95,8 +95,49 @@ class CUser extends CI_Controller {
   {
     echo "<script>alert('Data Gagal Ditambahkan');</script>";
   }
-  
-  
+
+
+  function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+
+  public function send($password){
+    $this->load->library('mailer');
+
+    $email_penerima = $this->input->post('Email');
+    $isiUsername = $this->input->post('Username');
+    $isiPassword = $password;
+    $isiRole     = $this->Role->getByID($this->input->post('IDRole'));
+
+
+    $subjek = 'Pendaftaran User Baru Apotek Mustika Farma';
+    $pesan = 'Thanks and Regards. Jakarta,'.date('Y-m-d H:i:s');
+    $attachment = 'Non';//$_FILES['foto'];
+    $content = $this->load->view('Administrator/User/content', array('pesan'=>$pesan,'isiRole'=>$isiRole->Deskripsi,
+    'isiUsername'=>$isiUsername,'isiPassword'=>$isiPassword), true); // Ambil isi file content.php dan masukan ke variabel $content
+    $sendmail = array(
+      'email_penerima'=>$email_penerima,
+      'subjek'=>$subjek,
+      'content'=>$content,
+      'attachment'=>$attachment
+    );
+    if(empty($attachment['name'])){ // Jika tanpa attachment
+      $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
+    }else{ // Jika dengan attachment
+      $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
+    }
+    echo "<b>".$send['status']."</b><br />";
+    echo $send['message'];
+    echo "<br /><a href='".site_url("CDashboard")."'>Kembali ke Form</a>";
+  }
+
 
 
 }

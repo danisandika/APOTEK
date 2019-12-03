@@ -5,7 +5,6 @@ class Info extends CI_Model
 {
   private $_table = "Info";
 
-
   public function __construct()
   {
         parent::__construct();
@@ -25,6 +24,7 @@ class Info extends CI_Model
 
   public function save()
   {
+
     $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
 		$this->Judul = $post["judul"];
@@ -42,18 +42,21 @@ class Info extends CI_Model
   {
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
-    $this->IDRole = $post["IDRole"];
-    $this->Deskripsi = $post["Deskripsi"];
-    $this->gambar = $post["gambar"];
+
+    $this->IDInfo = $post["IDInfo"];
+		$this->Judul = $post["Judul"];
+		$this->Foto = $post["Foto"];
+		$this->Deskripsi = $post["Deskripsi"];
     $this->status = 1;
     $this->modifiedby = 1;
     $this->modifiedDate = $dateNow;
-		return $this->db->update($this->_table,$this,array('IDRole'=>$post['IDRole']));
+		return $this->db->update($this->_table,$this,array('IDInfo'=>$post['IDInfo']));
   }
 
   public function delete($IDInfo)
   {
     $this->status = 0;
+    $this->modifiedBy = 1;
     $this->CreateDate = date("Y-m-d H:i:s");
     return $this->db->update($this->_table,$this,array('IDInfo'=>$IDInfo));
   }
@@ -73,8 +76,6 @@ class Info extends CI_Model
         return $this->upload->data("file_name");
     }
     print_r($this->upload->display_errors());
-
-    //return "default.jpg";
   }
 
 }
