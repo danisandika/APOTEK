@@ -20,8 +20,6 @@ class Info extends CI_Model
     return $this->db->get_where($this->_table,["IDInfo"=>$id])->row();
   }
 
-
-
   public function save()
   {
 
@@ -45,8 +43,8 @@ class Info extends CI_Model
 
     $this->IDInfo = $post["IDInfo"];
 		$this->Judul = $post["Judul"];
-		$this->Foto = $post["Foto"];
-		$this->Deskripsi = $post["Deskripsi"];
+		$this->gambar = $post["gambar"];
+		$this->Konten = $post["konten"];
     $this->status = 1;
     $this->modifiedby = 1;
     $this->modifiedDate = $dateNow;

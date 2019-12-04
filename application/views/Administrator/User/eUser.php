@@ -82,7 +82,7 @@
 	 <label for="nama">Username </label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="text" class="form-control" name="Username" required>
+     <input type="text" class="form-control" name="Username" required value="<?php echo $user->username?>">
      </div>
 	 </div>
 	 
@@ -90,7 +90,7 @@
 	 <div class="col-md-3">
      <label for="nama">Password </label></div>
 	 <div class="col-md-5">
-     <input type="text" class="form-control" name="Password" required>
+     <input type="text" class="form-control" name="Password" required value="<?php echo $user->password?>">
      </div>
 	 </div>
 	 
@@ -116,7 +116,7 @@
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>
-       <button type="reset" class="btn btn-danger">Cancel</button>
+       <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
      </div>
     </div>
      </form>

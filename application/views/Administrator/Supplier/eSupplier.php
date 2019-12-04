@@ -47,7 +47,7 @@
      <label for="nama">Alamat</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="alamatSupplier"><?php echo $supplier->alamatSupplier?></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="alamatSupplier"><?php echo $supplier->AlamatSupplier?></textarea>
      </div>
 	 </div>
 
@@ -71,7 +71,7 @@
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>
-       <button type="reset" class="btn btn-danger">Cancel</button>
+       <button type="reset" class="btn btn-danger" >Cancel</button>
      </div>
     </div>
      </form>

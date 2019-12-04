@@ -47,7 +47,7 @@
      <label for="nama">Foto</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="Foto"><?php echo $info->Foto?></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Foto"><?php echo $info->gambar?></textarea>
      </div>
 	 </div>
 
@@ -56,13 +56,13 @@
 	 <label for="nama">Deskripsi</label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="email" class="form-control" name="Deskripsi" required value="<?php echo $info->Deskripsi?>">
+     <input type="Deskripsi" class="form-control" name="Deskripsi" required value="<?php echo $info->Konten?>">
      </div>
 	 </div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>
-       <button type="reset" class="btn btn-danger">Cancel</button>
+       <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
      </div>
     </div>
      </form>

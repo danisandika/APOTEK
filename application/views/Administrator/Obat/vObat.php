@@ -35,7 +35,7 @@
               <th>No</th>
               <th>Nama Obat</th>
               <th>Jenis Obat</th>
-              <th>Status</th>
+              <th hidden ="true">Status</th>
               <th>Jumlah Obat</th>
 			  <th>Keterangan</th>
 			  <th>Lokasi Penyimpanan</th>
@@ -50,12 +50,17 @@
 
             <tbody>
               <?php $i=0?>
-              <?php foreach ($obat as $s) { ?>
+              <?php foreach ($obat as $s) { 
+				$connect = mysqli_connect("localhost", "root", "","prg5_apotek");
+				mysqli_select_db($connect,"prg5_apotek");
+				$jenis = mysqli_fetch_array(mysqli_query($connect,"SELECT namaJenis from jenisobat where IDJenis =".$s->IDJenis));
+			  
+			  ?>
               <tr>
                   <td><?php $i++; echo $i?></td>
                   <td><?php echo $s->namaObat?></td>
-                  <td><?php echo $s->IDJenis?></td>
-                  <td><?php echo $s->status?></td>
+                  <td><?php echo $jenis[0]?></td>
+                  <td hidden ="true"><?php echo $s->status?></td>
                   <td><?php echo $s->JumlahObat?></td>
 				  <td><?php echo $s->Keterangan?></td>
 				  <td><?php echo $s->IDLokasi?></td>

@@ -52,6 +52,8 @@ class User extends CI_Model
 		$this->NoTelp = $post["NoTelp"];
 		$this->TglLahir = $post["TglLahir"];
 		$this->Email = $post["Email"];
+		$this->username = $post["username"];
+		$this->password = $post["password"];
     $this->status = 1;
     $this->modifiedby = 1;
     $this->modifiedDate = $dateNow;
