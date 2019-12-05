@@ -22,7 +22,7 @@
 <section class="content">
   <div class="row">
     <div class="col-12">
-      <div class="card">
+      <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title">Data Supplier</h3>
         </div>
@@ -37,6 +37,7 @@
               <th>Alamat</th>
               <th>Email</th>
               <th>No Telepon</th>
+              <th>Status</th>
               <th>Aksi</th>
             </tr>
             </thead>
@@ -50,9 +51,12 @@
                   <td><?php echo $s->AlamatSupplier?></td>
                   <td><?php echo $s->EmailSupplier?></td>
                   <td><?php echo $s->noTelp?></td>
+                  <?php if($s->Status==1){echo "<td><span class='badge bg-primary'>Aktif</span></td>";}elseif ($s->Status==0) {
+                    echo "<td><span class='badge bg-danger'>Nonaktif</span></td>";
+                  } ?>
                   <td>
-                  <a href="<?php echo site_url('CSupplier/edit/'.$s->IDSupplier) ?>" class="btn btn-success"><span class="fas fa-edit"></span> | Edit</a>
-                  <a onclick="deleteConfirm('<?php echo site_url('CSupplier/delete/'.$s->IDSupplier) ?>')" href="#" class="btn btn-danger"><span class="fas fa-trash"></span> | Delete</a>
+                  <a href="<?php echo site_url('CSupplier/edit/'.$s->IDSupplier) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Edit</a>
+                  <a onclick="deleteConfirm('<?php echo site_url('CSupplier/delete/'.$s->IDSupplier) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash"></span> | Delete</a>
                   </td>
               </tr>
             <?php } ?>

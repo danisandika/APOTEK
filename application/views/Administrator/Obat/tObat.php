@@ -41,8 +41,8 @@
 		<input type="text" class="form-control" name="namaObat"required>
 	  </div>
 	</div>
-	
-	
+
+
     <div class="row form-group">
 	<div class="col-md-3">
         <label for="IDJenis">ID Jenis</label>
@@ -70,7 +70,7 @@
 	  <div class="col-md-3">
      <label for="nama">Keterangan</label>
 	 </div>
-	  <div class="col-md-8">
+	  <div class="col-md-5">
      <textarea class="form-control" rows="3" placeholder="" name="keterangan"></textarea>
 	</div>
      </div>
@@ -99,10 +99,10 @@
 		<option value="" disabled selected>--Pilih Satuan-- </option>
 		<option value="Butir">Butir</option>
 		<option value="Butir">Botol</option>
-		<option value="Butir">Strip</option></select>    
+		<option value="Butir">Strip</option></select>
 		</div>
 	 </div>
-	
+
 
 	 <div class="row form-group">
 	  <div class="col-md-3">

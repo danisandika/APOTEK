@@ -13,7 +13,7 @@ class JenisObat extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get_where($this->_table,["statusJenis"=>1])->result();
+    return $this->db->get($this->_table)->result();
     //return $this->db->get($this->_table)->result();
   }
 
@@ -31,7 +31,7 @@ class JenisObat extends CI_Model
 		$this->namaJenis = $post["namaJenis"];
 		$this->Deskripsi = $post["Deskripsi"];
     $this->statusJenis = 1;
-    $this->createby = 1;
+    $this->createby = $this->session->userdata('user_userID');
     $this->createDate = $dateNow;
 		return $this->db->insert($this->_table,$this);
   }
@@ -43,8 +43,8 @@ class JenisObat extends CI_Model
     $this->IDJenis = $post["IDJenis"];
     $this->namaJenis = $post["namaJenis"];
 		$this->Deskripsi = $post["Deskripsi"];
-    $this->statusJenis = 1;
-    $this->modifiedby = 1;
+    $this->statusJenis = $post["status"];
+    $this->modifiedby = $this->session->userdata('user_userID');
     $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDJenis'=>$post['IDJenis']));
   }

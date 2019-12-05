@@ -14,7 +14,7 @@ class Role extends CI_Model
   public function getAll()
   {
     //return $this->db->get($this->_table)->result();
-    return $this->db->get_where($this->_table,["status"=>1])->result();
+    return $this->db->get_where($this->_table)->result();
   }
 
 
@@ -27,31 +27,38 @@ class Role extends CI_Model
   {
     $dateNow = date("Y-m-d");
     $post = $this->input->post();
-	$this->Deskripsi = $post["Deskripsi"];
+	  $this->Deskripsi = $post["Deskripsi"];
     $this->status = 1;
-    $this->createby = 1;
+    $this->createby = $this->session->userdata('user_userID');
     $this->createDate = $dateNow;
 		return $this->db->insert($this->_table,$this);
   }
 
   public function update()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
     $this->IDRole = $post["IDRole"];
     $this->Deskripsi = $post["Deskripsi"];
-    $this->status = 1;
-    $this->modifiedby = 1;
+    $this->status = $post["status"];
+    $this->modifiedby = $this->session->userdata('user_userID');
     $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDRole'=>$post['IDRole']));
   }
 
   public function delete($IDRole)
   {
-    $this->status = 0;
-    $this->modifiedBy = 1;
-    $this->modifiedDate = date("Y-m-d H:i:s");
-    return $this->db->update($this->_table,$this,array('IDRole'=>$IDRole));
+    if($this->session->userdata('user_roleID') == $IDRole)
+    {
+      echo "<script type='text/javascript'>alert('Maaf Data Tidak Dapat Dihapus');</script>";
+      return redirect(site_url('CRole/index'));
+    }
+    else {
+      $this->status = 0;
+      $this->modifiedBy = $this->session->userdata('user_userID');
+      $this->modifiedDate = date("Y-m-d H:i:s");
+      return $this->db->update($this->_table,$this,array('IDRole'=>$IDRole));
+    }
   }
 
 }
