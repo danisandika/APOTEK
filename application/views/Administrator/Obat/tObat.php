@@ -45,7 +45,7 @@
 	
     <div class="row form-group">
 	<div class="col-md-3">
-        <label for="IDJenis">ID Jenis</label>
+        <label for="IDJenis">Jenis Obat</label>
 	</div>
 	<div class="col-md-5">
 		<select name="IDJenis" class="form-control" style="width:100%;" required >
@@ -77,7 +77,7 @@
 
     <div class="row form-group">
 	<div class="col-md-3">
-        <label for="IDLokasi">ID Lokasi</label>
+        <label for="IDLokasi">Lokasi</label>
 	</div>
 	<div class="col-md-5">
 		<select name="IDLokasi" class="form-control" style="width:100%;" required >
@@ -116,7 +116,7 @@
 
 	 <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Expired</label>
+     <label for="nama">Kadaluwarsa</label>
 	 </div>
 	  <div class="col-md-5">
      <input type="date" class="form-control" name="Expired" required >

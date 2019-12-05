@@ -44,7 +44,7 @@
 
     <div class="row form-group">
 	 <div class="col-md-3">
-        <label for="IDJenis">ID Jenis</label>
+        <label for="IDJenis">Jenis Obat</label>
 	</div>
 	 <div class="col-md-5">
 		<select name="IDJenis" class="form-control" style="width:100%;" required >
@@ -82,7 +82,7 @@
 
     <div class="row form-group">
 	 <div class="col-md-3">
-        <label for="IDLokasi">ID Lokasi</label>	
+        <label for="IDLokasi">Lokasi Obat</label>	
 	</div>
 	 <div class="col-md-5">
 		<select name="IDLokasi" class="form-control" style="width:100%;" required >

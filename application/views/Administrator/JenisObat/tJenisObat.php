@@ -46,7 +46,7 @@
 	 <label for="nama">Deskripsi</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"required></textarea>
      </div>
 	 </div>
 
