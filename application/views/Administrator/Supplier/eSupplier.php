@@ -57,7 +57,7 @@
 	 </div>
 	 <div class="col-md-5">
      <input type="email" class="form-control" name="emailSupplier" required value="<?php echo $supplier->EmailSupplier?>">
-     </div>
+	 </div>
 	 </div>
 
      <div class="row form-group">
@@ -65,7 +65,7 @@
      <label for="nama">Nomor Telephone</label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="text" class="form-control" name="telpSupplier" required value="<?php echo $supplier->noTelp?>">
+     <input type="number" class="form-control" name="telpSupplier" required value="<?php echo $supplier->noTelp?>">
      </div>
 	 </div>
    <div class="row form-group">

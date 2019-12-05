@@ -30,6 +30,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
+	
   <form role="form" action="<?php echo site_url('CSupplier/tambah') ?>" method="post">
     <div class="card-body">
       <div class="row form-group">
@@ -64,7 +65,7 @@
      <label for="nama">Nomor Telephone</label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="text" class="form-control" name="telpSupplier" required>
+     <input type="number" class="form-control" name="telpSupplier" required >
      </div>
 	 </div>
 
