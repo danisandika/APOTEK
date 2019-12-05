@@ -54,6 +54,8 @@ class CObat extends CI_Controller {
     if(!isset($id))redirect('CObat/index');
 
     $obat = $this->Obat;
+    $data["jenis"]=$this->JenisObat->getAll();
+    $data["lokasi"]=$this->Lokasi->getAll();
     $data["obat"]=$obat->getByID($id);
     $data['title']= "Obat";
     $this->load->view('Administrator/header');
@@ -71,7 +73,7 @@ class CObat extends CI_Controller {
   {
       if(!isset($id))redirect('CObat/index');
       if($this->Obat->delete($id)){
-        redirect(site_url('CDashboard/index'));
+        redirect(site_url('CObat/index'));
       }
   }
 
@@ -84,6 +86,14 @@ class CObat extends CI_Controller {
   {
     echo "<script>alert('Data Gagal Ditambahkan');</script>";
   }
+
+  public function get_obat_data()
+	{
+	    $id = $this->input->get('id');
+	    $get_obat = $this->Obat->getByID($id);
+	    echo json_encode($get_obat);
+	    exit();
+	}
 
 
 }

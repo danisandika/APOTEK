@@ -22,7 +22,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-8">
+        <div class="col-md-12">
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
@@ -40,7 +40,7 @@
 				  <input type="text" class="form-control" name="namaLokasi" required value="">
 				</div>
 			  </div>
-			  
+
 			<div class="row form-group">
 			<div class="col col-md-3">
 				<label for="nama">Tempat Lokasi </label>
@@ -49,13 +49,13 @@
              <input type="text" class="form-control" name="tempatLokasi" required value="">
             </div>
 			</div>
-			
+
             <div class="row form-group">
 			<div class="col col-md-3">
                <label for="nama">Deskripsi</label>
 			</div>
-			<div class="col col-md-8">
-               <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"></textarea>
+			<div class="col col-md-5">
+               <textarea class="form-control" rows="2" placeholder="" name="Deskripsi"></textarea>
             </div>
 			</div>
 

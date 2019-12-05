@@ -70,5 +70,58 @@ $('#btn-delete').attr('href', url);
 $('#deleteModal').modal();
 }
 </script>
+<!--SCRIPT UNTUK DETAILS LOKASI-->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+      $('.view_detail').click(function(){
+
+          var id = $(this).attr('relid'); //get the attribute value
+
+          $.ajax({
+              url : "<?php echo base_url(); ?>CLokasi/get_lokasi_data",
+              data:{id : id},
+              method:'GET',
+              dataType:'json',
+              success:function(response) {
+                $('#lokasi_nama').html(response.Nama_Lokasi); //hold the response in id and show on popup
+                $('#lokasi_tempat').html(response.tempatLokasi);
+                $('#lokasi_deskripsi').html(response.Deskripsi);
+                $('#show_modal').modal({backdrop: 'static', keyboard: true, show: true});
+            }
+          });
+      });
+    });
+</script>
+
+<!--SCRIPT UNTUK DETAIL OBAT-->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+      $('.view_obat').click(function(){
+
+          var id = $(this).attr('relid'); //get the attribute value
+
+          $.ajax({
+              url : "<?php echo base_url(); ?>CObat/get_obat_data",
+              data:{id : id},
+              method:'GET',
+              dataType:'json',
+              success:function(response) {
+                $('#nama_obat').html(response.namaObat); //hold the response in id and show on popup
+                $('#jumlah_obat').html(response.JumlahObat);
+                $('#keterangan_obat').html(response.Keterangan);
+                $('#satuan_obat').html(response.Satuan);
+                $('#harga_obat').html(response.Harga);
+                $('#kadaluarsa_obat').html(response.Expired);
+                var xfoto = response.Foto;
+                //BELUM FIX SOAL FOTO
+                $('#foto_obat').html('<img src="<?php echo base_url('upload/obat/')?>'+response.Foto+'" width="150" id="foto_obat" class="rounded"/>');
+                $('#show_modal').modal({backdrop: 'static', keyboard: true, show: true});
+            }
+          });
+      });
+    });
+</script>
 </body>
 </html>

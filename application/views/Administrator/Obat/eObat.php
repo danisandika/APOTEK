@@ -30,7 +30,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-	<form role="form" action="<?php echo site_url('CObat/update') ?>" method="post">
+	<form role="form" action="<?php echo site_url('CObat/update') ?>" method="post" enctype="multipart/form-data">
     <div class="card-body">
       <div class="row form-group">
 	  <div class="col-md-3">
@@ -49,15 +49,9 @@
 	 <div class="col-md-5">
 		<select name="IDJenis" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Select One ---</option>
-			<?php
-			$connect = mysqli_connect("localhost", "root", "","prg5_apotek");
-			mysqli_select_db($connect,"prg5_apotek");
-			$sql = mysqli_query($connect,"SELECT IDJenis FROM jenisObat group by IDJenis ");
-			if(mysqli_num_rows($sql) > 0){
-			while($row = mysqli_fetch_array($sql)) { ?>
-			<option><?php echo $row ['IDJenis'] ?></option>
-			<?php } ?>
-			<?php } ?>
+    <?php foreach ($jenis as $s) { ?>
+      <option value="<?php echo $s->IDJenis ?>"><?php echo $s->namaJenis ?></option>
+    <?php } ?>
 			</select>
 	</div>
 	</div>
@@ -67,7 +61,7 @@
      <label for="nama">Jumlah Obat</label>
 	 </div>
 	  <div class="col-md-5">
-     <input type="jumlah" class="form-control" name="JumlahObat" required value="<?php echo $obat->JumlahObat?>">
+     <input type="jumlah" class="form-control" name="JumlahObat" required value="<?php echo $obat->JumlahObat?>" readonly>
      </div>
 	 </div>
 
@@ -82,24 +76,22 @@
 
     <div class="row form-group">
 	 <div class="col-md-3">
+<<<<<<< HEAD
         <label for="IDLokasi">Lokasi Obat</label>	
+=======
+        <label for="IDLokasi">ID Lokasi</label>
+>>>>>>> 6619676dc5860248c378eec3af623ead01d48598
 	</div>
 	 <div class="col-md-5">
 		<select name="IDLokasi" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Select One ---</option>
-			<?php
-			$connect = mysqli_connect("localhost", "root", "","prg5_apotek");
-			mysqli_select_db($connect,"prg5_apotek");
-			$sql = mysqli_query($connect,"SELECT IDLokasi FROM lokasi_penyimpanan group by IDLokasi ");
-			if(mysqli_num_rows($sql) > 0){
-			while($row = mysqli_fetch_array($sql)) { ?>
-			<option><?php echo $row ['IDLokasi'] ?></option>
-			<?php } ?>
-			<?php } ?>
+    <?php foreach ($lokasi as $s) { ?>
+      <option value="<?php echo $s->IDLokasi ?>"><?php echo $s->Nama_Lokasi ?></option>
+    <?php } ?>
 			</select>
 	</div>
 	</div>
-	 
+
 	<div class="row form-group">
 	 <div class="col-md-3">
      <label for="nama">Satuan</label>
@@ -109,42 +101,54 @@
 		<option value="" disabled selected>--Pilih Satuan-- </option>
 		<option value="Butir">Butir</option>
 		<option value="Butir">Botol</option>
-		<option value="Butir">Strip</option></select>    	
+		<option value="Butir">Strip</option></select>
      </div>
 	 </div>
-	 
-	 
+
+
 	 <div class="row form-group">
 	 <div class="col-md-3">
      <label for="nama">Harga</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="Harga"><?php echo $obat->Harga?></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Harga"><?php echo round($obat->Harga)?></textarea>
      </div>
 	 </div>
-	 
-	 
+
+
 	 <div class="row form-group">
 	 <div class="col-md-3">
      <label for="nama">Expired</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="1" placeholder="" name="Expired"><?php echo $obat->Expired?></textarea>
+     <input type="date" class="form-control" rows="1" placeholder="" name="Expired" value="<?php echo $obat->Expired?>">
      </div>
 	 </div>
-	 
-	 
+
+
 	<div class="row form-group">
 	<div class="col-md-3">
      <label for="nama">Foto</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="Foto"><?php echo $obat->Foto?></textarea>
+     <input class="form-control-file <?php echo form_error('image') ? 'is-invalid':'' ?>" type="file" name="foto" />
+		 <input type="hidden" name="old_foto" value="<?php echo $obat->Foto ?>" />
      </div>
 	 </div>
+   <div class="row form-group">
+      <div class="col-md-3">
+        <label for="nama">Status</label>
+       </div>
+        <div class="col-md-5">
+          <input type="radio" name="status" value="1" <?php if($obat->status==1){echo "checked";}else{echo "";}?> >Aktif
+          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+          <input type="radio" name="status" value="0" <?php if($obat->status==0){echo "checked";}else{echo "";}?> >Nonaktif
+        </div>
+   </div>
 
      <div class="row card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>
+       &nbsp;&nbsp;
        <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
      </div>
     </div>

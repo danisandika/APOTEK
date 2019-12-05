@@ -83,7 +83,7 @@ class CSupplier extends CI_Controller {
   {
       if(!isset($id))redirect('CSupplier/index');
       if($this->Supplier->delete($id)){
-        redirect(site_url('CDashboard/index'));
+        redirect(site_url('CSupplier/index'));
       }
   }
 

@@ -95,4 +95,12 @@ class CLokasi extends CI_Controller {
     echo "<script>alert('Data Gagal Ditambahkan');</script>";
   }
 
+	public function get_lokasi_data()
+	{
+	    $id = $this->input->get('id');
+	    $get_lokasi = $this->Lokasi->getByID($id);
+	    echo json_encode($get_lokasi);
+	    exit();
+	}
+
 }

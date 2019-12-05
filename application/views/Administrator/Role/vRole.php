@@ -22,7 +22,7 @@
 <section class="content">
   <div class="row">
     <div class="col-12">
-      <div class="card">
+      <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title">Data Role User</h3>
         </div>
@@ -34,6 +34,7 @@
             <tr>
               <th>No</th>
               <th>Nama Jenis Obat</th>
+              <th>Status</th>
               <th>Aksi</th>
             </tr>
             </thead>
@@ -44,10 +45,12 @@
               <tr>
                   <td><?php $i++; echo $i?></td>
                   <td><?php echo $s->Deskripsi?></td>
-
+                  <?php if($s->status==1){echo "<td><span class='badge bg-primary'>Aktif</span></td>";}elseif ($s->status==0) {
+                    echo "<td><span class='badge bg-danger'>Nonaktif</span></td>";
+                  } ?>
                   <td>
-                  <a href="<?php echo site_url('CRole/edit/'.$s->IDRole) ?>" class="btn btn-success"><span class="fas fa-edit"></span> | Edit</a>
-                  <a onclick="deleteConfirm('<?php echo site_url('CRole/delete/'.$s->IDRole) ?>')" href="#" class="btn btn-danger"><span class="fas fa-trash"></span> | Delete</a>
+                  <a href="<?php echo site_url('CRole/edit/'.$s->IDRole) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Edit</a>
+                  <a onclick="deleteConfirm('<?php echo site_url('CRole/delete/'.$s->IDRole) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash"></span> | Delete</a>
                   </td>
               </tr>
             <?php } ?>

@@ -68,6 +68,16 @@
      <input type="number" class="form-control" name="telpSupplier" required value="<?php echo $supplier->noTelp?>">
      </div>
 	 </div>
+   <div class="row form-group">
+      <div class="col-md-3">
+        <label for="nama">Status</label>
+       </div>
+        <div class="col-md-5">
+          <input type="radio" name="status" value="1" <?php if($supplier->Status==1){echo "checked";}else{echo "";}?> >Aktif
+          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+          <input type="radio" name="status" value="0" <?php if($supplier->Status==0){echo "checked";}else{echo "";}?> >Nonaktif
+        </div>
+   </div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

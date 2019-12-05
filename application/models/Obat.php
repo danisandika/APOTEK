@@ -13,7 +13,13 @@ class Obat extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get_where($this->_table,["Status"=>1])->result();
+    $this->db->select('IDObat,namaObat,namaJenis,Nama_Lokasi,JumlahObat,Harga,o.status as statusObat');
+    $this->db->from('obat as o');
+    $this->db->join('jenisobat as jo', 'jo.IDJenis = o.IDJenis');
+    $this->db->join('lokasi_penyimpanan as lp', 'lp.IDLokasi = o.IDLokasi');
+    //$this->db->get_where($this->_table)->result();
+    $query = $this->db->get();
+    return $query->result();
   //  return $this->db->get($this->_table)->result();
   }
 
@@ -26,7 +32,7 @@ class Obat extends CI_Model
 
   public function save()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
 		$this->namaObat = $post["namaObat"];
 		$this->IDJenis = $post["IDJenis"];
@@ -46,7 +52,7 @@ class Obat extends CI_Model
 
   public function update()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
     $this->IDObat = $post["IDObat"];
 		$this->namaObat = $post["namaObat"];
@@ -57,10 +63,17 @@ class Obat extends CI_Model
 		$this->Satuan = $post["Satuan"];
 		$this->Harga = $post["Harga"];
 		$this->Expired = $post["Expired"];
-		$this->Foto = $post["Foto"];
-    $this->status = 1;
-    $this->modifiedby = 1;
-    $this->modifiedDate = $dateNow;
+
+    if (!empty($_FILES["foto"]["name"])) {
+        $this->Foto = $this->_uploadImage($_FILES['foto']['name']);
+    } else {
+        $this->Foto = $post["old_foto"];
+    }
+
+		//$this->Foto = $post["Foto"];
+    $this->status = $post["status"];
+    $this->modifiedby = $this->session->userdata('user_userID');
+    $this->modifiedDate = date("Y-m-d H:i:s");
 		return $this->db->update($this->_table,$this,array('IDObat'=>$post['IDObat']));
   }
 
@@ -68,7 +81,7 @@ class Obat extends CI_Model
   {
     $post = $this->input->post();
     $this->Status = 0;
-    $this->modifiedBy = 1;
+    $this->modifiedBy = $this->session->userdata('user_userID');
     $this->modifiedDate = date("Y-m-d H:i:s");
     return $this->db->update($this->_table,$this,array('IDObat'=>$IDObat));
   }
