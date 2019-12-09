@@ -47,15 +47,18 @@
         <label for="IDJenis">Jenis Obat</label>
 	</div>
 	 <div class="col-md-5">
+		<?php $jenisData = $obat->IDJenis; ?>
 		<select name="IDJenis" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Select One ---</option>
-    <?php foreach ($jenis as $s) { ?>
-      <option value="<?php echo $s->IDJenis ?>"><?php echo $s->namaJenis ?></option>
-    <?php } ?>
-			</select>
+			<?php foreach ($jenis as $s) { 
+			 $jenisValue = $s->IDJenis;
+			?>
+            <option <?php if ($jenisData == $jenisValue) echo "selected" ?> value="<?php echo $jenisValue ?>" >Jenis <?php echo $s->namaJenis ?></option>
+		<?php } ?>
+		</select>
 	</div>
 	</div>
-
+	
     <div class="row form-group">
 	 <div class="col-md-3">
      <label for="nama">Jumlah Obat</label>
@@ -76,19 +79,18 @@
 
     <div class="row form-group">
 	 <div class="col-md-3">
-<<<<<<< HEAD
         <label for="IDLokasi">Lokasi Obat</label>	
-=======
-        <label for="IDLokasi">ID Lokasi</label>
->>>>>>> 6619676dc5860248c378eec3af623ead01d48598
 	</div>
 	 <div class="col-md-5">
+		<?php $lokasiData = $obat->IDLokasi; ?>
 		<select name="IDLokasi" class="form-control" style="width:100%;" required >
-		<option value="" disabled selected>--- Select One ---</option>
-    <?php foreach ($lokasi as $s) { ?>
-      <option value="<?php echo $s->IDLokasi ?>"><?php echo $s->Nama_Lokasi ?></option>
-    <?php } ?>
-			</select>
+		<option value="" disabled selected>--- Lokasi Obat ---</option>
+			<?php foreach ($lokasi as $l) { 
+			 $lokasiValue = $l->IDLokasi;
+			?>
+            <option <?php if ($lokasiData == $lokasiValue) echo "selected" ?> value="<?php echo $lokasiValue ?>" >Lokasi <?php echo $l->Nama_Lokasi ?></option>
+		<?php } ?>
+		</select>
 	</div>
 	</div>
 

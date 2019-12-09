@@ -96,12 +96,16 @@
     <label for="role">Role</label>
 	</div>
 	<div class="col-md-5">
-		<select name="IDRole" class="form-control" style="width:100%;" required >
-		<option value="" disabled selected>--- Select One ---</option>
-      <?php foreach ($role as $s) { ?>
-        <option value="<?php echo $s->IDRole ?>"><?php echo $s->Deskripsi ?></option>
-      <?php } ?>
-			</select>
+		<select type="text" name="IDRole" class="form-control" style="width: 100%;" required>
+			<option value="null" disabled selected>-- Role --</option>
+			<?php
+				foreach ($role as $j) {
+					if ($j->status=="1"){ ?>
+						<option value="<?php echo $j->IDRole ?>" >Role <?php echo $j->Deskripsi ?></option>
+					
+					<?php }
+				} ?>
+		</select>
 	</div>
 	</div>
 	

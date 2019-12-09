@@ -65,7 +65,7 @@
 
 
       <p class="mb-1">
-        <a href="#">I forgot my password</a>
+        <a href="<?php echo base_url('application/views/forgotPass/index.php')?>">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="register.html" class="text-center">Register a new membership</a>

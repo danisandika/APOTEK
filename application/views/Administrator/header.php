@@ -257,7 +257,7 @@
                 </a>
               </li>
                <li class="nav-item">
-                <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CMember'? 'active':''?>">
+                 <a href="<?php echo site_url('CMember')?>" class="nav-link <?php echo $this->uri->segment(1)=='CMember'? 'active':''?>">
                   <i class="nav-icon fas fa-user"></i>
                   <p>User Member</p>
                 </a>
