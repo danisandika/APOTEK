@@ -30,7 +30,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-  <form role="form" action="<?php echo site_url('CInfo/update') ?>" method="post">
+  <form role="form" action="<?php echo site_url('CInfo/update') ?>" method="post" enctype="multipart/form-data">
     <div class="card-body">
       <div class="row form-group">
 	  <div class="col-md-3">
@@ -44,19 +44,21 @@
 
     <div class="row form-group">
 	<div class="col-md-3">
-     <label for="nama">Foto</label>
+     <label for="nama">Deskripsi</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="Foto"><?php echo $info->gambar?></textarea>
+     <textarea class="textarea" placeholder="Place some text here" name="konten"
+     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $info->Konten?></textarea>
      </div>
 	 </div>
 
     <div class="row form-group">
      <div class="col-md-3">
-	 <label for="nama">Deskripsi</label>
+	 <label for="nama">Foto</label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="Deskripsi" class="form-control" name="Deskripsi" required value="<?php echo $info->Konten?>">
+     <input type="hidden" class="form-control" name="old_gambar" required value="<?php echo $info->gambar?>">
+     <input type="file" class="form-control" name="gambar">
      </div>
 	 </div>
 

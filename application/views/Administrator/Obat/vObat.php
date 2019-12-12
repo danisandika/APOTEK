@@ -1,4 +1,5 @@
 <?php $this->load->view('modal.php')?>
+<?php $this->load->view('modal2.php')?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -59,8 +60,11 @@
         				  <td>
                   <a href="#" class="btn btn-primary btn-sm view_obat" relid="<?php echo $s->IDObat;  ?>"><span class="fas fa-eye"></span> | Details</a>
                   <a href="<?php echo site_url('CObat/edit/'.$s->IDObat) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Edit</a>
-                  <a onclick="deleteConfirm('<?php echo site_url('CObat/delete/'.$s->IDObat) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash"></span> | Delete</a>
-                  </td>
+                  <?php if($s->statusObat==1){ ?>
+                  <a onclick="deleteConfirm('<?php echo site_url('CObat/delete/'.$s->IDObat) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Delete</a>
+                  <?php }else{ ?>
+                  <a onclick="activeConfirm('<?php echo site_url('CObat/active/'.$s->IDObat) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-check"></span> | Active</a>
+                  <?php } ?>
               </tr>
             <?php } ?>
 

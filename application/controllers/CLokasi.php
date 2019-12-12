@@ -75,24 +75,36 @@ class CLokasi extends CI_Controller {
   {
     $result = $this->Lokasi->update();
     if($result>0)$this->sukses();
+		else $this->gagal();
   }
 
   public function delete($id)
   {
       if(!isset($id))redirect('CLokasi/index');
-      if($this->Lokasi->delete($id)){
-        redirect(site_url('CLokasi/index'));
-      }
+      if($this->Lokasi->delete($id))$this->sukses();
+			else $this->gagal();
   }
+
+	public function active($id)
+	{
+			if(!isset($id))redirect('CLokasi/index');
+			if($this->Lokasi->active($id)){
+				$this->sukses();
+			}else{
+				$this->gagal();
+			}
+	}
 
   public function sukses()
   {
+		$this->session->set_flashdata("globalmsgsuccess", "Sukses");
     redirect(site_url('CLokasi/index'));
   }
 
   public function gagal()
   {
-    echo "<script>alert('Data Gagal Ditambahkan');</script>";
+		$this->session->set_flashdata("globalmsggagal", "Gagal");
+    redirect(site_url('CLokasi/index'));
   }
 
 	public function get_lokasi_data()

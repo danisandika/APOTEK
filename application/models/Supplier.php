@@ -47,7 +47,7 @@ class Supplier extends CI_Model
 		$this->AlamatSupplier = $post["alamatSupplier"];
 		$this->emailSupplier = $post["emailSupplier"];
 		$this->noTelp = $post["telpSupplier"];
-    $this->status = $post["status"];
+    //$this->status = $post["status"];
     $this->modifiedby = $this->session->userdata('user_userID');
     $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDSupplier'=>$post['IDSupplier']));
@@ -57,6 +57,15 @@ class Supplier extends CI_Model
   {
     $post = $this->input->post();
     $this->Status = 0;
+    $this->modifiedBy = $this->session->userdata('user_userID');;
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDSupplier'=>$IDSupplier));
+  }
+
+  public function active($IDSupplier)
+  {
+    $post = $this->input->post();
+    $this->Status = 1;
     $this->modifiedBy = $this->session->userdata('user_userID');;
     $this->modifiedDate = date("Y-m-d H:i:s");
     return $this->db->update($this->_table,$this,array('IDSupplier'=>$IDSupplier));

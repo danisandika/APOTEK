@@ -76,11 +76,7 @@
 
     <div class="row form-group">
 	 <div class="col-md-3">
-<<<<<<< HEAD
-        <label for="IDLokasi">Lokasi Obat</label>	
-=======
-        <label for="IDLokasi">ID Lokasi</label>
->>>>>>> 6619676dc5860248c378eec3af623ead01d48598
+        <label for="IDLokasi">Lokasi Obat</label>
 	</div>
 	 <div class="col-md-5">
 		<select name="IDLokasi" class="form-control" style="width:100%;" required >

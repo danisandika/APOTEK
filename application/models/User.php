@@ -21,7 +21,7 @@ class User extends CI_Model
     return $this->db->get_where($this->_table,["IDUser"=>$id])->row();
   }
 
-  
+
   public function save($password)
   {
     $dateNow = date("Y-m-d H:i:s");
@@ -44,7 +44,27 @@ class User extends CI_Model
 
   public function update()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
+    $post = $this->input->post();
+    $this->IDUser = $post["IDUser"];
+		$this->Nama = $post["Nama"];
+		$this->Alamat = $post["Alamat"];
+		$this->NoTelp = $post["NoTelp"];
+		$this->TglLahir = $post["TglLahir"];
+		$this->Email = $post["Email"];
+    $this->IDRole = $post["IDRole"];
+    $this->jeniskelamin = $post["jk"];
+		//$this->username = $post["username"];
+		//$this->password = $post["password"];
+    //$this->status = 1;
+    $this->modifiedby = $this->session->userdata('user_userID');
+    $this->modifiedDate = $dateNow;
+		return $this->db->update($this->_table,$this,array('IDUser'=>$post['IDUser']));
+  }
+
+  public function updateProfil()
+  {
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
     $this->IDUser = $post["IDUser"];
 		$this->Nama = $post["Nama"];
@@ -54,18 +74,33 @@ class User extends CI_Model
 		$this->Email = $post["Email"];
 		$this->username = $post["username"];
 		$this->password = $post["password"];
-    $this->status = 1;
-    $this->modifiedby = 1;
+    $this->jeniskelamin = $post["jk"];
+    //$this->foto = $this->_uploadImage($_FILES['foto']['name']);
+    if (!empty($_FILES["foto"]["name"])) {
+        $this->Foto = $this->_uploadImage($_FILES['foto']['name']);
+    } else {
+        $this->Foto = $post["old_foto"];
+    }
+    //$this->status = 1;
+    $this->modifiedby = $this->session->userdata('user_userID');
     $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDUser'=>$post['IDUser']));
   }
 
-  public function delete($IDSupplier)
+  public function delete($IDUser)
   {
     $this->status = 0;
-    $this->modifiedBy = 1;
-    $this->modifiedDate = date("Y-m-d");
-    return $this->db->update($this->_table,array('IDUser'=>$IDUser));
+    $this->modifiedBy = $this->session->userdata('user_userID');
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDUser'=>$IDUser));
+  }
+
+  public function active($IDUser)
+  {
+    $this->status = 1;
+    $this->modifiedBy = $this->session->userdata('user_userID');
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDUser'=>$IDUser));
   }
 
   private function _uploadImage($namagambar)

@@ -71,7 +71,7 @@ class Obat extends CI_Model
     }
 
 		//$this->Foto = $post["Foto"];
-    $this->status = $post["status"];
+    //$this->status = $post["status"];
     $this->modifiedby = $this->session->userdata('user_userID');
     $this->modifiedDate = date("Y-m-d H:i:s");
 		return $this->db->update($this->_table,$this,array('IDObat'=>$post['IDObat']));
@@ -81,6 +81,15 @@ class Obat extends CI_Model
   {
     $post = $this->input->post();
     $this->Status = 0;
+    $this->modifiedBy = $this->session->userdata('user_userID');
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDObat'=>$IDObat));
+  }
+
+  public function active($IDObat)
+  {
+    $post = $this->input->post();
+    $this->Status = 1;
     $this->modifiedBy = $this->session->userdata('user_userID');
     $this->modifiedDate = date("Y-m-d H:i:s");
     return $this->db->update($this->_table,$this,array('IDObat'=>$IDObat));

@@ -25,19 +25,39 @@ class CDashboard extends CI_Controller {
      $this->load->model("JenisObat");
      $this->load->library("session");
 
-		 if($this->session->userdata('user_role') != 'Admin')
- 		 {
- 			 echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
- 			 redirect(base_url('CLogin'));
- 		 }
+
+
 	 }
 
 	public function index()
 	{
-		$this->load->view('Administrator/header');
-    $this->load->view('Administrator/Dashboard');
-    $this->load->view('Administrator/footer');
 
+	if($this->session->userdata('user_role') != 'Admin')
+	 {
+		 echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
+		 redirect(base_url('CLogin'));
+	 }else{
+		  $this->load->view('Administrator/header');
+			$this->load->view('Administrator/Dashboard');
+			$this->load->view('Administrator/footer');
+
+
+	 }
+
+	}
+
+	public function index2()
+	{
+		if($this->session->userdata('user_role') != 'Karyawan')
+		{
+			echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
+			redirect(base_url('CLogin'));
+		}
+		else{
+			$this->load->view('Karyawan/header');
+	    $this->load->view('Karyawan/Dashboard');
+	    $this->load->view('Karyawan/footer');
+		}
 
 	}
 }

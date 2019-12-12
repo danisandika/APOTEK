@@ -12,7 +12,7 @@ class Info extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get_where($this->_table,array('createBy' => $this->session->userdata('user_userID'), 'status' => 1))->result();
+    return $this->db->get_where($this->_table,array('createBy' => $this->session->userdata('user_userID')))->result();
   }
 
   public function getByID($id)
@@ -38,15 +38,20 @@ class Info extends CI_Model
 
   public function update()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
 
     $this->IDInfo = $post["IDInfo"];
 		$this->Judul = $post["Judul"];
-		$this->gambar = $post["gambar"];
+		//$this->gambar = $post["gambar"];
+    if (!empty($_FILES["gambar"]["name"])) {
+        $this->gambar = $this->_uploadImage($_FILES['gambar']['name']);
+    } else {
+        $this->gambar = $post["old_gambar"];
+    }
 		$this->Konten = $post["konten"];
-    $this->status = 1;
-    $this->modifiedby = 1;
+    //$this->status = 1;
+    $this->modifiedby =$this->session->userdata('user_userID');
     $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDInfo'=>$post['IDInfo']));
   }
@@ -54,7 +59,15 @@ class Info extends CI_Model
   public function delete($IDInfo)
   {
     $this->status = 0;
-    $this->modifiedBy = 1;
+    $this->modifiedBy = $this->session->userdata('user_userID');
+    $this->CreateDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDInfo'=>$IDInfo));
+  }
+
+  public function active($IDInfo)
+  {
+    $this->status = 1;
+    $this->modifiedBy = $this->session->userdata('user_userID');
     $this->CreateDate = date("Y-m-d H:i:s");
     return $this->db->update($this->_table,$this,array('IDInfo'=>$IDInfo));
   }

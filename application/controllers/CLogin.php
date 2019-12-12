@@ -48,22 +48,23 @@ class CLogin extends CI_Controller {
         $role    = $dataRole->Deskripsi;
         $userID  = $dataUser->IDUser;
         $roleID  = $dataRole->IDRole;
+        $userFoto= $dataUser->foto;
 
         $newdata = array(
-          'user_username'=>$Username,
+          'user_username'=>$username,
           'user_role'=>$role,
           'user_userID'=>$userID,
-          'user_roleID'=>$roleID
+          'user_roleID'=>$roleID,
+          'user_profil'=>$userFoto
         );
         $this->session->set_userdata($newdata);
 
         if($role == "Admin")
         {
-          redirect(site_url('CDashboard'));
+          redirect(site_url('CDashboard/index'));
         }
-        elseif ($role == "Karyawan") {
-          echo "<script>alert('Hallo Karyawan');</script>";
-
+        else if ($role == "Karyawan") {
+          redirect(site_url('CDashboard/index2'));
         }
         else {
             echo "<script>alert('Data Tidak Ditemukan dalam Database');</script>";

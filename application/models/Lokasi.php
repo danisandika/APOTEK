@@ -26,27 +26,27 @@ class Lokasi extends CI_Model
 
   public function save()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
 		$this->Nama_Lokasi = $post["namaLokasi"];
 		$this->tempatLokasi = $post["tempatLokasi"];
     $this->Deskripsi = $post["Deskripsi"];
     $this->status = 1;
-    $this->createby = 1;
+    $this->createby = $this->session->userdata('user_userID');;
     $this->createDate = $dateNow;
 		return $this->db->insert($this->_table,$this);
   }
 
   public function update()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
     $this->IDLokasi = $post["IDLokasi"];
     $this->Nama_Lokasi = $post["namaLokasi"];
     $this->tempatLokasi = $post["tempatLokasi"];
     $this->Deskripsi = $post["Deskripsi"];
-    $this->status = 1;
-    $this->modifiedby = 1;
+    //$this->status = 1;
+    $this->modifiedby = $this->session->userdata('user_userID');;
     $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDLokasi'=>$post['IDLokasi']));
   }
@@ -54,7 +54,15 @@ class Lokasi extends CI_Model
   public function delete($IDLokasi)
   {
     $this->status = 0;
-    $this->modifiedBy = 1;
+    $this->modifiedBy = $this->session->userdata('user_userID');;
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDLokasi'=>$IDLokasi));
+  }
+
+  public function active($IDLokasi)
+  {
+    $this->status = 1;
+    $this->modifiedBy = $this->session->userdata('user_userID');;
     $this->modifiedDate = date("Y-m-d H:i:s");
     return $this->db->update($this->_table,$this,array('IDLokasi'=>$IDLokasi));
   }

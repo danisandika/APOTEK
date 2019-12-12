@@ -66,25 +66,43 @@ class CObat extends CI_Controller {
   public function update()
   {
     $result = $this->Obat->update();
-    if($result>0)$this->sukses();
+    if($result>0){
+      $this->sukses();
+    }else{
+      $this->gagal();
+    }
   }
 
   public function delete($id)
   {
       if(!isset($id))redirect('CObat/index');
       if($this->Obat->delete($id)){
-        redirect(site_url('CObat/index'));
+        $this->sukses();
+      }else{
+        $this->gagal();
+      }
+  }
+
+  public function active($id)
+  {
+      if(!isset($id))redirect('CObat/index');
+      if($this->Obat->active($id)){
+        $this->sukses();
+      }else{
+        $this->gagal();
       }
   }
 
   public function sukses()
   {
+    $this->session->set_flashdata("globalmsgsuccess", "Sukses");
     redirect(site_url('CObat/index'));
   }
 
   public function gagal()
   {
-    echo "<script>alert('Data Gagal Ditambahkan');</script>";
+    $this->session->set_flashdata("globalmsggagal", "Gagal");
+    redirect(site_url('CObat/index'));
   }
 
   public function get_obat_data()

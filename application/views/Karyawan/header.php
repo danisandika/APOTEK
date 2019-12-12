@@ -174,7 +174,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?php echo site_url('CDashboard/index')?>" class="brand-link">
+    <a href="<?php echo site_url('CDashboard/index2')?>" class="brand-link">
       <img src="<?php echo base_url('assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8')?>">
       <span class="brand-text font-weight-primary">Administrator</span>
@@ -198,69 +198,44 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
            <li class="nav-item">
-            <a href="<?php echo site_url('CDashboard')?>" class="nav-link <?php echo $this->uri->segment(1)=='CDashboard'? 'active':''?>">
+            <a href="<?php echo site_url('CDashboard/index2')?>" class="nav-link <?php echo $this->uri->segment(1)=='CDashboard'? 'active':''?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo site_url('CObat')?>" class="nav-link <?php echo $this->uri->segment(1)=='CObat'? 'active':''?>">
-              <i class="nav-icon fas fa-capsules"></i>
-              <p>Obat-Obatan</p>
+            <a href="<?php echo site_url('CPembelian')?>" class="nav-link <?php echo $this->uri->segment(1)=='CPembelian'? 'active':''?>">
+              <i class="nav-icon fas fa-cart-plus"></i>
+              <p>Pembelian</p>
             </a>
           </li>
 
 		 <li class="nav-item">
-            <a href="<?php echo site_url('CJenis')?>" class="nav-link <?php echo $this->uri->segment(1)=='CJenis'? 'active':''?>">
-              <i class="nav-icon fas fa-capsules"></i>
-              <p>Jenis Obat</p>
+            <a href="<?php echo site_url('CPenjualan')?>" class="nav-link <?php echo $this->uri->segment(1)=='CPenjualan'? 'active':''?>">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>Penjualan</p>
             </a>
           </li>
            <li class="nav-item">
             <a href="<?php echo site_url('CLokasi')?>" class="nav-link <?php echo $this->uri->segment(1)=='CLokasi'? 'active':''?>">
-              <i class="nav-icon fas fa-table"></i>
-              <p>Lokasi Penyimpanan</p>
+              <i class="nav-icon fas fa-check"></i>
+              <p>Konfirmasi Pembelian</p>
             </a>
           </li>
 
             <li class="nav-item">
             <a href="<?php echo site_url('CRole')?>" class="nav-link <?php echo $this->uri->segment(1)=='CRole'? 'active':''?>">
-              <i class="nav-icon fas fa-users-cog"></i>
-              <p>Role</p>
+              <i class="nav-icon fas fa-check"></i>
+              <p>Konfirmasi Penjualan</p>
             </a>
           </li>
           <li class="nav-item">
           <a href="<?php echo site_url('CInfo')?>" class="nav-link <?php echo $this->uri->segment(1)=='CInfo'? 'active':''?>">
             <i class="nav-icon fas fa-newspaper"></i>
-            <p>Info</p>
+            <p>Cek Stok</p>
           </a>
         </li>
-            <li class="nav-item">
-            <a href="<?php echo site_url('CManagement')?>" class="nav-link <?php echo $this->uri->segment(1)=='CManagement'? 'active':''?>">
-              <i class="nav-icon fas fa-money-check"></i>
-              <p>Management Keuangan</p>
-            </a>
-          </li>
 
-          <li class="nav-header">User</li>
-          <li class="nav-item">
-                <a href="<?php echo site_url('CUser')?>" class="nav-link <?php echo $this->uri->segment(1)=='CUser'? 'active':''?>">
-                  <i class="nav-icon fas fa-user-alt"></i>
-                  <p>Karyawan</p>
-                </a>
-              </li>
-    		   <li class="nav-item">
-                <a href="<?php echo site_url('CSupplier')?>" class="nav-link <?php echo $this->uri->segment(1)=='CSupplier'? 'active':''?>">
-                  <i class="nav-icon fas fa-user-alt"></i>
-                  <p>Supplier</p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="#" class="nav-link <?php echo $this->uri->segment(1)=='CMember'? 'active':''?>">
-                  <i class="nav-icon fas fa-user"></i>
-                  <p>User Member</p>
-                </a>
-              </li>
           </ul>
       </nav>
       <!-- /.sidebar-menu -->

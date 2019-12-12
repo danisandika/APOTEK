@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CJenis extends CI_Controller {
+class CPembelian extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,12 +21,12 @@ class CJenis extends CI_Controller {
 	 public function __construct()
    {
      parent::__construct();
-     $this->load->model("JenisObat");
+     $this->load->model("Pembelian");
      $this->load->library("session");
 
-		 if($this->session->userdata('user_role') != 'Admin')
+		 if($this->session->userdata('user_role') != 'Karyawan')
 		 {
-			 echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
+			 echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
 			 redirect(base_url('CLogin'));
 		 }
 
@@ -34,26 +34,26 @@ class CJenis extends CI_Controller {
 
 	public function index()
 	{
-		$data['jenis']=$this->JenisObat->getAll();
-		$data['title']= "Jenis Obat";
-		$this->load->view('Administrator/header');
-    $this->load->view('Administrator/JenisObat/vJenisObat',$data);
-    $this->load->view('Administrator/footer');
+		$data['data']=$this->Pembelian->getAll();
+		$data['title']= "Pembelian";
+		$this->load->view('Karyawan/header');
+    $this->load->view('Karyawan/Pembelian/trPembelian',$data);
+    $this->load->view('Karyawan/footer');
 	}
 
-	public function tambah()
+	public function add_cart()
   {
-
-    $jenis = $this->JenisObat;
-    $result = $jenis->save();
-    if($result>0)$this->sukses();
-    else $this->gagal();
+    $data = array(
+      'idPembelian'=>$this->input->post('id_pembelian'),
+      'idObat'=>$this->input->post('id_obat'),
+      'jumlah'=>$this->input->post('')
+    )
   }
 
-  public function tJenisObat()
+  public function tManagement()
   {
     $this->load->view('Administrator/header');
-    $this->load->view('Administrator/JenisObat/tJenisObat');
+    $this->load->view('Administrator/Management/tManagement');
     $this->load->view('Administrator/footer');
   }
 
@@ -61,11 +61,11 @@ class CJenis extends CI_Controller {
   public function edit($id=null)
   {
 
-    if(!isset($id))redirect('CJenis/index');
+    if(!isset($id))redirect('CManagement/index');
 
     $jenis = $this->JenisObat;
     $data["jenis"]=$jenis->getByID($id);
-    $data['title']= "Jenis Obat";
+    $data['title']= "Management Uang";
     $this->load->view('Administrator/header');
     $this->load->view('Administrator/JenisObat/eJenisObat',$data);
     $this->load->view('Administrator/footer');
@@ -83,7 +83,7 @@ class CJenis extends CI_Controller {
 
   public function delete($id)
   {
-      if(!isset($id))redirect('CJenis/index');
+      if(!isset($id))redirect('CManagement/index');
       if($this->JenisObat->delete($id)){
         $this->sukses();
       }else {
@@ -93,7 +93,7 @@ class CJenis extends CI_Controller {
 
 	public function active($id)
 	{
-			if(!isset($id))redirect('CJenis/index');
+			if(!isset($id))redirect('CManagement/index');
 			if($this->JenisObat->active($id)){
 				$this->sukses();
 			}else{
@@ -104,13 +104,13 @@ class CJenis extends CI_Controller {
   public function sukses()
   {
 		$this->session->set_flashdata("globalmsgsuccess", "Sukses");
-    redirect(site_url('CJenis/index'));
+    redirect(site_url('CManagement/index'));
   }
 
   public function gagal()
   {
 		$this->session->set_flashdata("globalmsggagal", "Gagal");
-    redirect(site_url('CJenis/index'));
+    redirect(site_url('CManagement/index'));
   }
 
 }

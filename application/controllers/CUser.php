@@ -46,7 +46,7 @@ class CUser extends CI_Controller {
     $user = $this->User;
     $sendEmail = $this->send($password);
     $result = $user->save($password);
-    if($result>0 && $sendEmail>0)$this->sukses();
+    if($result>0 )$this->sukses();
     else $this->gagal();
   }
 
@@ -65,6 +65,7 @@ class CUser extends CI_Controller {
     if(!isset($id))redirect('CUser/index');
 
     $user = $this->User;
+    $data['role']=$this->Role->getAll();
     $data["user"]=$user->getByID($id);
     $data['title']= "User";
     $this->load->view('Administrator/header');
@@ -76,24 +77,43 @@ class CUser extends CI_Controller {
   {
     $result = $this->User->update();
     if($result>0)$this->sukses();
+    else $this->gagal();
+  }
+
+  public function updateProfil()
+  {
+    $result = $this->User->updateProfil();
+    if($result>0)$this->sukses();
+    else $this->gagal();
   }
 
   public function delete($id)
   {
       if(!isset($id))redirect('CUser/index');
-      if($this->User->delete($id)){
-        redirect(site_url('Dashboard/index'));
+      if($this->User->delete($id))$this->sukses();
+      else $this->gagal();
+  }
+
+  public function active($id)
+  {
+      if(!isset($id))redirect('CUser/index');
+      if($this->User->active($id)){
+        $this->sukses();
+      }else{
+        $this->gagal();
       }
   }
 
   public function sukses()
   {
+    $this->session->set_flashdata("globalmsgsuccess", "Sukses");
     redirect(site_url('CUser/index'));
   }
 
   public function gagal()
   {
-    echo "<script>alert('Data Gagal Ditambahkan');</script>";
+    $this->session->set_flashdata("globalmsggagal", "Gagal");
+    redirect(site_url('CUser/index'));
   }
 
 
@@ -136,6 +156,15 @@ class CUser extends CI_Controller {
     echo "<b>".$send['status']."</b><br />";
     echo $send['message'];
     echo "<br /><a href='".site_url("CDashboard")."'>Kembali ke Form</a>";
+  }
+
+
+  public function get_user_data()
+  {
+      $id = $this->input->get('id');
+      $get_user = $this->User->getByID($id);
+      echo json_encode($get_user);
+      exit();
   }
 
 

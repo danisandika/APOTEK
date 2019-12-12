@@ -22,7 +22,7 @@ class CEditProfil extends CI_Controller {
 	 public function __construct()
    {
      parent::__construct();
-     $this->load->model("JenisObat");
+     $this->load->model("User");
 
 		 if($this->session->userdata('user_role') != 'Admin')
  		 {
@@ -31,12 +31,12 @@ class CEditProfil extends CI_Controller {
  		 }
 	 }
 
-	public function index()
+	public function editUser($id)
 	{
+		$user = $this->User;
+		$data["user"]=$user->getByID($id);
 		$this->load->view('Administrator/header');
-    $this->load->view('Administrator/EditProfil');
+    $this->load->view('Administrator/EditProfil',$data);
     $this->load->view('Administrator/footer');
-
-
 	}
 }

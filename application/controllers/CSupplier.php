@@ -77,24 +77,40 @@ class CSupplier extends CI_Controller {
   {
     $result = $this->Supplier->update();
     if($result>0)$this->sukses();
+    else{
+      $this->gagal();
+    }
   }
 
   public function delete($id)
   {
       if(!isset($id))redirect('CSupplier/index');
-      if($this->Supplier->delete($id)){
-        redirect(site_url('CSupplier/index'));
+      if($this->Supplier->delete($id))$this->sukses();
+      else{
+        $this->gagal();
+      }
+  }
+
+  public function active($id)
+  {
+      if(!isset($id))redirect('CSupplier/index');
+      if($this->Supplier->active($id)){
+        $this->sukses();
+      }else{
+        $this->gagal();
       }
   }
 
   public function sukses()
   {
+    $this->session->set_flashdata("globalmsgsuccess", "Sukses");
     redirect(site_url('CSupplier/index'));
   }
 
   public function gagal()
   {
-    echo "<script>alert('Data Gagal Ditambahkan');</script>";
+    $this->session->set_flashdata("globalmsggagal", "Gagal");
+    redirect(site_url('CSupplier/index'));
   }
 
 

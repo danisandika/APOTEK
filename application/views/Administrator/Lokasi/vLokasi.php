@@ -1,4 +1,5 @@
 <?php $this->load->view('modal.php')?>
+<?php $this->load->view('modal2.php')?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -55,7 +56,11 @@
                   <td>
                   <a href="#" class="btn btn-primary btn-sm view_detail" relid="<?php echo $s->IDLokasi;  ?>"><span class="fas fa-eye"></span> | Details</a>
                   <a href="<?php echo site_url('CLokasi/edit/'.$s->IDLokasi) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Edit</a>
-                  <a onclick="deleteConfirm('<?php echo site_url('CLokasi/delete/'.$s->IDLokasi) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash"></span> | Delete</a>
+                  <?php if($s->Status==1){ ?>
+                  <a onclick="deleteConfirm('<?php echo site_url('CLokasi/delete/'.$s->IDLokasi) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Delete</a>
+                  <?php }else{ ?>
+                  <a onclick="activeConfirm('<?php echo site_url('CLokasi/active/'.$s->IDLokasi) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-check"></span> | Active</a>
+                  <?php } ?>
                   </td>
               </tr>
             <?php } ?>

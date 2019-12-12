@@ -25,7 +25,7 @@ class Role extends CI_Model
 
   public function save()
   {
-    $dateNow = date("Y-m-d");
+    $dateNow = date("Y-m-d H:i:s");
     $post = $this->input->post();
 	  $this->Deskripsi = $post["Deskripsi"];
     $this->status = 1;
@@ -40,7 +40,7 @@ class Role extends CI_Model
     $post = $this->input->post();
     $this->IDRole = $post["IDRole"];
     $this->Deskripsi = $post["Deskripsi"];
-    $this->status = $post["status"];
+    //$this->status = $post["status"];
     $this->modifiedby = $this->session->userdata('user_userID');
     $this->modifiedDate = $dateNow;
 		return $this->db->update($this->_table,$this,array('IDRole'=>$post['IDRole']));
@@ -59,6 +59,15 @@ class Role extends CI_Model
       $this->modifiedDate = date("Y-m-d H:i:s");
       return $this->db->update($this->_table,$this,array('IDRole'=>$IDRole));
     }
+  }
+
+  public function active($IDRole)
+  {
+    $post = $this->input->post();
+    $this->status = 1;
+    $this->modifiedBy = $this->session->userdata('user_userID');
+    $this->modifiedDate = date("Y-m-d H:i:s");
+    return $this->db->update($this->_table,$this,array('IDRole'=>$IDRole));
   }
 
 }

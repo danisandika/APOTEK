@@ -79,25 +79,51 @@ class CInfo extends CI_Controller {
 	  {
 
 	    $result = $this->Info->update();
-	    if($result>0)$this->sukses();
+	    if($result>0){
+				$this->sukses();
+			}else{
+				$this->gagal();
+			}
 	  }
 
 	  public function delete($id)
 	  {
 	      if(!isset($id))redirect('CInfo/index');
 	      if($this->Info->delete($id)){
-	        redirect(site_url('CInfo/index'));
-	      }
+					$this->sukses();
+				}else{
+					$this->gagal();
+				}
+	  }
+
+		public function active($id)
+	  {
+	      if(!isset($id))redirect('CInfo/index');
+	      if($this->Info->active($id)){
+					$this->sukses();
+				}else{
+					$this->gagal();
+				}
 	  }
 
 	  public function sukses()
 	  {
+			$this->session->set_flashdata("globalmsgsuccess", "Sukses");
 	    redirect(site_url('CInfo/index'));
 	  }
 
 	  public function gagal()
 	  {
-	    echo "<script>alert('Data Gagal Ditambahkan');</script>";
+			$this->session->set_flashdata("globalmsggagal", "Gagal");
+	    redirect(site_url('CInfo/index'));
 	  }
+
+		public function get_info_data()
+		{
+		    $id = $this->input->get('id');
+		    $get_info = $this->Info->getByID($id);
+		    echo json_encode($get_info);
+		    exit();
+		}
 
 }
