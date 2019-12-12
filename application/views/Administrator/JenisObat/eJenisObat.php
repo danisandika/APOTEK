@@ -5,12 +5,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Supplier</h1>
+          <h1>Jenis Obat</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Administrator</a></li>
-            <li class="breadcrumb-item active">Supplier</li>
+            <li class="breadcrumb-item active">Jenis Obat</li>
           </ol>
         </div>
       </div>
@@ -26,7 +26,7 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit Supplier</h3>
+              <h3 class="card-title">Edit Jenis Obat</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -50,6 +50,17 @@
      <textarea class="form-control" rows="3" placeholder="" required name="Deskripsi"><?php echo $jenis->Deskripsi?></textarea>
      </div>
 	 </div>
+	 
+    <div class="row form-group">
+	     <div class="col-md-3">
+         <label for="nama">Status</label>
+	      </div>
+	       <div class="col-md-5">
+           <input type="radio" name="status" value="1" <?php if($jenis->statusJenis==1){echo "checked";}else{echo "";}?> >Aktif
+           &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+           <input type="radio" name="status" value="0" <?php if($jenis->statusJenis==0){echo "checked";}else{echo "";}?> >Nonaktif
+         </div>
+	  </div>
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

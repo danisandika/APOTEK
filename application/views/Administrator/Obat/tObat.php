@@ -48,14 +48,18 @@
         <label for="IDJenis">Jenis Obat</label>
 	</div>
 	<div class="col-md-5">
-		<select name="IDJenis" class="form-control" style="width:100%;" required >
-		<option value="" disabled selected>--- Select One ---</option>
-			<?php foreach ($jenis as $s) { ?>
-        <option value="<?php echo $s->IDJenis ?>"><?php echo $s->namaJenis ?></option>
-      <?php } ?>
-			</select>
+		<select type="text" name="IDJenis" class="form-control" style="width: 100%;" required>
+			<option value="null" disabled selected>-- Jenis Obat --</option>
+			<?php
+				foreach ($jenis as $j) {
+					if ($j->statusJenis=="1"){ ?>
+						<option value="<?php echo $j->IDJenis ?>" >Jenis <?php echo $j->namaJenis ?></option>
+					
+					<?php }
+				} ?>
+		</select>
 	</div>
-	</div>
+	</div> 
 
     <div class="row form-group">
 	 <div class="col-md-3">
@@ -79,12 +83,15 @@
 	<div class="col-md-3">
         <label for="IDLokasi">Lokasi</label>
 	</div>
-	<div class="col-md-5">
-		<select name="IDLokasi" class="form-control" style="width:100%;" required >
-		<option value="" disabled selected>--- Select One ---</option>
-      <?php foreach ($lokasi as $s) { ?>
-        <option value="<?php echo $s->IDLokasi ?>"><?php echo $s->Nama_Lokasi ?></option>
-      <?php } ?>
+	<div class="col-md-5">		
+		<select type="text" name="IDLokasi" class="form-control" style="width: 100%;" required>
+			<option value="null" disabled selected>-- Lokasi --</option>
+			<?php
+				foreach ($lokasi as $j) {
+					if ($j->Status=="1"){ ?>
+						<option value="<?php echo $j->IDLokasi ?>" >Lokasi <?php echo $j->Nama_Lokasi ?></option>				
+					<?php }
+				} ?>
 		</select>
 	</div>
 	</div>

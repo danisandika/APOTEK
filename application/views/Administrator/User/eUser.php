@@ -57,6 +57,23 @@
            <input type="text" class="form-control" name="NoTelp" required value="<?php echo $user->NoTelp;?>">
 	 </div>
 
+	<div class="row form-group">
+	<div class="col-md-3">
+        <label for="role">Role</label>
+	</div>
+	<div class="col-md-5">
+		<?php $roleData = $user->IDRole; ?>
+		<select name="IDRole" class="form-control" style="width:100%;" required >
+		<option value="" disabled selected>--- Role ---</option>
+			<?php foreach ($role as $l) { 
+			 $roleValue = $l->IDRole;
+			?>
+            <option <?php if ($roleData == $roleValue) echo "selected" ?> value="<?php echo $roleValue ?>" >Role <?php echo $l->Deskripsi ?></option>
+		<?php } ?>
+		</select>
+	</div>
+	</div>
+
 	 <div class="form-group">
          <label for="nama">Tanggal Lahir</label>
          <input type="date" class="form-control" name="TglLahir" required value="<?php echo $user->TglLahir;?>">

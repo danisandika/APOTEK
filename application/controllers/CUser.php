@@ -67,6 +67,7 @@ class CUser extends CI_Controller {
     $user = $this->User;
     $data['role']=$this->Role->getAll();
     $data["user"]=$user->getByID($id);
+    $data['role']=$this->Role->getAll();
     $data['title']= "User";
     $this->load->view('Administrator/header');
     $this->load->view('Administrator/User/eUser',$data);
