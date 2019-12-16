@@ -80,117 +80,42 @@ $('#btn-active').attr('href', url);
 $('#aModal').modal();
 }
 </script>
-<!--SCRIPT UNTUK DETAILS LOKASI-->
+
+
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function(){
+        $('.add_cart').click(function(){
+            var id_obat       = $(this).data("id_obat");
+            var namaobat      = $(this).data("namaobat");
+            var jumlah        = $('#' + id_obat).val();
+            var harga         = $('#H' + id_obat).val();
 
-      $('.view_detail').click(function(){
+            $.ajax({
+                url : "<?php echo site_url('CPembelian/add_cart');?>",
+                method : "POST",
+                data : {id_obat: id_obat, namaobat: namaobat, harga: harga, jumlah: jumlah},
+                success: function(data){
+                    $('#detail_cart').html(data);
+                }
+            });
+        });
 
-          var id = $(this).attr('relid'); //get the attribute value
 
-          $.ajax({
-              url : "<?php echo base_url(); ?>CLokasi/get_lokasi_data",
-              data:{id : id},
-              method:'GET',
-              dataType:'json',
-              success:function(response) {
-                $('#lokasi_nama').html(response.Nama_Lokasi); //hold the response in id and show on popup
-                $('#lokasi_tempat').html(response.tempatLokasi);
-                $('#lokasi_deskripsi').html(response.Deskripsi);
-                $('#show_modal').modal({backdrop: 'static', keyboard: true, show: true});
-            }
-          });
-      });
+        $('#detail_cart').load("<?php echo site_url('CPembelian/load_cart');?>");
+
+        $(document).on('click','.remove_cart',function(){
+            var row_id=$(this).attr("id");
+            $.ajax({
+                url : "<?php echo site_url('CPembelian/delete_cart');?>",
+                method : "POST",
+                data : {row_id : row_id},
+                success :function(data){
+                    $('#detail_cart').html(data);
+                }
+            });
+        });
     });
 </script>
-
-<!--SCRIPT UNTUK DETAIL OBAT-->
-<script type="text/javascript">
-    $(document).ready(function() {
-
-      $('.view_obat').click(function(){
-
-          var id = $(this).attr('relid'); //get the attribute value
-
-          $.ajax({
-              url : "<?php echo base_url(); ?>CObat/get_obat_data",
-              data:{id : id},
-              method:'GET',
-              dataType:'json',
-              success:function(response) {
-                $('#nama_obat').html(response.namaObat); //hold the response in id and show on popup
-                $('#jumlah_obat').html(response.JumlahObat);
-                $('#keterangan_obat').html(response.Keterangan);
-                $('#satuan_obat').html(response.Satuan);
-                $('#harga_obat').html(response.Harga);
-                $('#kadaluarsa_obat').html(response.Expired);
-                var xfoto = response.Foto;
-                //BELUM FIX SOAL FOTO
-                $('#foto_obat').html('<img src="<?php echo base_url('upload/obat/')?>'+response.Foto+'" width="150" id="foto_obat" class="rounded"/>');
-                $('#show_modal').modal({backdrop: 'static', keyboard: true, show: true});
-            }
-          });
-      });
-    });
-</script>
-
-
-<!--SCRIPT UNTUK INFO-->
-<script type="text/javascript">
-    $(document).ready(function() {
-
-      $('.view_info').click(function(){
-
-          var id = $(this).attr('relid'); //get the attribute value
-
-          $.ajax({
-              url : "<?php echo base_url(); ?>CInfo/get_info_data",
-              data:{id : id},
-              method:'GET',
-              dataType:'json',
-              success:function(response) {
-                $('#Judul').html(response.Judul); //hold the response in id and show on popup
-                $('#Kategori').html(response.Kategori);
-                $('#Konten').html(response.Konten);
-                $('#waktuPost').html(response.waktuPost);
-                $('#gambar').html('<img src="<?php echo base_url('upload/info/')?>'+response.gambar+'" width="150" id="foto_obat" class="rounded"/>');
-                $('#show_modal').modal({backdrop: 'static', keyboard: true, show: true});
-            }
-          });
-      });
-    });
-</script>
-
-
-<!--SCRIPT UNTUK USER-->
-<script type="text/javascript">
-    $(document).ready(function() {
-
-      $('.view_user').click(function(){
-
-          var id = $(this).attr('relid'); //get the attribute value
-
-          $.ajax({
-              url : "<?php echo base_url(); ?>CUser/get_user_data",
-              data:{id : id},
-              method:'GET',
-              dataType:'json',
-              success:function(response) {
-                $('#Nama').html(response.Nama); //hold the response in id and show on popup
-                $('#jeniskelamin').html(response.jeniskelamin);
-                $('#Alamat').html(response.Alamat);
-                $('#NoTelp').html(response.NoTelp);
-                $('#TglLahir').html(response.TglLahir);
-                $('#Email').html(response.Email);
-                $('#username').html(response.username);
-                $('#profil').html('<img src="<?php echo base_url('upload/profil/')?>'+response.foto+'" width="150" id="foto_user" class="rounded"/>');
-                $('#show_modal').modal({backdrop: 'static', keyboard: true, show: true});
-            }
-          });
-      });
-    });
-</script>
-
 
 <!--Alert Sukses-->
 <?php if ($this->session->flashdata('globalmsgsuccess')):  ?>

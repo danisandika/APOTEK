@@ -22,7 +22,9 @@ class CPembelian extends CI_Controller {
    {
      parent::__construct();
      $this->load->model("Pembelian");
+		 $this->load->model("Supplier");
      $this->load->library("session");
+		 $this->load->library("cart");
 
 		 if($this->session->userdata('user_role') != 'Karyawan')
 		 {
@@ -35,6 +37,7 @@ class CPembelian extends CI_Controller {
 	public function index()
 	{
 		$data['data']=$this->Pembelian->getAll();
+		$data['supplier']=$this->Supplier->getAll();
 		$data['title']= "Pembelian";
 		$this->load->view('Karyawan/header');
     $this->load->view('Karyawan/Pembelian/trPembelian',$data);
@@ -44,73 +47,75 @@ class CPembelian extends CI_Controller {
 	public function add_cart()
   {
     $data = array(
-      'idPembelian'=>$this->input->post('id_pembelian'),
-      'idObat'=>$this->input->post('id_obat'),
-      'jumlah'=>$this->input->post('')
-    )
+			'id'=>$this->input->post('id_obat'),
+      'name'=>$this->input->post('namaobat'),
+			'price'=>$this->input->post('harga'),
+      'qty'=>$this->input->post('jumlah'),
+    );
+		$this->cart->insert($data);
+
+		echo $this->show_cart();
   }
 
-  public function tManagement()
-  {
-    $this->load->view('Administrator/header');
-    $this->load->view('Administrator/Management/tManagement');
-    $this->load->view('Administrator/footer');
-  }
-
-
-  public function edit($id=null)
-  {
-
-    if(!isset($id))redirect('CManagement/index');
-
-    $jenis = $this->JenisObat;
-    $data["jenis"]=$jenis->getByID($id);
-    $data['title']= "Management Uang";
-    $this->load->view('Administrator/header');
-    $this->load->view('Administrator/JenisObat/eJenisObat',$data);
-    $this->load->view('Administrator/footer');
-  }
-
-  public function update()
-  {
-    $result = $this->JenisObat->update();
-    if($result>0){
-			$this->sukses();
-		}else {
-			$this->gagal();
-		}
-	}
-
-  public function delete($id)
-  {
-      if(!isset($id))redirect('CManagement/index');
-      if($this->JenisObat->delete($id)){
-        $this->sukses();
-      }else {
-      	$this->gagal();
-      }
-  }
-
-	public function active($id)
+	function show_cart()
 	{
-			if(!isset($id))redirect('CManagement/index');
-			if($this->JenisObat->active($id)){
-				$this->sukses();
-			}else{
-				$this->gagal();
-			}
+		$output = '';
+		$no     = 0;
+		foreach ($this->cart->contents() as $items) {
+			$no++;
+			$output .='
+								<tr>
+								  <td hidden>'.$items['id'].'</td>
+									<td>'.$items['name'].'</td>
+									<td>'.$items['price'].'</td>
+									<td>'.$items['qty'].'</td>
+									<td>'.number_format($items['subtotal']).'</td>
+									<td><button type="button" id="'.$items['rowid'].'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
+								</tr>
+								';
+		}
+		$output .= '
+								<tr>
+									<th colspan="4">Total</th>
+									<th colspan="2">'.'Rp'.number_format($this->cart->total()).'</th>
+								</tr>
+								';
+								return $output;
 	}
 
-  public function sukses()
+	function load_cart()
+	{
+		echo $this->show_cart();
+	}
+
+	function delete_cart(){
+		$data = array(
+			'rowid'=>$this->input->post('row_id'),
+			'qty'=>0,
+		);
+		$this->cart->update($data);
+		echo $this->show_cart();
+	}
+
+	public function tambah()
+	{
+		// code...
+		$pembelian = $this->Pembelian;
+    $result = $pembelian->save();
+    if($result>0)$this->sukses();
+    else $this->gagal();
+	}
+
+	public function sukses()
   {
 		$this->session->set_flashdata("globalmsgsuccess", "Sukses");
-    redirect(site_url('CManagement/index'));
+    redirect(site_url('CKonfirmasi/indexpembelian'));
   }
 
   public function gagal()
   {
 		$this->session->set_flashdata("globalmsggagal", "Gagal");
-    redirect(site_url('CManagement/index'));
+    redirect(site_url('CKonfirmasi/indexpembelian'));
   }
 
 }
