@@ -190,8 +190,6 @@ $('#aModal').modal();
       });
     });
 </script>
-
-
 <!--Alert Sukses-->
 <?php if ($this->session->flashdata('globalmsgsuccess')):  ?>
 <script type="text/javascript">

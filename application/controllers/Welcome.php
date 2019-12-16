@@ -20,6 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('Customer/Masterpage');
+		$this->load->view('Customer/Home');
 	}
 }
