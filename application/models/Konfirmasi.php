@@ -3,9 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Konfirmasi extends CI_Model
 {
-
-
-
   public function __construct()
   {
         parent::__construct();
@@ -37,9 +34,6 @@ class Konfirmasi extends CI_Model
     $this->JumlahObat = $post["jumlah"];
     $this->Expired = $post["tanggal"];
     //$this->status = 1;
-
-
-
     $data_detail = array(
       'IDPembelian'=>$IDPembelian,
       'IDObat'=>$IDObat,

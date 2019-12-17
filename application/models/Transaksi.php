@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Transaksi extends CI_Model
 {
 	private $_table ="transaksi";
-	
+
 	public function __construct()
 	{
         parent::__construct();
         $this->load->model('Management');
 	}
-	
+
 	public function getAll()
 	{
 		$this->db->select('IDObat,namaObat,namaJenis,Nama_Lokasi,JumlahObat,Harga,o.status as statusObat,Expired,Keterangan,Satuan');
@@ -20,16 +20,16 @@ class Transaksi extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
-	
+
 	public function save()
 	{
 		$dateNow = date("Y-m-d H:i:s");
 		$idTransaksi="TR".date("YmdHis");
 		$post =$this->input->post();
-		
+
 		$totalBayar=$this->cart->total();
 		$userID =$this->session->userdata('user_userID');
-		
+
 		$this->IDTransaksi = $idTransaksi;
 		$this->Tanggal = $dateNow;
 		$this->totalBayar = $totalBayar;
@@ -37,7 +37,7 @@ class Transaksi extends CI_Model
 		$this->IDKaryawan =$userID;
 		$this->FotoResep = $this->_uploadImage($_FILES['FotoResep']['name']);
 		$this->db->insert($this->_table,$this);
-		
+
 		foreach($this->cart->contents() as $item)
 		{
 			$data=array(
@@ -46,13 +46,20 @@ class Transaksi extends CI_Model
 			'jumlah' => $item['qty'],
 			'subTotal' => $item['subtotal']
 			);
+
+
+			$jumObat = array(
+				'JumlahObat'=>$this->getJumlahData($item['id']) - $item['qty']
+			);
+			$this->db->update("obat",$jumObat,array('IDObat'=>$item['id']));
 			$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
-		    $this->db->insert('detailtransaksi',$data );
+		  $this->db->insert('detailtransaksi',$data );
 		}
-		
+
+
     //$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
     //$this->db->insert('detailtransaksi',$data );
-	
+
 	$management=array(
       'tanggalTransaksi'=>$dateNow,
       'Debit'=>0,
@@ -64,10 +71,21 @@ class Transaksi extends CI_Model
     );
     $this->db->insert('management_uang',$management);
     $this->cart->destroy();
-	
+
 	return true;
 	}
-	
+
+
+	public function getJumlahData($id)
+  {
+    $this->db->select('JumlahObat');
+    $this->db->from('obat');
+		$this->db->where('IDObat',$id);
+    $this->db->limit(1);
+    $query = $this->db->get()->row()->JumlahObat;
+    return $query;
+  }
+
 	private function _uploadImage($namagambar)
 	{
     $config['upload_path']          = './upload/transaksi/';
@@ -82,11 +100,5 @@ class Transaksi extends CI_Model
     }
     print_r($this->upload->display_errors());
 	}
-
-	
 }
-
-
-
-
 ?>

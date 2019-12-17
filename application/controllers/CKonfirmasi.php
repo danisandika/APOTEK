@@ -44,7 +44,6 @@ class CKonfirmasi extends CI_Controller {
 
 	public function ubah_pembelian()
   {
-		
     $result = $this->Konfirmasi->ubah_pembelian();
     if($result>0){
 			$this->sukses();
@@ -52,8 +51,6 @@ class CKonfirmasi extends CI_Controller {
 			$this->gagal();
 		}
 	}
-
-
 
   public function sukses()
   {
