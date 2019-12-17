@@ -40,7 +40,7 @@ class CPembelian extends CI_Controller {
 		$data['supplier']=$this->Supplier->getAll();
 		$data['title']= "Pembelian";
 		$this->load->view('Karyawan/header');
-    $this->load->view('Karyawan/Pembelian/trPembelian',$data);
+    $this->load->view('Karyawan/Pembelian/tPembelian',$data);
     $this->load->view('Karyawan/footer');
 	}
 

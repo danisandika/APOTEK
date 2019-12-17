@@ -217,7 +217,7 @@
             </a>
           </li>
            <li class="nav-item">
-            <a href="<?php echo site_url('CLokasi')?>" class="nav-link <?php echo $this->uri->segment(1)=='CLokasi'? 'active':''?>">
+            <a href="<?php echo site_url('CKonfirmasi/index')?>" class="nav-link <?php echo $this->uri->segment(1)=='CKonfirmasi'? 'active':''?>">
               <i class="nav-icon fas fa-check"></i>
               <p>Konfirmasi Pembelian</p>
             </a>

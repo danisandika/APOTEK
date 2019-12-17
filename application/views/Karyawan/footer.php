@@ -233,6 +233,23 @@ $(function() {
 </script>
 <?php endif; ?>
 
+<script>
+	    $(document).ready(function() {
+	        // Untuk sunting
+	        $('#edit-data-pembelian').on('show.bs.modal', function (event) {
+	            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+	            var modal          = $(this)
+
+	            // Isi nilai pada field
+	            modal.find('#id').attr("value",div.data('id'));
+              modal.find('#idp').attr("value",div.data('idp'));
+	            modal.find('#nama').attr("value",div.data('nama'));
+	            modal.find('#jumlah').attr("value",div.data('jumlah'));
+              modal.find('#satuan').attr("value",div.data('satuan'));
+	        });
+	    });
+</script>
+
 
 
 
