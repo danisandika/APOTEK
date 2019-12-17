@@ -99,9 +99,11 @@ $('#aModal').modal();
                 }
             });
         });
-
+		
+		 
 
         $('#detail_cart').load("<?php echo site_url('CPembelian/load_cart');?>");
+		
 
         $(document).on('click','.remove_cart',function(){
             var row_id=$(this).attr("id");
@@ -115,6 +117,46 @@ $('#aModal').modal();
             });
         });
     });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	
+	
+	$('.add_cartPenjualan').click(function(){
+            var id_obat       = $(this).data("id_obat");
+            var namaobat      = $(this).data("namaobat");
+            var jumlah        = $('#' + id_obat).val();
+            var harga         = $(this).data("harga");
+
+            $.ajax({
+                url : "<?php echo site_url('CTransaksi/add_cart');?>",
+                method : "POST",
+                data : {id_obat: id_obat, namaobat: namaobat, harga: harga, jumlah: jumlah},
+                success: function(data){
+                    $('#detail_cartPenjualan').html(data);
+                }
+            });
+        });
+		
+		$('#detail_cartPenjualan').load("<?php echo site_url('CTransaksi/load_cart');?>");
+		
+		$(document).on('click','.remove_cart',function(){
+            var row_id=$(this).attr("id");
+            $.ajax({
+                url : "<?php echo site_url('CTransaksi/delete_cart');?>",
+                method : "POST",
+                data : {row_id : row_id},
+                success :function(data){
+                    $('#detail_cartPenjualan').html(data);
+                }
+            });
+        });
+	});
+	
+	
+	
 </script>
 
 <!--Alert Sukses-->

@@ -211,7 +211,7 @@
           </li>
 
 		 <li class="nav-item">
-            <a href="<?php echo site_url('CPenjualan')?>" class="nav-link <?php echo $this->uri->segment(1)=='CPenjualan'? 'active':''?>">
+            <a href="<?php echo site_url('CTransaksi')?>" class="nav-link <?php echo $this->uri->segment(1)=='CTransaksi'? 'active':''?>">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>Penjualan</p>
             </a>

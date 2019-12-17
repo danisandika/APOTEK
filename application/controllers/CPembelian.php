@@ -48,9 +48,9 @@ class CPembelian extends CI_Controller {
   {
     $data = array(
 			'id'=>$this->input->post('id_obat'),
-      'name'=>$this->input->post('namaobat'),
+			'name'=>$this->input->post('namaobat'),
 			'price'=>$this->input->post('harga'),
-      'qty'=>$this->input->post('jumlah'),
+			'qty'=>$this->input->post('jumlah'),
     );
 		$this->cart->insert($data);
 
@@ -100,7 +100,7 @@ class CPembelian extends CI_Controller {
 	public function tambah()
 	{
 		// code...
-		$pembelian = $this->Pembelian;
+	$pembelian = $this->Pembelian;
     $result = $pembelian->save();
     if($result>0)$this->sukses();
     else $this->gagal();
