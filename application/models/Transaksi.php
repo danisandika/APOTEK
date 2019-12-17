@@ -46,9 +46,12 @@ class Transaksi extends CI_Model
 			'jumlah' => $item['qty'],
 			'subTotal' => $item['subtotal']
 			);
+			$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
+		    $this->db->insert('detailtransaksi',$data );
 		}
-    $Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
-    $this->db->insert('detailtransaksi',$data);
+		
+    //$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
+    //$this->db->insert('detailtransaksi',$data );
 	
 	$management=array(
       'tanggalTransaksi'=>$dateNow,

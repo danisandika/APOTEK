@@ -28,7 +28,7 @@
       <!-- /.card-header -->
       <br>
       <div class="card-body">
-        <form class="" action="<?php echo site_url('CTransaksi/tambah') ?>" method="post" enctype="multipart/form-data">
+        <form class="" action="<?php echo site_url('CKonf_Transaksi/index') ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
 		<div class="col-sm-6">
 		<div class="form-group">
@@ -39,13 +39,14 @@
 		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck">
 		<label>Tidak Ada</label>
 		</div>
+		
 		<div id="ifYes" style="visibility:hidden">
         <div class="row form-group">
 		<div class="col-md-2">
 		<label for="nama">Foto</label>
 		</div>
 		<div class="col-md-10">
-		<input type="file" class="form-control" name="FotoResep" required id="foto">
+		<input type="file" class="form-control" name="FotoResep" id="foto">
 		</div>
 		</div>
 		</div>
@@ -86,7 +87,8 @@
                   <input type="number" name="jumlah" id="<?php echo $s->IDObat;?>" value="1" class="jumlah form-control">
                 </td>
                 <td>
-                  <button id="add_cartPenjualan" class="btn btn-success btn-block add_cartPenjualan" data-id_obat="<?php echo $s->IDObat;?>" data-namaobat="<?php echo $s->namaObat;?>" data-harga ="<?php echo $s->Harga;?>"><span class="fas fa-shopping-cart"></span></button>
+                  <button onclick="myFunction()" id="add_cartPenjualan" class="btn btn-success btn-block add_cartPenjualan" data-id_obat="<?php echo $s->IDObat;?>" 
+				  data-namaobat="<?php echo $s->namaObat;?>" data-harga ="<?php echo $s->Harga;?>"><span class="fas fa-shopping-cart"></span></button>
                 </td>
             </tr>
           <?php endforeach;?>
@@ -102,38 +104,21 @@
 
 
 <!-- Main content -->
-
-  <div class="col-12">
-    <div class="card card-success">
-      <div class="card-header">
-        <h3 class="card-title">Data Transaksi</h3>
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body">
-        <table id="table_cartPenjualan" class="table table-bordered table-hover">
-          <thead>
-          <tr>
-
-            <th>Nama Obat</th>
-            <th>Harga</th>
-            <th>Jumlah</th>
-            <th>Subtotal</th>
-            <th>Aksi</th>
-          </tr>
-          </thead>
-
-          <tbody id="detail_cartPenjualan">
-          </tbody>
-        </table>
-      </div>
-      <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-</div>
 </div>
 </section>
 </div>
 </div>
+
+<script>
+function myFunction() {
+ Swal.fire(
+  'Sukses!',
+  'Data Dimasukan dikeranjang!',
+  'success'
+)
+}
+</script>
+
 
 <script type="text/javascript">
 

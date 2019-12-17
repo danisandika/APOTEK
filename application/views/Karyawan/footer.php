@@ -159,6 +159,44 @@ $(document).ready(function(){
 	
 </script>
 
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.add_cartBayar').click(function(){
+            var id_obat       = $(this).data("id_obat");
+            var namaobat      = $(this).data("namaobat");
+            var jumlah        = $('#' + id_obat).val();
+            var harga         = $(this).data("harga");
+
+            $.ajax({
+                url : "<?php echo site_url('CKonf_Transaksi/add_cart');?>",
+                method : "POST",
+                data : {id_obat: id_obat,harga: harga},
+                success: function(data){
+                    $('#detail_cartBayar').html(data);
+                }
+            });
+        });
+		
+		$('#detail_cartBayar').load("<?php echo site_url('CKonf_Transaksi/load_cart');?>");
+		
+		$(document).on('click','.remove_cart',function(){
+            var row_id=$(this).attr("id");
+            $.ajax({
+                url : "<?php echo site_url('CKonf_Transaksi/delete_cart');?>",
+                method : "POST",
+                data : {row_id : row_id},
+                success :function(data){
+                    $('#detail_cartBayar').html(data);
+                }
+            });
+        });
+	});
+	
+	
+	
+</script>
+
 <!--Alert Sukses-->
 <?php if ($this->session->flashdata('globalmsgsuccess')):  ?>
 <script type="text/javascript">
@@ -239,5 +277,9 @@ $(function() {
     });
   });
   </script>
+  
+  
+  
+
 </body>
 </html>
