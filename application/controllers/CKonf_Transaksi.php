@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CKonf_Transaksi extends CI_Controller{
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,15 +10,15 @@ class CKonf_Transaksi extends CI_Controller{
 		$this->load->model("Konf_Transaksi");
 		$this->load->library("session");
 		$this->load->library("cart");
-		
+
 		if($this->session->userdata('user_role') != 'Karyawan')
 		{
 			 echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
 			 redirect(base_url('CLogin'));
-		}		 
+		}
 	}
-	 
-	 
+
+
 	public function index()
 	{
 		$datatran['datatran']=$this->Konf_Transaksi->getAll();
@@ -28,7 +28,7 @@ class CKonf_Transaksi extends CI_Controller{
 		$this->load->view('Karyawan/Transaksi/konfirmTransaksi',$datatran);
 		$this->load->view('Karyawan/footer');
 	}
-	
+
 	public function add_cart()
 	{
 	$this->load->view('Karyawan/header');
@@ -42,7 +42,7 @@ class CKonf_Transaksi extends CI_Controller{
 
 	echo $this->show_cart();
 	}
-	
+
 	function show_cart()
 	{
 		$output = '';
@@ -69,11 +69,13 @@ class CKonf_Transaksi extends CI_Controller{
 								return $output;
 	}
 
+
+
 	function load_cart()
 	{
 		echo $this->show_cart();
 	}
-	
+
 	function delete_cart(){
 		$data = array(
 			'rowid'=>$this->input->post('row_id'),
@@ -82,7 +84,7 @@ class CKonf_Transaksi extends CI_Controller{
 		$this->cart->update($data);
 		echo $this->show_cart();
 	}
-	
+
 	public function tambah()
 	{
 	$transaksi = $this->Transaksi;
@@ -91,7 +93,7 @@ class CKonf_Transaksi extends CI_Controller{
     else $this->gagal();
 	}
 
-	
+
 	public function sukses()
 	{
 	$this->session->set_flashdata("globalmsgsuccess", "Sukses");
@@ -105,7 +107,7 @@ class CKonf_Transaksi extends CI_Controller{
 	}
 
 
-	
+
 }
 
 ?>

@@ -99,11 +99,8 @@ $('#aModal').modal();
                 }
             });
         });
-		
-		 
-
         $('#detail_cart').load("<?php echo site_url('CPembelian/load_cart');?>");
-		
+
 
         $(document).on('click','.remove_cart',function(){
             var row_id=$(this).attr("id");
@@ -121,9 +118,6 @@ $('#aModal').modal();
 
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	
-	
 	$('.add_cartPenjualan').click(function(){
             var id_obat       = $(this).data("id_obat");
             var namaobat      = $(this).data("namaobat");
@@ -139,9 +133,9 @@ $(document).ready(function(){
                 }
             });
         });
-		
+
 		$('#detail_cartPenjualan').load("<?php echo site_url('CTransaksi/load_cart');?>");
-		
+
 		$(document).on('click','.remove_cart',function(){
             var row_id=$(this).attr("id");
             $.ajax({
@@ -154,9 +148,9 @@ $(document).ready(function(){
             });
         });
 	});
-	
-	
-	
+
+
+
 </script>
 
 
@@ -177,9 +171,9 @@ $(document).ready(function(){
                 }
             });
         });
-		
+
 		$('#detail_cartBayar').load("<?php echo site_url('CKonf_Transaksi/load_cart');?>");
-		
+
 		$(document).on('click','.remove_cart',function(){
             var row_id=$(this).attr("id");
             $.ajax({
@@ -192,9 +186,6 @@ $(document).ready(function(){
             });
         });
 	});
-	
-	
-	
 </script>
 
 <!--Alert Sukses-->
@@ -294,9 +285,9 @@ $(function() {
     });
   });
   </script>
-  
-  
-  
+
+
+
 
 </body>
 </html>

@@ -34,6 +34,7 @@ class Pembelian extends CI_Model
     $supplier = $post["IDSupplier"];
     $userID = $this->session->userdata('user_userID');
 
+
     $this->IDPembelian = $idBeli;
     $this->Tanggal = $dateNow;
     $this->totalBayar = $TotalBayar;
@@ -67,7 +68,7 @@ class Pembelian extends CI_Model
     );
     $this->db->insert('management_uang',$management);
     $this->cart->destroy();
-    
+
 return true;
 }
 

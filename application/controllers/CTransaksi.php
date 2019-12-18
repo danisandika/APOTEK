@@ -106,6 +106,4 @@ class CTransaksi extends CI_Controller{
     redirect(site_url('CKonfirmasi/indexpembelian'));
   }
 }
-
-
 ?>

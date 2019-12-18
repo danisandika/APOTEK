@@ -42,7 +42,7 @@
       </div>
       <!-- /.card-body -->
     </div>
-	
+
     <!-- /.card -->
 </div>
   <div class="col-12">
@@ -57,34 +57,34 @@
           <div class="row form-group">
 			<div class="col-md-3">
 				<label for="nama">TOTAL</label>
-				</div>	
+				</div>
 				<div class="col-md-5">
 				<input type="text" class="form-control CalculateMe" name='qty' id='qty' required value="<?php echo $this->cart->total()?>">
 				</div>
 			</div>
-			
+
 		 <div class="row form-group">
 			<div class="col-md-3">
 				<label for="nama">TUNAI</label>
-				</div>	
-				<div class="col-md-5">
-				<input type="text" class="form-control CalculateMe"  name='price' id='price' required>
 				</div>
-				
+				<div class="col-md-5">
+				<input type="text" class="form-control CalculateMe"  name='price' id='price' required >
+				</div>
+
 			</div>
-			
+
 			 <div class="row form-group">
 			<div class="col-md-3">
 				<label for="nama">KEMBALI</label>
-				</div>	
+				</div>
 				<div class="col-md-5">
 				<input type="text" class="form-control CalculateMe" required name='total' id='total'>
 				<span class=price></span>
 				</div>
 			</div>
-			
-			<button type="submit" class="btn btn-primary">Bayar</button>    
-        </table>
+
+			<button class="btn btn-primary" onclick="validasi();">Bayar</button>
+      </table>
       </div>
       <!-- /.card-body -->
 
@@ -99,13 +99,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+<script type="text/javascript">
+  function validasi()
+  {
+    alert();
+    var firstInput = document.getElementById("qty").value;
+    var secondInput = document.getElementById("price").value;
+    if (qty>price)
+    {
+        alert("Uang Anda Kurang");
+    }
+    else if (qty<price or qty = price) {
+        alert("Transaksi Berhasil");
+    }
+
+  }
+</script>
+
 
 <script type="text/javascript">
 $('#qty, #price').on('input',function() {
     var qty = parseInt($('#qty').val());
     var price = parseFloat($('#price').val());
     $('#total').val((qty * price ? price - qty : 0).toFixed(0));
+    //var total = parseFloat($('#total').val());
+    //if (total < 0) {
+      //alert("Uang Anda Kurang");
+    //}
 });
 </script>
-
-

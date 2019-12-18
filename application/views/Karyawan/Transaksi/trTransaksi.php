@@ -34,12 +34,12 @@
 		<div class="form-group">
 		<div class="col-sm-12">
 		<label>Resep Dokter</label>
-		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"> 
+		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck">
 		<label>Ada </label>
 		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck">
 		<label>Tidak Ada</label>
 		</div>
-		
+
 		<div id="ifYes" style="visibility:hidden">
         <div class="row form-group">
 		<div class="col-md-2">
@@ -50,12 +50,12 @@
 		</div>
 		</div>
 		</div>
-		</div>	
+		</div>
         <button type="submit" name="submit" class="btn btn-primary">Proses</button>
         </div>
 		</div>
         </form>
-		
+
         <hr>
         <table id="table2" class="table table-bordered table-hover">
           <thead>
@@ -75,6 +75,7 @@
             <?php $i=0?>
             <?php foreach ($datatran as $s) : ?>
             <tr>
+              <input type="hidden" id="<?= $s->IDObat?>db" value="<?= $s->JumlahObat?>">
                 <td><?php $i++; echo $i?></td>
                 <td><?php echo $s->namaObat?></td>
                 <td><?php echo $s->namaJenis?></td>
@@ -87,8 +88,8 @@
                   <input type="number" name="jumlah" id="<?php echo $s->IDObat;?>" value="1" class="jumlah form-control">
                 </td>
                 <td>
-                  <button onclick="myFunction()" id="add_cartPenjualan" class="btn btn-success btn-block add_cartPenjualan" data-id_obat="<?php echo $s->IDObat;?>" 
-				  data-namaobat="<?php echo $s->namaObat;?>" data-harga ="<?php echo $s->Harga;?>"><span class="fas fa-shopping-cart"></span></button>
+                  <button onclick="check('<?= $s->IDObat?>')" id="add_cartPenjualan" class="btn btn-success btn-block add_cartPenjualan" data-id_obat="<?php echo $s->IDObat;?>"
+				          data-namaobat="<?php echo $s->namaObat;?>" data-harga ="<?php echo $s->Harga;?>"><span class="fas fa-shopping-cart"></span></button>
                 </td>
             </tr>
           <?php endforeach;?>
@@ -118,7 +119,32 @@ function myFunction() {
 )
 }
 </script>
-
+<script type="text/javascript">
+    function check(id)
+    {
+        var searchtext = parseInt(document.getElementById(id).value);
+        id+="db";
+        var jumlah = parseInt(document.getElementById(id).value);
+        console.log(searchtext);
+        console.log(jumlah);
+        if(searchtext<jumlah)
+        {
+          Swal.fire(
+           'Sukses!',
+           'Data Dimasukan dikeranjang!',
+           'success'
+         )
+        }
+        else
+        {
+          Swal.fire({
+            icon: 'error',
+            title: 'Maaf',
+            text: 'Stok tidak tersedia!',
+        })
+        }
+    }
+</script>
 
 <script type="text/javascript">
 
