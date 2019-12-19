@@ -31,7 +31,10 @@ class Konfirmasi extends CI_Model
     $IDObat = $post["id"];
 
     $this->IDObat = $IDObat;
-    $this->JumlahObat = $post["jumlah"];
+    $jumlah= $post["jumlah"];
+
+    $jumlahObat = $this->db->get_where('obat',array('IDObat'=>$IDObat))->row();
+    $this->JumlahObat = $jumlahObat->JumlahObat + $jumlah ;
     $this->Expired = $post["tanggal"];
     //$this->status = 1;
     $data_detail = array(

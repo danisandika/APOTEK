@@ -17,6 +17,8 @@ class Transaksi extends CI_Model
 		$this->db->from('obat o');
 		$this->db->join('jenisobat as jo', 'jo.IDJenis = o.IDJenis');
 		$this->db->join('lokasi_penyimpanan as lp', 'lp.IDLokasi = o.IDLokasi');
+		$this->db->where ('o.JumlahObat >0');
+		$this->db->where ('o.status =1');
 		$query = $this->db->get();
 		return $query->result();
 	}

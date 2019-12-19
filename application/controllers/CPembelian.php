@@ -116,13 +116,13 @@ class CPembelian extends CI_Controller {
 	public function sukses()
   {
 		$this->session->set_flashdata("globalmsgsuccess", "Sukses");
-    redirect(site_url('CKonfirmasi/indexpembelian'));
+    redirect(site_url('CKonfirmasi/index'));
   }
 
   public function gagal()
   {
 		$this->session->set_flashdata("globalmsggagal", "Gagal");
-    redirect(site_url('CKonfirmasi/indexpembelian'));
+    redirect(site_url('CKonfirmasi/index'));
   }
 
 }
