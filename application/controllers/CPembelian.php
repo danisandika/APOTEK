@@ -51,6 +51,7 @@ class CPembelian extends CI_Controller {
 			'name'=>$this->input->post('namaobat'),
 			'price'=>$this->input->post('harga'),
 			'qty'=>$this->input->post('jumlah'),
+			'options' => array('user_id' => $this->session->userdata('user_userID'))
     );
 		$this->cart->insert($data);
 
@@ -61,23 +62,29 @@ class CPembelian extends CI_Controller {
 	{
 		$output = '';
 		$no     = 0;
+		$totalBayar = 0;
+
 		foreach ($this->cart->contents() as $items) {
-			$no++;
-			$output .='
-								<tr>
-								  <td hidden>'.$items['id'].'</td>
-									<td>'.$items['name'].'</td>
-									<td>'.$items['price'].'</td>
-									<td>'.$items['qty'].'</td>
-									<td>'.number_format($items['subtotal']).'</td>
-									<td><button type="button" id="'.$items['rowid'].'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
-								</tr>
-								';
+			if ($items['options']['user_id']==$this->session->userdata('user_userID')) {
+				$no++;
+				$output .='
+									<tr>
+									  <td hidden>'.$items['id'].'</td>
+										<td>'.$items['name'].'</td>
+										<td>'.$items['price'].'</td>
+										<td>'.$items['qty'].'</td>
+										<td>'.number_format($items['subtotal']).'</td>
+										<td><button type="button" id="'.$items['rowid'].'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
+									</tr>
+									';
+				$totalBayar = $totalBayar + $items['subtotal'];
+			}
+
 		}
 		$output .= '
 								<tr>
 									<th colspan="4">Total</th>
-									<th colspan="2">'.'Rp'.number_format($this->cart->total()).'</th>
+									<th colspan="2">'.'Rp'.number_format($totalBayar).'</th>
 								</tr>
 								';
 								return $output;

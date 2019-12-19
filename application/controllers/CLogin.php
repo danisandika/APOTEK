@@ -82,7 +82,7 @@ class CLogin extends CI_Controller {
 
   public function logout()
     {
-        $this->session->sess_destroy();
+        $this->session->unset_userdata($this->session->userdata('user_userID'));
         redirect('CLogin');
     }
 }

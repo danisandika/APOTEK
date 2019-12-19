@@ -54,6 +54,7 @@
             <th>Harga</th>
             <th>Add</th>
           </tr>
+          
           </thead>
 
           <tbody>

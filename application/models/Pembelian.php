@@ -51,7 +51,7 @@ class Pembelian extends CI_Model
     'status' => 1,
     'subTotal' => $item['subtotal']
     );
-	$Total = (Double)$this->Management->getLastData() - (Double)$TotalBayar;
+	  $Total = (Double)$this->Management->getLastData() - (Double)$TotalBayar;
     $this->db->insert('detailpembelian',$data);
 
     }
@@ -67,7 +67,7 @@ class Pembelian extends CI_Model
     );
     $this->db->insert('management_uang',$management);
     $this->cart->destroy();
-    
+
 return true;
 }
 
