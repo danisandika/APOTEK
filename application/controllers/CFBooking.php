@@ -47,6 +47,25 @@ class CFBooking extends CI_Controller {
     $this->load->view('User/Member/footer');
   }
 
+  public function index3($id)
+  {
+    $data['booking']=$this->Booking->detailsBooking($id);
+    $data['title']= "Konfirmasi Transfer";
+    $this->load->view('User/Member/header',$data);
+    $this->load->view('User/Member/vTransfer',$data);
+    $this->load->view('User/Member/footer');
+  }
+
+
+  public function konfirmasiTransfer()
+  {
+    $result = $this->Booking->konfirmasiTransfer();
+    if($result>0)$this->sukses();
+    else $this->gagal();
+  }
+
+
+
 
   public function tTransaksi()
   {
@@ -78,16 +97,47 @@ class CFBooking extends CI_Controller {
     $this->load->view('User/Member/footer');
   }
 
+  public function detailsTransaksi($id=null)
+  {
+
+    if(!isset($id))redirect('CFBooking/index');
+    $strbk = 'TR'.substr($id,2);
+    $booking = $this->Booking;
+    //$data['obat']=$this->Booking->detailsObat($id);
+    $data['transaksi']=$this->Booking->detailsTransaksi($strbk);
+    $data['booking']=$this->Booking->detailsBooking($id);
+    $data['getdetail']=$this->Booking->getdetailTransaksi($strbk);
+    $data['title']= "Detail Transaksi";
+    $this->load->view('User/Member/header');
+    $this->load->view('User/Member/vDetailTransaksi',$data);
+    $this->load->view('User/Member/footer');
+  }
+
   public function add_cart()
   {
-    $data = array(
-			'id'=>$this->input->post('id_obat'),
-			'name'=>$this->input->post('namaobat'),
-			'price'=>$this->input->post('harga'),
-			'qty'=>$this->input->post('jumlah'),
-			'options' => array('user_id' => $this->session->userdata('user_userID'))
-    );
-		$this->cart->insert($data);
+    $cekData = $this->Booking->cekDataSama($this->session->userdata('user_userID'),$this->input->post('id_obat'));
+    if(empty($cekData))
+    {
+      $subtotal = $this->input->post('harga')*$this->input->post('jumlah');
+      $data = array(
+  			'id_obat'=>$this->input->post('id_obat'),
+        'id_user'=>$this->session->userdata('user_userID'),
+  			'nama_obat'=>$this->input->post('namaobat'),
+  			'harga'=>$this->input->post('harga'),
+  			'jumlah'=>$this->input->post('jumlah'),
+  			'subTotal'=>$subtotal
+      );
+  		$this->Booking->insertCart($data);
+    }else{
+      $jumlah  = $cekData->jumlah+$this->input->post('jumlah');
+      $subtotal= $jumlah*$this->input->post('harga');
+      $data = array(
+        'jumlah'=>$jumlah,
+  			'subTotal'=>$subtotal
+      );
+      $this->Booking->updateKeranjang($this->session->userdata('user_userID'),$this->input->post('id_obat'),$data);
+    }
+
 
 		echo $this->show_cart();
   }
@@ -97,22 +147,21 @@ class CFBooking extends CI_Controller {
 		$output = '';
 		$no     = 0;
 		$totalBayar = 0;
-
-		foreach ($this->cart->contents() as $items) {
-			if ($items['options']['user_id']==$this->session->userdata('user_userID')) {
+    $query = $this->Booking->showCart($this->session->userdata('user_userID'));
+		foreach ($query as $items) {
 				$no++;
 				$output .='
 									<tr>
-									  <td hidden>'.$items['id'].'</td>
-										<td>'.$items['name'].'</td>
-										<td>'.$items['price'].'</td>
-										<td>'.$items['qty'].'</td>
-										<td>'.number_format($items['subtotal']).'</td>
-										<td><button type="button" id="'.$items['rowid'].'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
+									  <td hidden>'.$items->id_obat.'</td>
+										<td>'.$items->nama_obat.'</td>
+										<td>'.$items->harga.'</td>
+										<td>'.$items->jumlah.'</td>
+										<td>'.number_format($items->subTotal).'</td>
+										<td><button type="button" id="'.$items->id_obat.'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
 									</tr>
 									';
-				$totalBayar = $totalBayar + $items['subtotal'];
-			}
+				$totalBayar = $totalBayar + $items->subTotal;
+
 
 		}
 		$output .= '
@@ -130,11 +179,8 @@ class CFBooking extends CI_Controller {
 	}
 
   function delete_cart(){
-    $data = array(
-      'rowid'=>$this->input->post('row_id'),
-      'qty'=>0,
-    );
-    $this->cart->update($data);
+    $data =$this->input->post('row_id');
+    $this->Booking->deleteCart($data);
     echo $this->show_cart();
   }
 

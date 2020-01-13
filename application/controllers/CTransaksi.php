@@ -10,7 +10,7 @@ class CTransaksi extends CI_Controller{
 		$this->load->model("Supplier");
 		$this->load->library("session");
 		$this->load->library("cart");
-
+		$this->load->model("Count");
 		if($this->session->userdata('user_role') != 'Karyawan')
 		{
 			 echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
@@ -22,8 +22,9 @@ class CTransaksi extends CI_Controller{
 	public function index()
 	{
 		$datatran['datatran']=$this->Transaksi->getAll();
+		$data['countbooking']=$this->Count->getcount('booking');
 		$datatran['title']= "Transaksi";
-		$this->load->view('Karyawan/header');
+		$this->load->view('Karyawan/header',$data);
 		$this->load->view('Karyawan/Transaksi/trTransaksi',$datatran);
 		$this->load->view('Karyawan/footer');
 	}

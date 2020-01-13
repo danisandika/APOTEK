@@ -28,7 +28,7 @@
       <!-- /.card-header -->
       <br>
       <div class="card-body">
-        <table id="table2" class="table table-bordered table-hover">
+        <table id="table1" class="table table-bordered table-hover">
           <thead>
           <tr>
             <th style="width:10px;">No</th>

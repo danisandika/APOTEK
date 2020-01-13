@@ -24,7 +24,7 @@ class CDashboard extends CI_Controller {
      parent::__construct();
      $this->load->model("JenisObat");
      $this->load->library("session");
-
+		 $this->load->model("Count");
 
 
 	 }
@@ -54,7 +54,8 @@ class CDashboard extends CI_Controller {
 			redirect(base_url('CLogin'));
 		}
 		else{
-			$this->load->view('Karyawan/header');
+			$data['countbooking']=$this->Count->getcount('booking');
+			$this->load->view('Karyawan/header',$data);
 	    $this->load->view('Karyawan/Dashboard');
 	    $this->load->view('Karyawan/footer');
 		}

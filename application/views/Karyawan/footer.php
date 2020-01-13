@@ -75,6 +75,13 @@ $('#deleteModal').modal();
 </script>
 
 <script type="text/javascript">
+function BuangConfirm(url){
+$('#btn-delete').attr('href', url);
+$('#bModal').modal();
+}
+</script>
+
+<script type="text/javascript">
 function activeConfirm(url){
 $('#btn-active').attr('href', url);
 $('#aModal').modal();

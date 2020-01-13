@@ -1,4 +1,11 @@
 <!doctype html>
+<?php
+if($this->session->userdata('user_role') != 'User')
+{
+  echo "<script language='javascript'>alert('Anda Bukan Member');</script>";
+  redirect(base_url('CFLogin'));
+}
+?>
 <html lang="en">
 
 <head>

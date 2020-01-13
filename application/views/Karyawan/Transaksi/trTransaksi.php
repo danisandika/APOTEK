@@ -28,15 +28,15 @@
       <!-- /.card-header -->
       <br>
       <div class="card-body">
-        <form class="" action="<?php echo site_url('CKonf_Transaksi/index') ?>" method="post" enctype="multipart/form-data">
-        <div class="form-group">
+    <form class="" action="<?php echo site_url('CKonf_Transaksi/index') ?>" method="post" enctype="multipart/form-data">
+    <div class="form-group">
 		<div class="col-sm-6">
 		<div class="form-group">
-		<div class="col-sm-12">
+		<div class="col-sm-6">
 		<label>Resep Dokter</label>
-		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck">
+		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"  required>
 		<label>Ada </label>
-		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck">
+		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"  required>
 		<label>Tidak Ada</label>
 		</div>
 
@@ -57,15 +57,15 @@
         </form>
 
         <hr>
-        <table id="table2" class="table table-bordered table-hover">
+        <table id="table1" class="table table-bordered table-hover">
           <thead>
           <tr>
             <th>No</th>
             <th>Nama Obat</th>
             <th>Jenis</th>
             <th>Status</th>
-			<th>Harga</th>
-			<th>Keterangan </th>
+      			<th>Harga</th>
+      			<th>Keterangan </th>
             <th style="width:50px;">Jumlah</th>
             <th>Add</th>
           </tr>
@@ -75,7 +75,7 @@
             <?php $i=0?>
             <?php foreach ($datatran as $s) : ?>
             <tr>
-              <input type="hidden" id="<?= $s->IDObat?>db" value="<?= $s->JumlahObat?>">
+                <input type="hidden" id="<?= $s->IDObat?>db" value="<?= $s->JumlahObat?>">
                 <td><?php $i++; echo $i?></td>
                 <td><?php echo $s->namaObat?></td>
                 <td><?php echo $s->namaJenis?></td>

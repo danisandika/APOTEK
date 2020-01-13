@@ -10,6 +10,7 @@ class CKonf_Transaksi extends CI_Controller{
 		$this->load->model("Konf_Transaksi");
 		$this->load->library("session");
 		$this->load->library("cart");
+    $this->load->model("Count");
 
 		if($this->session->userdata('user_role') != 'Karyawan')
 		{
@@ -23,15 +24,16 @@ class CKonf_Transaksi extends CI_Controller{
 	{
 		$datatran['datatran']=$this->Konf_Transaksi->getAll();
 		$datatran['detail']=$this->Konf_Transaksi->getAll();
+    $data['countbooking']=$this->Count->getcount('booking');
 		$datatran['title']= "Konf_Transaksi";
-		$this->load->view('Karyawan/header');
+		$this->load->view('Karyawan/header',$data);
 		$this->load->view('Karyawan/Transaksi/konfirmTransaksi',$datatran);
 		$this->load->view('Karyawan/footer');
 	}
 
 	public function add_cart()
 	{
-	$this->load->view('Karyawan/header');
+	  $this->load->view('Karyawan/header');
     $data = array(
 	//'id'=>$this->input->post('id_obat'),
     //'name'=>$this->input->post('namaobat'),
@@ -53,9 +55,9 @@ class CKonf_Transaksi extends CI_Controller{
 								<tr>
 								    <td hidden>'.$items['id'].'</td>
 									<td>'.$items['name'].'</td>
-									<td>'.$items['price'].'</td>
+									<td>Rp.'.$items['price'].'</td>
 									<td>'.$items['qty'].'</td>
-									<td>'.number_format($items['subtotal']).'</td>
+									<td>Rp.'.number_format($items['subtotal']).'</td>
 									<td><button type="button" id="'.$items['rowid'].'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
 								</tr>
 								';

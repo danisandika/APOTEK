@@ -13,7 +13,7 @@ class Obat extends CI_Model
 
   public function getAll()
   {
-    $this->db->select('IDObat,namaObat,namaJenis,Nama_Lokasi,JumlahObat,Harga,o.status as statusObat');
+    $this->db->select('IDObat,namaObat,namaJenis,Nama_Lokasi,JumlahObat,Harga,o.status as statusObat,o.Expired as Expired');
     $this->db->from('obat as o');
     $this->db->join('jenisobat as jo', 'jo.IDJenis = o.IDJenis');
     $this->db->join('lokasi_penyimpanan as lp', 'lp.IDLokasi = o.IDLokasi');
@@ -75,6 +75,12 @@ class Obat extends CI_Model
     $this->modifiedby = $this->session->userdata('user_userID');
     $this->modifiedDate = date("Y-m-d H:i:s");
 		return $this->db->update($this->_table,$this,array('IDObat'=>$post['IDObat']));
+  }
+
+  public function deleteStok($id)
+  {
+    $this->JumlahObat = 0;
+    return $this->db->update($this->_table,$this,array('IDObat'=>$id));
   }
 
   public function delete($IDObat)

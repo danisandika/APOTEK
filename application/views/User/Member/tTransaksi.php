@@ -133,10 +133,9 @@
                                     </tr>
                                     <?php
                                       $totalBayar=0;
-                                      foreach ($this->cart->contents() as $items) {
-                                			if ($items['options']['user_id']==$this->session->userdata('user_userID')) {
-                                        $totalBayar = $totalBayar + $items['subtotal'];
-                                      }
+                                      foreach ($this->Booking->showCart($this->session->userdata('user_userID')) as $items) {
+                                        $totalBayar = $totalBayar + $items->subTotal;
+
                                     }
                                       echo '
                                       <tr class="space-row">

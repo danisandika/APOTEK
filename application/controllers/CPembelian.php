@@ -23,6 +23,7 @@ class CPembelian extends CI_Controller {
      parent::__construct();
      $this->load->model("Pembelian");
 		 $this->load->model("Supplier");
+		 $this->load->model("Count");
      $this->load->library("session");
 		 $this->load->library("cart");
 
@@ -38,8 +39,9 @@ class CPembelian extends CI_Controller {
 	{
 		$data['data']=$this->Pembelian->getAll();
 		$data['supplier']=$this->Supplier->getAll();
+		$data['countbooking']=$this->Count->getcount('booking');
 		$data['title']= "Pembelian";
-		$this->load->view('Karyawan/header');
+		$this->load->view('Karyawan/header',$data);
     $this->load->view('Karyawan/Pembelian/tPembelian',$data);
     $this->load->view('Karyawan/footer');
 	}

@@ -189,6 +189,38 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   </script>
   <?php endif; ?>
 
+  <script>
+    $(function () {
+      $("#table1").DataTable();
+      $('#table2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#blah').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+    }
+
+    $("#imgInp").change(function() {
+    readURL(this);
+    });
+  </script>
+
 
 </body>
 

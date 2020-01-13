@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CKonfirmasi extends CI_Controller {
+class CStok extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,49 +22,42 @@ class CKonfirmasi extends CI_Controller {
 	 public function __construct()
    {
      parent::__construct();
-     $this->load->model("Pembelian");
-		 $this->load->model("Konfirmasi");
+     $this->load->model("Obat");
 		 $this->load->model("Count");
-     $this->load->library("session");
-
-		 if($this->session->userdata('user_role') != 'Karyawan')
-		 {
-			 echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
-			 redirect(base_url('CLogin'));
-		 }
-
    }
+
 
 	public function index()
 	{
-		$data['pembelian']=$this->Konfirmasi->getAll();
+		$data['obat']=$this->Obat->getAll();
 		$data['countbooking']=$this->Count->getcount('booking');
-		$data['title']= "Pembelian";
+		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
+		$data['title']= "Cek Obat";
 		$this->load->view('Karyawan/header',$data);
-    $this->load->view('Karyawan/Pembelian/vPembelian',$data);
+    $this->load->view('Karyawan/vCekStok',$data);
     $this->load->view('Karyawan/footer');
 	}
 
-	public function ubah_pembelian()
-  {
-    $result = $this->Konfirmasi->ubah_pembelian();
-    if($result>0){
-			$this->sukses();
-		}else {
-			$this->gagal();
-		}
+	public function deleteStok($id)
+	{
+		if(!isset($id))redirect('CStok/index');
+		if($this->Obat->deleteStok($id))$this->sukses();
+		else $this->gagal();
 	}
 
-  public function sukses()
+	public function sukses()
   {
 		$this->session->set_flashdata("globalmsgsuccess", "Sukses");
-    redirect(site_url('CKonfirmasi/index'));
+    redirect(site_url('CStok/index'));
   }
 
   public function gagal()
   {
 		$this->session->set_flashdata("globalmsggagal", "Gagal");
-    redirect(site_url('CKonfirmasi/index'));
+    redirect(site_url('CStok/index'));
   }
+
+
 
 }

@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-
+<?php
+if($this->session->userdata('user_role') != 'Admin')
+{
+  echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
+  redirect(base_url('CLogin'));
+}
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
   <meta charset="utf-8">

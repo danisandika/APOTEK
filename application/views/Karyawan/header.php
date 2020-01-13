@@ -1,5 +1,13 @@
 <!DOCTYPE html>
+<?php
+if($this->session->userdata('user_role') != 'Karyawan')
+{
+  echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
+  redirect(base_url('CLogin'));
+}
 
+
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
   <meta charset="utf-8">
@@ -210,7 +218,7 @@
             </a>
           </li>
 
-		 <li class="nav-item">
+		      <li class="nav-item">
             <a href="<?php echo site_url('CTransaksi')?>" class="nav-link <?php echo $this->uri->segment(1)=='CTransaksi'? 'active':''?>">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>Penjualan</p>
@@ -223,16 +231,22 @@
             </a>
           </li>
 
-            <li class="nav-item">
+          <li class="nav-item">
             <a href="<?php echo site_url('CKonf_Transaksi')?>" class="nav-link <?php echo $this->uri->segment(1)=='CKonf_Transaksi'? 'active':''?>">
               <i class="nav-icon fas fa-check"></i>
               <p>Konfirmasi Penjualan</p>
             </a>
           </li>
           <li class="nav-item">
-          <a href="<?php echo site_url('CInfo')?>" class="nav-link <?php echo $this->uri->segment(1)=='CInfo'? 'active':''?>">
+            <a href="<?php echo site_url('CBooking')?>" class="nav-link <?php echo $this->uri->segment(1)=='CBooking'? 'active':''?>">
+              <i class="nav-icon fas fa-cart-plus"></i>
+              <p>Pemesanan <span class="badge badge-info right">&nbsp;<?php echo $countbooking ?></span></p>
+            </a>
+          </li>
+          <li class="nav-item">
+          <a href="<?php echo site_url('CStok')?>" class="nav-link <?php echo $this->uri->segment(1)=='CStok'? 'active':''?>">
             <i class="nav-icon fas fa-newspaper"></i>
-            <p>Cek Stok</p>
+            <p>Cek Stok &nbsp;<span class="badge badge-info right">&nbsp;<?php echo $countexpired ?></span>&nbsp;<span class="badge badge-info right">&nbsp;<?php echo $countjumlahobat ?></span></p>
           </a>
         </li>
 

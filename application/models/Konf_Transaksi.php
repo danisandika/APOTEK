@@ -1,17 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
- 
- 
+
+
 class Konf_Transaksi extends CI_Model
 {
 	private $_table ="transaksi";
-	
+
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Management');
 	}
-	
+
 	public function getAll()
 	{
 		$this->db->select('t.IDTransaksi,t.tanggal,dt.IDObat,dt.subTotal,dt.Jumlah, o.namaObat, t.totalBayar, t.status');
@@ -22,17 +22,17 @@ class Konf_Transaksi extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
-	
+
 	public function getTrans()
 	{
     return $this->db->get($this->_table)->result();
 	}
-	
+
 	public function save()
 	{
-		//masih belum yang lainnya 
+		//masih belum yang lainnya
 		// update status doang
-			
+
 		foreach($this->cart->contents() as $item)
 		{
 			$data=array(
@@ -42,21 +42,21 @@ class Konf_Transaksi extends CI_Model
 			'subTotal' => $item['subtotal']
 			);
 			$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
-		    $this->db->insert('detailtransaksi',$data );
+		  $this->db->insert('detailtransaksi',$data );
 		}
-		
+
 	$this->cart->destroy();
-	
+
 	return true;
-		
+
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
- 
- 
- 
+
+
+
  ?>
