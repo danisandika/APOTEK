@@ -25,18 +25,15 @@ class CInfo extends CI_Controller {
      $this->load->model("Info");
      $this->load->library("session");
 		 $this->load->helper(array('string','text'));
-		if($this->session->userdata('user_role') != 'Admin')
-		{
-			echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
-			redirect(base_url('CLogin'));
-		}
+		 $this->load->library('form_validation');
+
    }
 
 	public function index()
 	{
 		$data['info']=$this->Info->getAll();
 		$data['title']= "Info";
-		$this->load->view('Administrator/header');
+		$this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Info/vInfo',$data);
     $this->load->view('Administrator/footer');
 	}
@@ -47,15 +44,24 @@ class CInfo extends CI_Controller {
 	  {
 
 	    $info = $this->Info;
+
+			$this->form_validation->set_rules('judul','Judul','is_unique[info.Judul]');
+
+	    if ($this->form_validation->run() == TRUE){
 	    $result = $info->save();
 	    if($result>0)$this->sukses();
 	    else $this->gagal();
+		}else{
+	    $this->session->set_flashdata("Msginvoice", " Judul Tidak boleh sama");
+	    redirect(site_url('CInfo/tInfo'));
+	  }
 
 	  }
 
 	  public function tInfo()
 	  {
-	    $this->load->view('Administrator/header');
+			$data['title']= "Info";
+	    $this->load->view('Administrator/header',$data);
 	    $this->load->view('Administrator/Info/tInfo');
 	    $this->load->view('Administrator/footer');
 	  }
@@ -70,7 +76,7 @@ class CInfo extends CI_Controller {
 	    $info = $this->Info;
 	    $data["info"]=$info->getByID($id);
 	    $data['title']= "Info";
-	    $this->load->view('Administrator/header');
+	    $this->load->view('Administrator/header',$data);
 	    $this->load->view('Administrator/Info/eInfo',$data);
 	    $this->load->view('Administrator/footer');
 	  }

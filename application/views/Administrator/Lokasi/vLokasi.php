@@ -35,7 +35,7 @@
             <tr>
               <th>No</th>
               <th>Nama Lokasi</th>
-              <th>tempat Lokasi</th>
+              <th>Tempat Lokasi</th>
               <!--<th>Deskripsi</th>-->
               <th>Status</th>
               <th>Aksi</th>

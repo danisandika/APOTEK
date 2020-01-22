@@ -65,6 +65,8 @@ class CLogin extends CI_Controller {
         }
         else if ($role == "Karyawan") {
           redirect(site_url('CDashboard/index2'));
+        }else if ($role == "Manager") {
+          redirect(site_url('CDashboard/index3'));
         }
         else {
             echo "<script>alert('Data Tidak Ditemukan dalam Database');</script>";

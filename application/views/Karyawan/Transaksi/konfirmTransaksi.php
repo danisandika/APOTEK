@@ -1,4 +1,5 @@
- <!-- Content Wrapper. Contains page content -->
+
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -52,14 +53,22 @@
       <!-- /.card-header -->
       <br>
       <div class="card-body">
+        <h3>Pembayaran</h3>
         <hr>
          <table class="table table-bordered table-hover">
           <div class="row form-group">
 			<div class="col-md-3">
+        <?php
+          $totalBayar=0;
+          foreach ($this->Transaksi->showCart() as $items) {
+            $totalBayar = $totalBayar + $items->subTotal;
+        }
+        ?>
 				<label for="nama">TOTAL</label>
 				</div>
 				<div class="col-md-5">
-				<input type="text" class="form-control CalculateMe" name='qty' id='qty' required value="<?php echo $this->cart->total()?>">
+        <input type="text" class="form-control"  required value="Rp.<?php echo number_format($totalBayar) ?>">
+				<input type="hidden" class="form-control CalculateMe" name='qty' id='qty' required value="<?php echo $totalBayar ?>">
 				</div>
 			</div>
 
@@ -84,6 +93,10 @@
 			</div>
 
 			<button class="btn btn-primary" onclick="validasi();">Bayar</button>
+      <div class="" style="visibility:hidden;">
+        <input type="file" name="FotoResep" value="<?php echo $FotoResep ?>" >
+      </div>
+
       </table>
       </div>
       <!-- /.card-body -->
@@ -91,6 +104,7 @@
     </div>
     <!-- /.card -->
 	</form>
+</div>
 </div>
 
 <script src="<?php echo base_url('assets/plugins/jquery/jquery.min.js')?>"></script>

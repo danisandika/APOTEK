@@ -34,7 +34,7 @@
     <div class="card-body">
       <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Nama Jenis Obat</label>
+     <label for="nama">Nama Jenis Obat *</label>
 	 </div>
 	 <div class="col-md-5">
      <input type="text" class="form-control" name="namaJenis" required>
@@ -46,11 +46,9 @@
 	 <label for="nama">Deskripsi</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"required></textarea>
+     <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"></textarea>
      </div>
 	 </div>
-
-
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

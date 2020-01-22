@@ -29,7 +29,9 @@
         <!-- /.card-header -->
         <div class="card-body">
           <a href="<?php echo site_url('CManagement/tManagement')?>" class="btn btn-primary"><span class="fas fa-plus"></span> | Tambah</a>
-          <table id="table2" class="table table-bordered table-hover">
+          <br>
+          <br>
+          <table id="table1" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th>No</th>

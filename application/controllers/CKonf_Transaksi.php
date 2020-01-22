@@ -12,22 +12,22 @@ class CKonf_Transaksi extends CI_Controller{
 		$this->load->library("cart");
     $this->load->model("Count");
 
-		if($this->session->userdata('user_role') != 'Karyawan')
-		{
-			 echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
-			 redirect(base_url('CLogin'));
-		}
 	}
 
 
 	public function index()
 	{
-		$datatran['datatran']=$this->Konf_Transaksi->getAll();
-		$datatran['detail']=$this->Konf_Transaksi->getAll();
+    if(isset($_FILES['FotoResep']['name'])){
+    $data['FotoResep']=$_FILES['FotoResep']['name'];
+    }
+		$data['datatran']=$this->Konf_Transaksi->getAll();
+		$data['detail']=$this->Konf_Transaksi->getAll();
     $data['countbooking']=$this->Count->getcount('booking');
-		$datatran['title']= "Konf_Transaksi";
+    $data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
+		$data['title']= "Konfirmasi";
 		$this->load->view('Karyawan/header',$data);
-		$this->load->view('Karyawan/Transaksi/konfirmTransaksi',$datatran);
+		$this->load->view('Karyawan/Transaksi/konfirmTransaksi',$data);
 		$this->load->view('Karyawan/footer');
 	}
 
@@ -53,7 +53,7 @@ class CKonf_Transaksi extends CI_Controller{
 			$no++;
 			$output .='
 								<tr>
-								    <td hidden>'.$items['id'].'</td>
+								  <td hidden>'.$items['id'].'</td>
 									<td>'.$items['name'].'</td>
 									<td>Rp.'.$items['price'].'</td>
 									<td>'.$items['qty'].'</td>

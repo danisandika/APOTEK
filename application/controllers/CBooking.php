@@ -34,6 +34,8 @@ class CBooking extends CI_Controller {
   {
     $data['booking']=$this->Booking->getAllBookingbyKaryawan();
     $data['countbooking']=$this->Count->getcount('booking');
+    $data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
     $data['title']= "Booking";
     $this->load->view('Karyawan/header',$data);
     $this->load->view('Karyawan/Transaksi/vBooking',$data);
@@ -51,6 +53,8 @@ class CBooking extends CI_Controller {
     $data["getdetailstrans"]=$booking->getdetailTransaksi($strbk);
     $data["booking"]=$booking->getAll($id);
     $data['countbooking']=$this->Count->getcount('booking');
+    $data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
     $data['title']= "Pemesanan";
     $this->load->view('Karyawan/header',$data);
     $this->load->view('Karyawan/Transaksi/detailBooking',$data);

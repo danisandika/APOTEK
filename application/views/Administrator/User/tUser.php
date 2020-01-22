@@ -35,15 +35,15 @@
       <div class="row">
       <div class="col-md-6">
       <div class="form-group">
-           <label for="nama">Nama User</label>
+           <label for="nama">Nama User *</label>
            <input type="text" class="form-control" name="Nama" required>
 	    </div>
 
      <div class="form-group">
-         <label for="role">Jenis Kelamin</label>
+         <label for="role">Jenis Kelamin *</label>
          <br>
-         <input type="radio" name="jk" value="Laki-Laki" > Laki-Laki &nbsp;&nbsp;
-         <input type="radio" name="jk" value="Perempuan" > Perempuan
+         <input type="radio" name="jk" value="Laki-Laki" required> Laki-Laki &nbsp;&nbsp;
+         <input type="radio" name="jk" value="Perempuan" required> Perempuan
      </div>
 
     <div class="form-group">
@@ -52,28 +52,29 @@
     </div>
 
     <div class="form-group">
-           <label for="nama">No Telp</label>
+           <label for="nama">No.Telp *</label>
            <input type="text" class="form-control" name="NoTelp" required>
 	 </div>
 
 	 <div class="form-group">
          <label for="nama">Tanggal Lahir</label>
-         <input type="date" class="form-control" name="TglLahir" required>
+         <input type="date" class="form-control" name="TglLahir" >
        </div>
 
      <div class="form-group">
-         <label for="nama">Email </label>
+         <label for="nama">Email *</label>
          <input type="email" class="form-control" name="Email" required>
 	   </div>
  </div>
 
  <div class="col-md-6">
 	 <div class="form-group">
-     <label for="nama">Username </label>
+     <label for="nama">Username *</label>
      <input type="text" class="form-control" name="Username" required>
 	 </div>
+   
 	<div class="form-group">
-    <label for="role">Role</label>
+    <label for="role">Role *</label>
 		<select name="IDRole" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Select One ---</option>
       <?php foreach ($role as $s) { ?>
@@ -85,8 +86,14 @@
   <div class="form-group">
     <label for="role">Foto Profil</label>
     <br>
-    <input type="file" name="foto">
+    <input type="file" name="foto" id="imgInp">
   </div>
+  <div class="form-group">
+    <div class="col-lg-5 col-md-6">
+            <img src="#" alt="your image" id="blah" style="width:400px;height:400px;background-color:white;">
+    </div>
+  </div>
+
 </div>
 </div>
      <div class="card-footer">

@@ -28,7 +28,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <table id="table2" class="table table-bordered table-hover">
+          <table id="table1" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th>No</th>
@@ -45,7 +45,7 @@
 
             <tbody>
               <?php $i=0?>
-              <?php foreach ($user as $s) { 
+              <?php foreach ($user as $s) {
 			  if( $s->IDRole == "3") {
 			  ?>
               <tr>

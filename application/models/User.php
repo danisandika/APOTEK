@@ -13,7 +13,11 @@ class User extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get($this->_table)->result();
+    $this->db->select('u.*,r.Deskripsi as Deskripsi');
+    $this->db->from('user u');
+    $this->db->join('role as r', 'u.IDRole = r.IDRole');
+    $query = $this->db->get();
+    return $query->result();
   }
 
   public function getByID($id)
@@ -35,11 +39,38 @@ class User extends CI_Model
     $this->password = $password;
     $this->IDRole = $post["IDRole"];
     $this->jeniskelamin = $post["jk"];
-    $this->foto = $this->_uploadImage($_FILES['foto']['name']);
+    $this->foto = $this->_uploadImage();
 	  $this->status = 1;
     $this->createby = $this->session->userdata('user_userID');
     $this->createDate = $dateNow;
 		return $this->db->insert($this->_table,$this);
+  }
+
+
+  public function save_user()
+  {
+    $dateNow = date("Y-m-d H:i:s");
+    $post = $this->input->post();
+		$this->Nama = $post["nama"];
+		//$this->Alamat = $post["Alamat"];
+		$this->NoTelp = $post["notelp"];
+		//$this->TglLahir = $post["TglLahir"];
+		$this->Email = $post["email"];
+    $this->username = $post["Username"];
+    $this->password = $post["password"];
+    $this->IDRole = 3;
+    $this->jeniskelamin = $post["jeniskelamin"];
+    $this->foto = '';
+	  $this->status = 2;
+    $this->createby = 1;
+    $this->createDate = $dateNow;
+		return $this->db->insert($this->_table,$this);
+  }
+
+  public function konfirmasi_user($user)
+  {
+    $this->status = 1;
+    return $this->db->update($this->_table,$this,array('username'=>$user));
   }
 
   public function update()
@@ -73,11 +104,17 @@ class User extends CI_Model
 		$this->TglLahir = $post["TglLahir"];
 		$this->Email = $post["Email"];
 		$this->username = $post["username"];
-		$this->password = $post["password"];
+
+    if(isset($post['gantipassword'])){
+      $this->password = $post["repassword"];
+    }else{
+      $this->password = $post["old_pass"];
+    }
+
     $this->jeniskelamin = $post["jk"];
     //$this->foto = $this->_uploadImage($_FILES['foto']['name']);
     if (!empty($_FILES["foto"]["name"])) {
-        $this->Foto = $this->_uploadImage($_FILES['foto']['name']);
+        $this->Foto = $this->_uploadImage();
     } else {
         $this->Foto = $post["old_foto"];
     }
@@ -103,11 +140,11 @@ class User extends CI_Model
     return $this->db->update($this->_table,$this,array('IDUser'=>$IDUser));
   }
 
-  private function _uploadImage($namagambar)
+  private function _uploadImage()
   {
     $config['upload_path']          = './upload/profil/';
     $config['allowed_types']        = 'gif|jpg|jpeg|png';
-    $config['file_name']            = $namagambar;
+    $config['file_name']            = $this->username;
     $config['overwrite']			      = true;
     $config['max_size']             = 1024; // 1MB
     // $config['max_width']            = 1024;

@@ -39,6 +39,8 @@ class CKonfirmasi extends CI_Controller {
 	{
 		$data['pembelian']=$this->Konfirmasi->getAll();
 		$data['countbooking']=$this->Count->getcount('booking');
+		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
 		$data['title']= "Pembelian";
 		$this->load->view('Karyawan/header',$data);
     $this->load->view('Karyawan/Pembelian/vPembelian',$data);

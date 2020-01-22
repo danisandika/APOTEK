@@ -24,7 +24,7 @@ class CRole extends CI_Controller {
      parent::__construct();
      $this->load->model("Role");
      $this->load->library("session");
-		
+		 $this->load->library('form_validation');
    }
 
 
@@ -32,7 +32,7 @@ class CRole extends CI_Controller {
 	{
 		$data['role']=$this->Role->getAll();
 		$data['title']= "Role";
-		$this->load->view('Administrator/header');
+		$this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Role/vRole',$data);
     $this->load->view('Administrator/footer');
 	}
@@ -42,14 +42,22 @@ class CRole extends CI_Controller {
 	  {
 
 	    $role = $this->Role;
+			$this->form_validation->set_rules('Deskripsi','Nama Role','is_unique[role.Deskripsi]');
+
+			if ($this->form_validation->run() == TRUE){
 	    $result = $role->save();
 	    if($result>0)$this->sukses();
 	    else $this->gagal();
+		}else{
+	    $this->session->set_flashdata("Msginvoice", " Nama Role tidak boleh sama");
+	    redirect(site_url('CRole/tRole'));
+	  }
 	  }
 
 	  public function tRole()
 	  {
-	    $this->load->view('Administrator/header');
+			$data['title']= "Role";
+	    $this->load->view('Administrator/header',$data);
 	    $this->load->view('Administrator/Role/tRole');
 	    $this->load->view('Administrator/footer');
 	  }
@@ -63,7 +71,7 @@ class CRole extends CI_Controller {
 	    $role = $this->Role;
 	    $data["role"]=$role->getByID($id);
 	    $data['title']= "Role";
-	    $this->load->view('Administrator/header');
+	    $this->load->view('Administrator/header',$data);
 	    $this->load->view('Administrator/Role/eRole',$data);
 	    $this->load->view('Administrator/footer');
 	  }

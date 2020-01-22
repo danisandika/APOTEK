@@ -28,7 +28,7 @@
             <div class="card-body box-profile">
               <div class="text-center">
                 <img class="profile-user-img img-fluid img-circle"
-                     src="<?php echo base_url('upload/profil/'.$this->session->userdata('user_profil'))?>"
+                     src="<?php echo base_url('upload/profil/'.$user->foto )?>"
                      alt="User profile picture">
               </div>
 
@@ -157,43 +157,43 @@
                       <label for="inputSkills" class="col-sm-2 control-label">Username</label>
 
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputSkills" name="username" placeholder="Username" value="<?php echo $user->username;?>">
+                        <input type="text" class="form-control" id="inputSkills" name="username" placeholder="Username" value="<?php echo $user->username;?>">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputSkills" class="col-sm-2 control-label">Password lama</label>
+                      <label for="inputSkills" class="col-sm-2 control-label">Password lama</label><label class="registrationFormAlert" id="divPasswordValidationResult" style="color:red;"></label>
 
                       <div class="col-sm-10">
-                        <input type="password" class="form-control" id="old_pass" placeholder="Password lama" value="">
-                        <input type="hidden" class="form-control" id="write_pass" placeholder="Password lama" value="">
+                        <input type="password" class="form-control" id="password" placeholder="Password lama" value="" onChange="checkPassword();">
+                        <input type="hidden" class="form-control" id="old_pass" name="old_pass" placeholder="Password lama" value="<?php echo $user->password;?>">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputSkills" class="col-sm-2 control-label">Password</label>
+                      <label for="inputSkills" class="col-sm-5 control-label">Password Baru</label>
 
                       <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputSkills" placeholder="Email" value="" name="password" disabled>
+                        <input type="password" class="form-control" id="newpassword" placeholder="Password Baru" disabled>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputSkills" class="col-sm-5 control-label">Konfirmasi Password</label>
-
+                      <label for="inputSkills" class="col-sm-5 control-label">Konfirmasi Password</label><label class="registrationFormAlert" id="divvalresult" style="color:red;"></label>
                       <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputSkills" placeholder="Password" disabled>
+                        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Re-password" disabled onChange="checkPassword2();">
                       </div>
                     </div>
                     <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                          </label>
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                              <label>
+                                <input type="checkbox" name="gantipassword" value="ck"> Saya menyetujui untuk ganti password
+                              </label>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-danger" disabled>Submit</button>
+                        <button type="submit" class="btn btn-primary" id="btnsubmit" >Simpan</button>
+                        <button type="submit" class="btn btn-danger" onClick = "history.go(-1)">Kembali</button>
                       </div>
                     </div>
                   </form>
@@ -212,3 +212,39 @@
   </section>
   <!-- /.content -->
 </div>
+
+<script type="text/javascript">
+function checkPassword() {
+    var password = $("#password").val();
+    var old_pass = $("#old_pass").val();
+
+    if (old_pass != password ){
+      $('#newpassword').prop('disabled', true);
+      $('#repassword').prop('disabled', true);
+      $("#divPasswordValidationResult").html("Password salah");
+    }
+      else{
+      $("#divPasswordValidationResult").html("");
+      $('#newpassword').prop('disabled', false);
+      $('#repassword').prop('disabled', false);
+    }
+}
+
+function checkPassword2() {
+    var newpassword = $("#newpassword").val();
+    var repassword = $("#repassword").val();
+
+    if (newpassword != repassword ){
+      $("#divvalresult").html("Password tidak sama");
+    }
+      else{
+      $("#divvalresult").html("");
+    }
+}
+
+$(document).ready(function () {
+   $("#password").keyup(checkPassword);
+   $("#repassword").keyup(checkPassword2);
+});
+
+</script>

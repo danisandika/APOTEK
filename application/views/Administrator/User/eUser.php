@@ -35,13 +35,13 @@
       <div class="row">
       <div class="col-md-6">
       <div class="form-group">
-           <label for="nama">Nama User</label>
+           <label for="nama">Nama User *</label>
            <input type="hidden" class="form-control" name="IDUser" required value="<?php echo $user->IDUser;?>">
            <input type="text" class="form-control" name="Nama" required value="<?php echo $user->Nama;?>">
 	    </div>
 
      <div class="form-group">
-         <label for="role">Jenis Kelamin</label>
+         <label for="role">Jenis Kelamin *</label>
          <br>
          <input type="radio" name="jk" value="Laki-Laki" <?php if($user->jeniskelamin == "Laki-Laki"){echo "checked";};?>> Laki-Laki &nbsp;&nbsp;
          <input type="radio" name="jk" value="Perempuan" <?php if($user->jeniskelamin == "Perempuan"){echo "checked";};?>> Perempuan
@@ -53,38 +53,35 @@
     </div>
 
     <div class="form-group">
-           <label for="nama">No Telp</label>
+           <label for="nama">No Telp *</label>
            <input type="text" class="form-control" name="NoTelp" required value="<?php echo $user->NoTelp;?>">
 	 </div>
 
-	<div class="row form-group">
-	<div class="col-md-3">
-        <label for="role">Role</label>
-	</div>
-	<div class="col-md-5">
+	<div class="form-group">
+  <label for="role">Role *</label>
 		<?php $roleData = $user->IDRole; ?>
 		<select name="IDRole" class="form-control" style="width:100%;" required >
 		<option value="" disabled selected>--- Role ---</option>
-			<?php foreach ($role as $l) { 
+			<?php foreach ($role as $l) {
 			 $roleValue = $l->IDRole;
 			?>
             <option <?php if ($roleData == $roleValue) echo "selected" ?> value="<?php echo $roleValue ?>" >Role <?php echo $l->Deskripsi ?></option>
 		<?php } ?>
 		</select>
 	</div>
-	</div>
+
 
 	 <div class="form-group">
          <label for="nama">Tanggal Lahir</label>
-         <input type="date" class="form-control" name="TglLahir" required value="<?php echo $user->TglLahir;?>">
+         <input type="date" class="form-control" name="TglLahir" value="<?php echo $user->TglLahir;?>">
        </div>
 
      <div class="form-group">
-         <label for="nama">Email </label>
+         <label for="nama">Email *</label>
          <input type="email" class="form-control" name="Email" required value="<?php echo $user->Email;?>">
 	   </div>
      <div class="form-group">
-       <label for="role">Role</label>
+       <label for="role">Role *</label>
    		<select name="IDRole" class="form-control" style="width:100%;" required >
    		<option value="" disabled selected>--- Select One ---</option>
          <?php foreach ($role as $s) { ?>

@@ -234,6 +234,7 @@ public function deleteCart($id)
 
   public function submit_transaksi($noStatus)
   {
+    $totalBayar = 0;
     $post = $this->input->post();
     $IDBooking = $post["IDBooking"];
     $strtrans = 'TR'.substr($IDBooking,2);
@@ -243,6 +244,16 @@ public function deleteCart($id)
     $this->statusBooking = $noStatus;
 		$this->db->update('Booking',$this,array('IDBooking'=>$IDBooking));
 
+    //Update Detail Transaksi
+    foreach ($this->getdetailTransaksi($strtrans) as $item) {
+    $obat = $this->db->get_where('obat',array('IDObat'=>$item->IDObat))->row();
+    $data=array(
+    'JumlahObat' => $obat->JumlahObat - $item->Jumlah
+    );
+    $this->db->update('obat',$data,array('IDObat'=>$item->IDObat));
+    }
+
+
     //Update Transaksi
     $arrayTransaksi=array(
     'IDKaryawan' => $this->session->userdata('user_userID'),
@@ -250,14 +261,7 @@ public function deleteCart($id)
     );
     $this->db->update('transaksi',$arrayTransaksi,array('IDTransaksi'=>$strtrans));
 
-    //Update Detail Transaksi
-    foreach ($this->getdetailTransaksi($strtrans) as $item) {
-    $obat = $this->db->get_where('obat',array('IDObat'=>$item->IDObat))->row();
-    $data=array(
-    'JumlahObat' => $obat->JumlahObat + $item->Jumlah
-    );
-    $this->db->update('obat',$data,array('IDObat'=>$item->IDObat));
-    }
+
 
     //Management uang
     $Total = (Double)$this->Management->getLastData() + (Double)$post["totalBayar"];

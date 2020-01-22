@@ -23,12 +23,7 @@ class CJenis extends CI_Controller {
      parent::__construct();
      $this->load->model("JenisObat");
      $this->load->library("session");
-
-		 if($this->session->userdata('user_role') != 'Admin')
-		 {
-			 echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
-			 redirect(base_url('CLogin'));
-		 }
+     $this->load->library('form_validation');
 
    }
 
@@ -36,7 +31,7 @@ class CJenis extends CI_Controller {
 	{
 		$data['jenis']=$this->JenisObat->getAll();
 		$data['title']= "Jenis Obat";
-		$this->load->view('Administrator/header');
+		$this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/JenisObat/vJenisObat',$data);
     $this->load->view('Administrator/footer');
 	}
@@ -45,9 +40,17 @@ class CJenis extends CI_Controller {
   {
 
     $jenis = $this->JenisObat;
+		$this->form_validation->set_rules('namaJenis','Nama Jenis Obat','is_unique[jenisobat.namaJenis]');
+
+    if ($this->form_validation->run() == TRUE){
     $result = $jenis->save();
     if($result>0)$this->sukses();
     else $this->gagal();
+	}else{
+    $this->session->set_flashdata("Msginvoice", " Nama Jenis Obat tidak boleh sama");
+    redirect(site_url('CJenis/tJenisObat'));
+  }
+
   }
 
   public function tJenisObat()
@@ -66,7 +69,7 @@ class CJenis extends CI_Controller {
     $jenis = $this->JenisObat;
     $data["jenis"]=$jenis->getByID($id);
     $data['title']= "Jenis Obat";
-    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/JenisObat/eJenisObat',$data);
     $this->load->view('Administrator/footer');
   }

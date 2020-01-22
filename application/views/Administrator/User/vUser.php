@@ -45,7 +45,7 @@
 
             <tbody>
               <?php $i=0?>
-              <?php foreach ($user as $s) { ?>
+              <?php foreach ($user as $s) { if($s->IDRole != 3) { ?>
               <tr>
                   <td><?php $i++; echo $i?></td>
                   <td><?php echo $s->Nama?></td>
@@ -55,17 +55,21 @@
                     echo "<td><span class='badge bg-danger'>Nonaktif</span></td>";
                   } ?>
                   <?php
-                  if($s->IDRole == 1)
+                  if($s->Deskripsi == "Admin")
                   {
-                    echo "<td><span class='badge bg-primary'>Admin</span></td>";
+                    echo "<td><span class='badge bg-primary'>Administrator</span></td>";
                   }
-                  else if($s->IDRole == 2)
+                  else if($s->Deskripsi == "Karyawan")
                   {
                     echo "<td><span class='badge bg-success'>Karyawan</span></td>";
                   }
-                  else if($s->IDRole == 3)
+                  else if($s->Deskripsi == "Manager")
                   {
                     echo "<td><span class='badge bg-warning'>Manager</span></td>";
+                  }
+                  else if($s->Deskripsi == "User")
+                  {
+                    echo "<td><span class='badge bg-info'>User</span></td>";
                   }
                   ?>
                   <td>
@@ -78,7 +82,7 @@
                   <?php } ?>
                   </td>
               </tr>
-            <?php } ?>
+            <?php } }?>
 
             </tbody>
           </table>

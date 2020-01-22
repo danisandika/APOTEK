@@ -9,6 +9,7 @@ class Transaksi extends CI_Model
 	{
         parent::__construct();
         $this->load->model('Management');
+				$this->load->model('Transaksi');
 	}
 
 	public function getAll()
@@ -29,52 +30,82 @@ class Transaksi extends CI_Model
 		$idTransaksi="TR".date("YmdHis");
 		$post =$this->input->post();
 
-		$totalBayar=$this->cart->total();
+		$totalBayar=0;
+
+		foreach ($this->Transaksi->showCart() as $items) {
+
+		}
 		$userID =$this->session->userdata('user_userID');
 
 		$this->IDTransaksi = $idTransaksi;
 		$this->Tanggal = $dateNow;
 		$this->totalBayar = $totalBayar;
-		$this->status = 1;
+		$this->status = 0;
 		$this->IDKaryawan =$userID;
-		$this->FotoResep = $this->_uploadImage($_FILES['FotoResep']['name']);
+		if(isset($_FILES['FotoResep']['name'])){
+			$this->FotoResep = $this->_uploadImage($idTransaksi);
+		}
+
 		$this->db->insert($this->_table,$this);
 
-		foreach($this->cart->contents() as $item)
+		foreach($this->Transaksi->showCart() as $item)
 		{
 			$data=array(
 			'IDTransaksi' => $idTransaksi,
-			'IDObat' => $item['id'],
-			'jumlah' => $item['qty'],
-			'subTotal' => $item['subtotal']
+			'IDObat' => $item->id_obat,
+			'jumlah' => $item->jumlah,
+			'subTotal' => $item->subTotal
 			);
 
-
-			$jumObat = array(
-				'JumlahObat'=>$this->getJumlahData($item['id']) - $item['qty']
-			);
-			$this->db->update("obat",$jumObat,array('IDObat'=>$item['id']));
-			$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
-		  $this->db->insert('detailtransaksi',$data );
+			$jmlobat = $this->getJumlahData($item->id_obat) - $item->jumlah;
+			if ($jmlobat < 0) {
+				$this->session->set_flashdata("Msginvoice", "Stok Obat Tidak Memenuhi");
+	      echo "<script>window.history.back();location.reload();</script>";
+			}else{
+				$jumObat = array(
+					'JumlahObat'=>$this->getJumlahData($item->id_obat) - $item->jumlah
+				);
+				$totalBayar = $totalBayar + $items->subTotal;
+				$this->db->update("obat",$jumObat,array('IDObat'=>$item->id_obat));
+				//$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
+			  $this->db->insert('detailtransaksi',$data );
+				$this->deleteKeranjang($item->id_obat);
+			}
 		}
 
 
-    //$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
+  $Total = (Double)$this->Management->getLastData() + (Double)$totalBayar;
     //$this->db->insert('detailtransaksi',$data );
 
 	$management=array(
       'tanggalTransaksi'=>$dateNow,
-      'Debit'=>0,
-      'Kredit'=>$totalBayar,
+      'Debit'=>$totalBayar,
+      'Kredit'=>0,
       'Total'=>$Total,
-      'Deskripsi'=>'Penjualan Obat',
+      'Deskripsi'=>'Penjualan Obat ID:'.$idTransaksi,
       'CreateBy'=>$userID,
       'CreateDate'=>$dateNow
     );
     $this->db->insert('management_uang',$management);
-    $this->cart->destroy();
 
-	return true;
+		$updatetrans=array(
+			'totalBayar'=>$totalBayar
+		);
+		$this->db->update('transaksi',$updatetrans,array('IDTransaksi'=>$idTransaksi));
+		return true;
+	}
+
+	public function deleteKeranjang($id){
+	$this->db->where('id_obat', $id);
+  $this->db->delete('keranjang_jual');
+	}
+
+	public function cekDataSama($ido)
+	{
+	  $this->db->select('*');
+	  $this->db->from('keranjang_jual');
+	  $this->db->where('id_obat',$ido);
+	  return $this->db->get()->row();
 	}
 
 
@@ -87,6 +118,30 @@ class Transaksi extends CI_Model
     $query = $this->db->get()->row()->JumlahObat;
     return $query;
   }
+
+	public function insertCart($data)
+  {
+    $this->db->insert('keranjang_jual',$data);
+  }
+
+	public function updateKeranjang($ido,$data)
+	{
+	  return $this->db->update('keranjang_jual',$data,array('id_obat'=>$ido));
+	}
+
+	public function showCart()
+	{
+	  $this->db->select('*')
+	           ->from('keranjang_jual');
+	  $query = $this->db->get();
+	  return $query->result();
+	}
+
+	public function deleteCart($id)
+	{
+	  $this->db->where('id', $id);
+	  $this->db->delete('keranjang_jual');
+	}
 
 	private function _uploadImage($namagambar)
 	{

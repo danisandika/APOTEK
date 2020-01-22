@@ -34,10 +34,10 @@
               <div class="card-body">
                 <div class="row form-group">
 				<div class="col col-md-3">
-          <label for="nama">Jenis Transaksi </label>
+          <label for="nama">Jenis Transaksi *</label>
 				</div>
 				<div class="col col-md-5">
-				  <select class="form-control" name="jenisTransaksi">
+				  <select class="form-control" name="jenisTransaksi" required>
             <option value="Pemasukan">Pemasukan</option>
             <option value="Pengeluaran">Pengeluaran</option>
           </select>
@@ -46,7 +46,7 @@
 
         <div class="row form-group">
         <div class="col col-md-3">
-          <label for="nama">Jumlah Uang  </label>
+          <label for="nama">Jumlah Uang  *</label>
         </div>
         <div class="col col-md-5">
           <input type="number" name="uang" value="" required class="form-control">
@@ -55,10 +55,10 @@
 
       <div class="row form-group">
 			<div class="col col-md-3">
-               <label for="nama">Deskripsi</label>
+               <label for="nama">Deskripsi *</label>
 			</div>
 			<div class="col col-md-5">
-               <textarea class="form-control" rows="2" placeholder="" name="Deskripsi"></textarea>
+               <textarea class="form-control" rows="2" placeholder="" name="Deskripsi" required></textarea>
             </div>
 			</div>
 

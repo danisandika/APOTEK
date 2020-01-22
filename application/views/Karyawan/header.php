@@ -12,7 +12,7 @@ if($this->session->userdata('user_role') != 'Karyawan')
 <head runat="server">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Mustika Farma | Dashboard</title>
+  <title>Mustika Farma | <?php echo $title ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -68,7 +68,7 @@ if($this->session->userdata('user_role') != 'Karyawan')
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">User Profil</span>
           <div class="dropdown-divider"></div>
-          <a href="<?php echo site_url('CEditProfil/editUser/'.$this->session->userdata('user_userID'))?>" class="dropdown-item">
+          <a href="<?php echo site_url('CEditProfil/editUserKaryawan/'.$this->session->userdata('user_userID'))?>" class="dropdown-item">
             <i class="fas fa-users-cog mr-2"></i> Edit Profil
 
           </a>

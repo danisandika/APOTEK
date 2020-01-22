@@ -21,27 +21,46 @@ class CTransaksi extends CI_Controller{
 
 	public function index()
 	{
-		$datatran['datatran']=$this->Transaksi->getAll();
+		$data['datatran']=$this->Transaksi->getAll();
 		$data['countbooking']=$this->Count->getcount('booking');
-		$datatran['title']= "Transaksi";
+		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
+		$data['title']= "Transaksi";
 		$this->load->view('Karyawan/header',$data);
-		$this->load->view('Karyawan/Transaksi/trTransaksi',$datatran);
+		$this->load->view('Karyawan/Transaksi/trTransaksi',$data);
 		$this->load->view('Karyawan/footer');
 	}
 
 
 	public function add_cart()
 	{
-	$this->load->view('Karyawan/header');
+		$cekjumlah = $this->Transaksi->getJumlahData($this->input->post('id_obat')) - $this->input->post('jumlah');
+		if($cekjumlah >= 0)
+		{
+		$cekData = $this->Transaksi->cekDataSama($this->input->post('id_obat'));
+		echo "<script>alert($this->input->post('id_obat'));</script>";
+		if(empty($cekData)){
+		$subtotal = $this->input->post('harga')*$this->input->post('jumlah');
     $data = array(
-	'id'=>$this->input->post('id_obat'),
-    'name'=>$this->input->post('namaobat'),
-	'price'=>$this->input->post('harga'),
-    'qty'=>$this->input->post('jumlah'),
+			'id_obat'=>$this->input->post('id_obat'),
+    	'nama_obat'=>$this->input->post('namaobat'),
+			'harga'=>$this->input->post('harga'),
+    	'jumlah'=>$this->input->post('jumlah'),
+			'subTotal'=>$subtotal
     );
-	$this->cart->insert($data);
-	echo $this->show_cart();
+	$this->Transaksi->insertCart($data);
+	}else{
+		$jumlah  = $cekData->jumlah+$this->input->post('jumlah');
+		$subtotal= $jumlah*$this->input->post('harga');
+		$data = array(
+			'jumlah'=>$jumlah,
+			'subTotal'=>$subtotal
+		);
+		$this->Transaksi->updateKeranjang($this->input->post('id_obat'),$data);
 	}
+		echo $this->show_cart();
+	}
+}
 
 
 
@@ -49,26 +68,29 @@ class CTransaksi extends CI_Controller{
 	{
 		$output = '';
 		$no     = 0;
-		foreach ($this->cart->contents() as $items) {
+		$totalBayar = 0;
+		$query = $this->Transaksi->showCart();
+		foreach ($query as $items) {
 			$no++;
 			$output .='
 								<tr>
-								    <td hidden>'.$items['id'].'</td>
-									<td>'.$items['name'].'</td>
-									<td>'.$items['price'].'</td>
-									<td>'.$items['qty'].'</td>
-									<td>'.number_format($items['subtotal']).'</td>
-									<td><button type="button" id="'.$items['rowid'].'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
+								  <td hidden>'.$items->id_obat.'</td>
+									<td>'.$items->nama_obat.'</td>
+									<td> Rp.'.number_format($items->harga).'</td>
+									<td>'.$items->jumlah.'</td>
+									<td> Rp.'.number_format($items->subTotal).'</td>
+									<td><button type="button" id="'.$items->id.'" class="remove_cart btn btn-danger btn-sm">Batal</button></td>
 								</tr>
 								';
+		 $totalBayar = $totalBayar + $items->subTotal;
 		}
 		$output .= '
 								<tr>
 									<th colspan="4">Total</th>
-									<th colspan="2">'.'Rp'.number_format($this->cart->total()).'</th>
+									<th colspan="2">'.'Rp.'.number_format($totalBayar).'</th>
 								</tr>
 								';
-								return $output;
+	  return $output;
 	}
 
 	function load_cart()
@@ -77,11 +99,8 @@ class CTransaksi extends CI_Controller{
 	}
 
 	function delete_cart(){
-		$data = array(
-			'rowid'=>$this->input->post('row_id'),
-			'qty'=>0,
-		);
-		$this->cart->update($data);
+		$data =$this->input->post('row_id');
+		$this->Transaksi->deleteCart($data);
 		echo $this->show_cart();
 	}
 

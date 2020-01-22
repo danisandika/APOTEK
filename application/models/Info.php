@@ -12,7 +12,28 @@ class Info extends CI_Model
 
   public function getAll()
   {
+
     return $this->db->get_where($this->_table,array('createBy' => $this->session->userdata('user_userID')))->result();
+  }
+
+  public function getAllbyMember()
+  {
+    $this->db->select('*,date_format(waktuPost,"%d") as tanggal,date_format(waktuPost,"%M") as bulan')
+             ->from('info')
+             ->where('status',1);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
+  public function getByMemberID($id)
+  {
+    $this->db->select('info.*,date_format(waktuPost,"%H:%i:%s %d %M %Y") as tanggal,user.Nama as name,user.foto as poto')
+             ->from('info')
+             ->where('info.status',1)
+             ->where('info.IDInfo',$id)
+             ->join('User','User.IDUser = info.createBy');
+    $query = $this->db->get();
+    return $query->row();
   }
 
   public function getByID($id)

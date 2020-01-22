@@ -10,11 +10,7 @@ class CObat extends CI_Controller {
      $this->load->model("JenisObat");
      $this->load->model("Lokasi");
      $this->load->library("session");
-    if($this->session->userdata('user_role') != 'Admin')
-    {
-      echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
-      redirect(base_url('CLogin'));
-    }
+     $this->load->library('form_validation');
    }
 
 
@@ -31,18 +27,25 @@ class CObat extends CI_Controller {
 
   public function tambah()
   {
-
     $obat = $this->Obat;
+    $this->form_validation->set_rules('namaObat','Nama Obat','is_unique[obat.namaObat]');
+
+    if ($this->form_validation->run() == TRUE){
     $result = $obat->save();
     if($result>0)$this->sukses();
     else $this->gagal();
+  }else{
+    $this->session->set_flashdata("Msginvoice", " Nama Obat tidak boleh sama");
+    redirect(site_url('CObat/tObat'));
+  }
   }
 
   public function tObat()
   {
     $data["jenis"]=$this->JenisObat->getAll();
     $data["lokasi"]=$this->Lokasi->getAll();
-    $this->load->view('Administrator/header');
+    $data['title']= "Obat";
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Obat/tObat',$data);
     $this->load->view('Administrator/footer');
   }
@@ -58,7 +61,7 @@ class CObat extends CI_Controller {
     $data["lokasi"]=$this->Lokasi->getAll();
     $data["obat"]=$obat->getByID($id);
     $data['title']= "Obat";
-    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Obat/eObat',$data);
     $this->load->view('Administrator/footer');
   }
@@ -104,6 +107,7 @@ class CObat extends CI_Controller {
     $this->session->set_flashdata("globalmsggagal", "Gagal");
     redirect(site_url('CObat/index'));
   }
+
 
   public function get_obat_data()
 	{

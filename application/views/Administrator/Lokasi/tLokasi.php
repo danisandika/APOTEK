@@ -34,7 +34,7 @@
               <div class="card-body">
                 <div class="row form-group">
 				<div class="col col-md-3">
-                  <label for="nama">Nama </label>
+                  <label for="nama">Nama *</label>
 				</div>
 				<div class="col col-md-5">
 				  <input type="text" class="form-control" name="namaLokasi" required value="">
@@ -43,7 +43,7 @@
 
 			<div class="row form-group">
 			<div class="col col-md-3">
-				<label for="nama">Tempat Lokasi </label>
+				<label for="nama">Tempat Lokasi *</label>
 			</div>
 			<div class="col col-md-5">
              <input type="text" class="form-control" name="tempatLokasi" required value="">

@@ -226,7 +226,22 @@ $(function() {
 </script>
 <?php endif; ?>
 
-
+<?php if ($this->session->flashdata('Msginvoice')):  ?>
+<script type="text/javascript">
+$(function() {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });
+  Toast.fire({
+    type: 'error',
+    title: '  <?php echo $this->session->flashdata('Msginvoice')  ?> '
+  })
+  });
+</script>
+<?php endif; ?>
 
 
 <script type="text/javascript">
@@ -269,6 +284,24 @@ $(function() {
       })
     });
   });
+  </script>
+
+  <script type="text/javascript">
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#blah').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+    }
+
+    $("#imgInp").change(function() {
+    readURL(this);
+    });
   </script>
 </body>
 </html>

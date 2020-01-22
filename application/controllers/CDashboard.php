@@ -25,40 +25,48 @@ class CDashboard extends CI_Controller {
      $this->load->model("JenisObat");
      $this->load->library("session");
 		 $this->load->model("Count");
-
-
 	 }
 
 	public function index()
 	{
+			$data['getcount_booking']=$this->Count->getcount('booking');
+			$data['getcount_transaksi']=$this->Count->getcount('transaksi');
+			$data['getcount_user']=$this->Count->getcount('user');
+			$data['getcount_obat']=$this->Count->getcount('obat');
 
-	if($this->session->userdata('user_role') != 'Admin')
-	 {
-		 echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
-		 redirect(base_url('CLogin'));
-	 }else{
-		  $this->load->view('Administrator/header');
-			$this->load->view('Administrator/Dashboard');
+			$data['title']= "Dashboard";
+		  $this->load->view('Administrator/header',$data);
+			$this->load->view('Administrator/Dashboard',$data);
 			$this->load->view('Administrator/footer');
-
-
-	 }
-
 	}
 
 	public function index2()
 	{
-		if($this->session->userdata('user_role') != 'Karyawan')
-		{
-			echo "<script language='javascript'>alert('Anda Bukan Karyawan');</script>";
-			redirect(base_url('CLogin'));
-		}
-		else{
-			$data['countbooking']=$this->Count->getcount('booking');
+			$data['getcount_booking']=$this->Count->getcount('booking');
+			$data['getcount_transaksi']=$this->Count->getcount('transaksi');
+			$data['getcount_user']=$this->Count->getcount('user');
+			$data['getcount_obat']=$this->Count->getcount('obat');
+			$data['title']= "Dashboard";
+			$data['countbooking']=$this->Count->getcount_booking();
+			$data['countjumlahobat']=$this->Count->getcountJumlahObat();
+			$data['countexpired']=$this->Count->getcountExpired();
 			$this->load->view('Karyawan/header',$data);
-	    $this->load->view('Karyawan/Dashboard');
+	    $this->load->view('Karyawan/Dashboard',$data);
 	    $this->load->view('Karyawan/footer');
-		}
+	}
 
+	public function index3()
+	{
+			$data['title']= "Dashboard";
+			$data['getcount_booking']=$this->Count->getcount('booking');
+			$data['getcount_transaksi']=$this->Count->getcount('transaksi');
+			$data['getcount_user']=$this->Count->getcount('user');
+			$data['getcount_obat']=$this->Count->getcount('obat');
+			$data['countbooking']=$this->Count->getcount_booking();
+			$data['countjumlahobat']=$this->Count->getcountJumlahObat();
+			$data['countexpired']=$this->Count->getcountExpired();
+			$this->load->view('Manager/header',$data);
+	    $this->load->view('Manager/Dashboard',$data);
+	    $this->load->view('Manager/footer');
 	}
 }

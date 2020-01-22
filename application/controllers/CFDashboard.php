@@ -26,11 +26,12 @@ class CFDashboard extends CI_Controller {
     parent::__construct();
     $this->load->model("Login");
     $this->load->library("session");
+    $this->load->model("Count");
   }
 
   public function index()
   {
-    //$data['user']=$this->User->getAll();
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
     $data['title']= "User";
     $this->load->view('User/Member/header',$data);
     $this->load->view('User/Member/Dashboard');

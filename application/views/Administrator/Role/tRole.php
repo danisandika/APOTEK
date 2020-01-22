@@ -34,12 +34,13 @@
     <div class="card-body">
       <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Nama Role</label>
+     <label for="nama">Nama Role *</label>
 	 </div>
 	 <div class="col-md-5">
      <input type="text" class="form-control" name="Deskripsi" required>
     </div>
 	</div>
+
 
 
      <div class="card-footer">

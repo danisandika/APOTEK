@@ -20,7 +20,7 @@
 <!-- Main content -->
 <section class="content">
 <div class="row">
-  <div class="col-7">
+  <div class="col-12">
     <div class="card card-primary">
       <div class="card-header">
         <h3 class="card-title ">Tambah Data Pembelian</h3>
@@ -42,7 +42,7 @@
           <button type="submit" name="submit" class="btn btn-primary">Proses</button>
         </div>
         </form>
-        <hr>
+        <hr> 
         <table id="table2" class="table table-bordered table-hover">
           <thead>
           <tr>
@@ -54,7 +54,7 @@
             <th>Harga</th>
             <th>Add</th>
           </tr>
-          
+
           </thead>
 
           <tbody>
@@ -93,7 +93,7 @@
 
 <!-- Main content -->
 
-  <div class="col-5">
+  <div class="col-12">
     <div class="card card-success">
       <div class="card-header">
         <h3 class="card-title">Data Pembelian</h3>

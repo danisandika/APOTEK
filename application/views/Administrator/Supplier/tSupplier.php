@@ -30,12 +30,12 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-	
+
   <form role="form" action="<?php echo site_url('CSupplier/tambah') ?>" method="post">
     <div class="card-body">
       <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Nama Supplier</label>
+     <label for="nama">Nama Supplier *</label>
 	 </div>
 	 <div class="col-md-5">
      <input type="text" class="form-control" name="namaSupplier" required>
@@ -53,7 +53,7 @@
 
     <div class="row form-group">
 	<div class="col-md-3">
-     <label for="nama">Email Supplier</label>
+     <label for="nama">Email Supplier *</label>
 	 </div>
 	 <div class="col-md-5">
      <input type="email" class="form-control" name="emailSupplier" required>
@@ -62,7 +62,7 @@
 
      <div class="row form-group">
 	 <div class="col-md-3">
-     <label for="nama">Nomor Telephone</label>
+     <label for="nama">Nomor Telepon *</label>
 	 </div>
 	 <div class="col-md-5">
      <input type="number" class="form-control" name="telpSupplier" required >

@@ -10,7 +10,7 @@ if($this->session->userdata('user_role') != 'Admin')
 <head runat="server">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Mustika Farma | Dashboard</title>
+  <title>Mustika Farma | <?php echo $title ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -49,7 +49,7 @@ if($this->session->userdata('user_role') != 'Admin')
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="<?php echo site_url('CDashboard/index')?>" class="nav-link">Home</a>
       </li>
     </ul>
 

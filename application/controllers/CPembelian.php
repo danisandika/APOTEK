@@ -40,6 +40,8 @@ class CPembelian extends CI_Controller {
 		$data['data']=$this->Pembelian->getAll();
 		$data['supplier']=$this->Supplier->getAll();
 		$data['countbooking']=$this->Count->getcount('booking');
+		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
 		$data['title']= "Pembelian";
 		$this->load->view('Karyawan/header',$data);
     $this->load->view('Karyawan/Pembelian/tPembelian',$data);

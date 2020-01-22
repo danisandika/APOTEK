@@ -35,7 +35,7 @@
             <div class="card-body">
               <div class="row form-group">
 			  <div class="col-md-3">
-              <label for="">Judul</label>
+              <label for="">Judul *</label>
 			  </div>
 			  <div class="col-md-5">
               <input type="text" class="form-control" name="judul" required>
@@ -44,10 +44,10 @@
 
             <div class="row form-group">
 			<div class="col-md-3">
-              <label for="">Kategori</label>
+              <label for="">Kategori *</label>
 			 </div>
 			 <div class="col-md-5">
-              <select name="kategori" class="form-control">
+              <select name="kategori" class="form-control" required>
                 <option value="Kesehatan">Kesehatan</option>
                 <option value="Obat">Obat</option>
               </select>
@@ -58,12 +58,12 @@
             <div class="row form-group">
 			<div class="col-md-3">
               <label for="">Isi Info</label>
-			</div>
-			<div class="col-md-9">
-              <textarea class="textarea" placeholder="Place some text here" name="konten"
-              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-          </div>
-		  </div>
+        			</div>
+        			<div class="col-md-9">
+                      <textarea class="textarea" placeholder="Place some text here" name="konten"
+                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                  </div>
+        		  </div>
           <div class="row form-group">
 		  <div class="col-md-3">
           <label for="">Gambar Info</label>

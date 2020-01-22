@@ -4,10 +4,10 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
           <h1>Data Penjualan</h1>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active">Penjualan</li>
@@ -33,15 +33,20 @@
 		<div class="col-sm-6">
 		<div class="form-group">
 		<div class="col-sm-6">
+
 		<label>Resep Dokter</label>
-		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"  required>
+    <div class="form-check">
+		<input type="radio" onclick="javascript:yesnoCheck();" class="form-check-input" name="yesno" id="yesCheck"  required>
 		<label>Ada </label>
-		<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"  required>
+    </div>
+    <div class="form-check">
+		<input type="radio" onclick="javascript:yesnoCheck();" class="form-check-input" name="yesno" id="noCheck"  required>
 		<label>Tidak Ada</label>
-		</div>
+    </div>
+    </div>
 
 		<div id="ifYes" style="visibility:hidden">
-        <div class="row form-group">
+    <div class="form-group">
 		<div class="col-md-2">
 		<label for="nama">Foto</label>
 		</div>
@@ -51,10 +56,10 @@
 		</div>
 		</div>
 		</div>
-        <button type="submit" name="submit" class="btn btn-primary">Proses</button>
-        </div>
+    <button type="submit" name="submit" class="btn btn-primary">Proses</button>
+    </div>
 		</div>
-        </form>
+    </form>
 
         <hr>
         <table id="table1" class="table table-bordered table-hover">
@@ -82,13 +87,13 @@
                 <?php if($s->Expired<date('Y-m-d')){echo "<td><span class='badge bg-danger'>Kadaluarsa</span></td>";}else{
                   echo "<td><span class='badge bg-primary'>Aman</span></td>";
                 } ?>
-				<td><?php echo $s->Harga?></td>
-				<td><?php echo $s->Keterangan?></td>
+          				<td>Rp.<?php echo number_format($s->Harga)?></td>
+          				<td><?php echo $s->Keterangan?></td>
                 <td>
                   <input type="number" name="jumlah" id="<?php echo $s->IDObat;?>" value="1" class="jumlah form-control">
                 </td>
                 <td>
-                  <button onclick="check('<?= $s->IDObat?>')" id="add_cartPenjualan" class="btn btn-success btn-block add_cartPenjualan" data-id_obat="<?php echo $s->IDObat;?>"
+                  <button onclick="check('<?= $s->IDObat?>')"  class="btn btn-success btn-block add_cartPenjualan" data-id_obat="<?php echo $s->IDObat;?>"
 				          data-namaobat="<?php echo $s->namaObat;?>" data-harga ="<?php echo $s->Harga;?>"><span class="fas fa-shopping-cart"></span></button>
                 </td>
             </tr>
@@ -108,7 +113,7 @@
 </div>
 </section>
 </div>
-</div>
+
 
 <script>
 function myFunction() {
@@ -127,7 +132,7 @@ function myFunction() {
         var jumlah = parseInt(document.getElementById(id).value);
         console.log(searchtext);
         console.log(jumlah);
-        if(searchtext<jumlah)
+        if(searchtext<=jumlah)
         {
           Swal.fire(
            'Sukses!',

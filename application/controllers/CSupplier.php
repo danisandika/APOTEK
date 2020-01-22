@@ -23,11 +23,7 @@ class CSupplier extends CI_Controller {
      parent::__construct();
      $this->load->model("Supplier");
      $this->load->library("session");
-    if($this->session->userdata('user_role') != 'Admin')
-    {
-      echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
-      redirect(base_url('CLogin'));
-    }
+     $this->load->library('form_validation');
 
    }
 
@@ -45,16 +41,22 @@ class CSupplier extends CI_Controller {
 
   public function tambah()
   {
+    $this->form_validation->set_rules('namaSupplier','Nama Supplier','is_unique[supplier.NamaSupplier]');
 
+    if ($this->form_validation->run() == TRUE){
     $supplier = $this->Supplier;
     $result = $supplier->save();
     if($result>0)$this->sukses();
     else $this->gagal();
+  }else{
+    $this->session->set_flashdata("Msginvoice", " Nama Supplier sudah terdaftar");
+    redirect(site_url('CSupplier/tSupplier'));
   }
-
+}
   public function tSupplier()
   {
-    $this->load->view('Administrator/header');
+    $data['title']= "Supplier";
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Supplier/tSupplier');
     $this->load->view('Administrator/footer');
   }
@@ -68,7 +70,7 @@ class CSupplier extends CI_Controller {
     $supplier = $this->Supplier;
     $data["supplier"]=$supplier->getByID($id);
     $data['title']= "Supplier";
-    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Supplier/eSupplier',$data);
     $this->load->view('Administrator/footer');
   }

@@ -23,12 +23,7 @@ class CLokasi extends CI_Controller {
      parent::__construct();
      $this->load->model("Lokasi");
      $this->load->library("session");
-
-    if($this->session->userdata('user_role') != 'Admin')
-    {
-      echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
-      redirect(base_url('CLogin'));
-    }
+     $this->load->library('form_validation');
 
    }
 
@@ -36,7 +31,7 @@ class CLokasi extends CI_Controller {
 	{
 		$data['lokasi']=$this->Lokasi->getAll();
 		$data['title']= "Lokasi Penyimpanan";
-		$this->load->view('Administrator/header');
+		$this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Lokasi/vLokasi',$data);
     $this->load->view('Administrator/footer');
 	}
@@ -45,14 +40,23 @@ class CLokasi extends CI_Controller {
   {
 
     $lokasi = $this->Lokasi;
+		$this->form_validation->set_rules('namaLokasi','Nama','is_unique[lokasi_penyimpanan.Nama_Lokasi]');
+
+		if ($this->form_validation->run() == TRUE){
     $result = $lokasi->save();
     if($result>0)$this->sukses();
     else $this->gagal();
+	}else{
+    $this->session->set_flashdata("Msginvoice", " Nama Lokasi Penyimpanan tidak boleh sama");
+    redirect(site_url('CLokasi/tLokasi'));
+  }
+
   }
 
   public function tLokasi()
   {
-    $this->load->view('Administrator/header');
+		$data['title']= "Lokasi Penyimpanan";
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Lokasi/tLokasi');
     $this->load->view('Administrator/footer');
   }
@@ -66,7 +70,7 @@ class CLokasi extends CI_Controller {
     $lokasi = $this->Lokasi;
     $data["lokasi"]=$lokasi->getByID($id);
     $data['title']= "Lokasi Penyimpanan";
-    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/Lokasi/eLokasi',$data);
     $this->load->view('Administrator/footer');
   }

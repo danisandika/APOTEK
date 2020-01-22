@@ -34,18 +34,19 @@
     <div class="card-body">
       <div class="row form-group">
 	    <div class="col-md-3">
-			<label for="nama">Nama Obat</label>
+			<label for="nama">Nama Obat *</label>
 			<input type="hidden" name="IDObat">
 		</div>
 	  <div class="col-md-5">
-		<input type="text" class="form-control" name="namaObat"required>
-	  </div>
+		<input type="text" class="form-control" name="namaObat" required>
+    </div>
+
 	</div>
 
 
     <div class="row form-group">
 	<div class="col-md-3">
-        <label for="IDJenis">Jenis Obat</label>
+        <label for="IDJenis">Jenis Obat *</label>
 	</div>
 	<div class="col-md-5">
 		<select type="text" name="IDJenis" class="form-control" style="width: 100%;" required>
@@ -54,19 +55,19 @@
 				foreach ($jenis as $j) {
 					if ($j->statusJenis=="1"){ ?>
 						<option value="<?php echo $j->IDJenis ?>" >Jenis <?php echo $j->namaJenis ?></option>
-					
+
 					<?php }
 				} ?>
 		</select>
 	</div>
-	</div> 
+	</div>
 
     <div class="row form-group">
 	 <div class="col-md-3">
      <label for="nama">Jumlah Obat</label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="jumlah" class="form-control" name="JumlahObat" required readonly value="0">
+     <input type="jumlah" class="form-control" name="JumlahObat" readonly value="0">
      </div>
 	 </div>
 
@@ -81,15 +82,15 @@
 
     <div class="row form-group">
 	<div class="col-md-3">
-        <label for="IDLokasi">Lokasi</label>
+        <label for="IDLokasi">Lokasi *</label>
 	</div>
-	<div class="col-md-5">		
+	<div class="col-md-5">
 		<select type="text" name="IDLokasi" class="form-control" style="width: 100%;" required>
 			<option value="null" disabled selected>-- Lokasi --</option>
 			<?php
 				foreach ($lokasi as $j) {
 					if ($j->Status=="1"){ ?>
-						<option value="<?php echo $j->IDLokasi ?>" >Lokasi <?php echo $j->Nama_Lokasi ?></option>				
+						<option value="<?php echo $j->IDLokasi ?>" >Lokasi <?php echo $j->Nama_Lokasi ?></option>
 					<?php }
 				} ?>
 		</select>
@@ -99,7 +100,7 @@
 
 	<div class="row form-group">
 	 <div class="col-md-3">
-     <label for="nama">Satuan</label>
+     <label for="nama">Satuan *</label>
 	 </div>
 	 <div class="col-md-5">
 		<select name="Satuan" class="form-control" style="width:100;%" required>
@@ -113,30 +114,30 @@
 
 	 <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Harga</label>
+     <label for="nama">Harga *</label>
 	 </div>
 	  <div class="col-md-5">
-     <input type="number" class="form-control" name="harga" required >
+     <input type="number" class="form-control" name="harga"  required>
      </div>
 	 </div>
 
 
 	 <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Kadaluwarsa</label>
+     <label for="nama">Kadaluarsa</label>
 	 </div>
 	  <div class="col-md-5">
-     <input type="date" class="form-control" name="Expired" required >
+     <input type="date" class="form-control" name="Expired"  >
      </div>
 	 </div>
 
 
 	<div class="row form-group">
 	 <div class="col-md-3">
-     <label for="nama">Foto</label>
+     <label for="nama">Foto *</label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="file" class="form-control" name="foto" required id="foto">
+     <input type="file" class="form-control" name="foto"  id="foto" required>
      </div>
 	 </div>
 

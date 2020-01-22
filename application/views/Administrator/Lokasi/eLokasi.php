@@ -22,7 +22,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-8">
+        <div class="col-md-12">
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
@@ -36,7 +36,7 @@
 	<div class="row form-group">
          <input type="hidden" name="IDLokasi" value="<?php echo $lokasi->IDLokasi?>">
 	<div class="col col-md-3">
-	 <label for="nama">Nama </label>
+	 <label for="nama">Nama *</label>
 	 </div>
 	 <div class="col col-md-5">
      <input type="text" class="form-control" name="namaLokasi" required value="<?php echo $lokasi->Nama_Lokasi?>">
@@ -45,7 +45,7 @@
 
     <div class="row form-group">
 	<div class="col col-md-3">
-   <label for="nama">tempat Lokasi </label>
+   <label for="nama">tempat Lokasi *</label>
    </div>
    <div class="col col-md-5">
    <input type="text" class="form-control" name="tempatLokasi" required value="<?php echo $lokasi->tempatLokasi?>">
@@ -60,16 +60,7 @@
      <textarea class="form-control" rows="3" placeholder="" name="Deskripsi"><?php echo $lokasi->Deskripsi?></textarea>
      </div>
 	 </div>
-   <div class="row form-group">
-      <div class="col-md-3">
-        <label for="nama">Status</label>
-       </div>
-        <div class="col-md-5">
-          <input type="radio" name="status" value="1" <?php if($lokasi->Status==1){echo "checked";}else{echo "";}?> >Aktif
-          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-          <input type="radio" name="status" value="0" <?php if($lokasi->Status==0){echo "checked";}else{echo "";}?> >Nonaktif
-        </div>
-   </div>
+
 
      <div class="card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

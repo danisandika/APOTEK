@@ -26,11 +26,14 @@ class CFBooking extends CI_Controller {
     parent::__construct();
     $this->load->model("User");
     $this->load->model("Booking");
+    $this->load->model("Count");
+    $this->load->model("Info");
     $this->load->library("session");
   }
 
   public function index()
   {
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
     $data['obat']=$this->Booking->getAll();
     $data['title']= "User";
     $this->load->view('User/Member/header',$data);
@@ -38,12 +41,57 @@ class CFBooking extends CI_Controller {
     $this->load->view('User/Member/footer');
   }
 
+  public function editUser($id)
+  {
+    $user = $this->User;
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
+    $data['title']= "Edit Profil";
+    $data["user"]=$user->getByID($id);
+    $this->load->view('User/Member/header',$data);
+    $this->load->view('User/Member/EditProfil',$data);
+    $this->load->view('User/Member/footer');
+  }
+
   public function index2()
   {
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
     $data['booking']=$this->Booking->getAllBooking();
     $data['title']= "Transaksi Saya";
     $this->load->view('User/Member/header',$data);
     $this->load->view('User/Member/vTransaksi',$data);
+    $this->load->view('User/Member/footer');
+  }
+
+  public function daftar_keranjang()
+  {
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
+    $data['booking']=$this->Booking->getAllBooking();
+    $data['daftar_keranjang'] = $this->Booking->showCart($this->session->userdata('user_userID'));
+    $data['title']= "Transaksi Saya";
+    $this->load->view('User/Member/header',$data);
+    $this->load->view('User/Member/Daftar_Keranjang',$data);
+    $this->load->view('User/Member/footer');
+  }
+
+  public function detailInfo($id)
+  {
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
+    $data['detailinfo']=$this->Info->getByMemberID($id);
+    $data['nextdetailinfo']=$this->Info->getByMemberID($id+1);
+    $data['prevdetailinfo']=$this->Info->getByMemberID($id-1);
+    $data['title']= "Info Kesehatan";
+    $this->load->view('User/Member/header',$data);
+    $this->load->view('User/Member/detailInfo',$data);
+    $this->load->view('User/Member/footer');
+  }
+
+  public function view_Info()
+  {
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
+    $data['info']=$this->Info->getAllbyMember();
+    $data['title']= "Info Kesehatan";
+    $this->load->view('User/Member/header',$data);
+    $this->load->view('User/Member/vInfo',$data);
     $this->load->view('User/Member/footer');
   }
 
@@ -69,6 +117,7 @@ class CFBooking extends CI_Controller {
 
   public function tTransaksi()
   {
+      $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
     $data['user']=$this->User->getByID($this->session->userdata('user_userID'));
     $data['title']= "Transaksi";
     $this->load->view('User/Member/header',$data);
@@ -88,11 +137,11 @@ class CFBooking extends CI_Controller {
   {
 
     if(!isset($id))redirect('CFBooking/index');
-
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
     $booking = $this->Booking;
     $data['obat']=$this->Booking->detailsObat($id);
     $data['title']= "Detail Obat";
-    $this->load->view('User/Member/header');
+    $this->load->view('User/Member/header',$data);
     $this->load->view('User/Member/ListDetailObat',$data);
     $this->load->view('User/Member/footer');
   }
@@ -104,11 +153,12 @@ class CFBooking extends CI_Controller {
     $strbk = 'TR'.substr($id,2);
     $booking = $this->Booking;
     //$data['obat']=$this->Booking->detailsObat($id);
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
     $data['transaksi']=$this->Booking->detailsTransaksi($strbk);
     $data['booking']=$this->Booking->detailsBooking($id);
     $data['getdetail']=$this->Booking->getdetailTransaksi($strbk);
     $data['title']= "Detail Transaksi";
-    $this->load->view('User/Member/header');
+    $this->load->view('User/Member/header',$data);
     $this->load->view('User/Member/vDetailTransaksi',$data);
     $this->load->view('User/Member/footer');
   }
@@ -183,6 +233,15 @@ class CFBooking extends CI_Controller {
     $this->Booking->deleteCart($data);
     echo $this->show_cart();
   }
+
+  function delete_keranjang($id){
+    $data = $id;
+    $this->Booking->deleteCart($data);
+    redirect(base_url('CFBooking/daftar_keranjang'));
+  }
+
+
+
 
   public function sukses()
   {

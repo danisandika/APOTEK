@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V1</title>
+	<title>Login | Mustika Farma</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -27,7 +27,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="<?php echo base_url('Loginv1/images/img-01.png')?>" alt="IMG">
+					<img src="<?php echo base_url('assets/dist/img/logo1.png')?>" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form" action="<?php echo site_url('CFLogin/cekLogin')?>" method="post">
@@ -59,8 +59,8 @@
 
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
-							Create your Account
+						<a class="txt2" href="<?php echo site_url('CFLogin/register') ?>">
+							Buat Akun
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>

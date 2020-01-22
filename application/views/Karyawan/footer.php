@@ -130,7 +130,7 @@ $(document).ready(function(){
             var namaobat      = $(this).data("namaobat");
             var jumlah        = $('#' + id_obat).val();
             var harga         = $(this).data("harga");
-
+            //alert(harga);
             $.ajax({
                 url : "<?php echo site_url('CTransaksi/add_cart');?>",
                 method : "POST",
@@ -292,7 +292,29 @@ $(function() {
     });
   });
   </script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+  	$('.add_filter').click(function(){
+              var bulan       = $('#bulan').val();
+              var tahun       = $('#tahun').val();
 
+              alert(bulan);
+
+              $.ajax({
+                  url : "<?php echo site_url('CMPembelian/readFilter');?>",
+                  method : "POST",
+                  data : {bulan: bulan,tahun: tahun},
+                  success: function(data){
+                      $('#detail_filter').html(data);
+                  }
+              });
+          });
+
+  		$('#detail_filter').load("<?php echo site_url('CMPembelian/readFilter');?>");
+
+
+  	});
+  </script>
 
 
 

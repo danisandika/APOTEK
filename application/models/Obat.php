@@ -11,6 +11,7 @@ class Obat extends CI_Model
         parent::__construct();
   }
 
+
   public function getAll()
   {
     $this->db->select('IDObat,namaObat,namaJenis,Nama_Lokasi,JumlahObat,Harga,o.status as statusObat,o.Expired as Expired');
@@ -27,8 +28,6 @@ class Obat extends CI_Model
   {
     return $this->db->get_where($this->_table,["IDObat"=>$id])->row();
   }
-
-
 
   public function save()
   {

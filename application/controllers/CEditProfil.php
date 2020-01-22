@@ -23,20 +23,39 @@ class CEditProfil extends CI_Controller {
    {
      parent::__construct();
      $this->load->model("User");
-
-		 if($this->session->userdata('user_role') != 'Admin')
- 		 {
- 			 echo "<script language='javascript'>alert('Anda Bukan Administrator');</script>";
- 			 redirect(base_url('CLogin'));
- 		 }
+		  $this->load->model("Count");
 	 }
 
 	public function editUser($id)
 	{
 		$user = $this->User;
+		$data['title']= "Edit Profil";
 		$data["user"]=$user->getByID($id);
-		$this->load->view('Administrator/header');
+		$this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/EditProfil',$data);
     $this->load->view('Administrator/footer');
+	}
+
+	public function editUserKaryawan($id)
+	{
+		$data['title']= "Edit Profil";
+		$data['countbooking']=$this->Count->getcount('booking');
+		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
+		$data['countexpired']=$this->Count->getcountExpired();
+		$user = $this->User;
+		$data["user"]=$user->getByID($id);
+		$this->load->view('Karyawan/header',$data);
+    $this->load->view('Karyawan/EditProfil',$data);
+    $this->load->view('Karyawan/footer');
+	}
+
+	public function editUserManager($id)
+	{
+		$user = $this->User;
+		$data['title']= "Edit Profil";
+		$data["user"]=$user->getByID($id);
+		$this->load->view('Manager/header',$data);
+    $this->load->view('Manager/EditProfil',$data);
+    $this->load->view('Manager/footer');
 	}
 }

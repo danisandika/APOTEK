@@ -25,6 +25,7 @@ class CUser extends CI_Controller {
   	 $this->load->model("Role");
   	 $this->load->model("Login");
      $this->load->library("session");
+     $this->load->library('form_validation');
 
    }
 
@@ -41,19 +42,39 @@ class CUser extends CI_Controller {
 	private $_table = "User";
 
 	public function tambah()
-    {
+  {
+    $this->form_validation->set_rules('Username','Username','is_unique[user.username]');
+
+    if ($this->form_validation->run() == TRUE){
     $password = $this->generateRandomString();
     $user = $this->User;
     $sendEmail = $this->send($password);
     $result = $user->save($password);
     if($result>0 )$this->sukses();
     else $this->gagal();
+  }else{
+    $this->session->set_flashdata("Msginvoice", " Username sudah dipakai, cari yang lain");
+    redirect(site_url('CUser/tUser'));
+  }
+}
+
+  public function Konfirmasi_user($username)
+  {
+    $result = $this->User->konfirmasi_user($username);
+    if($result>0){
+      $this->session->set_flashdata("MsgregistSukses", "Pendaftaran Berhasil");
+      redirect(site_url('CFLogin/index'));
+    }else{
+      $this->session->set_flashdata("MsgregistGagal", " Username sudah dipakai, cari yang lain");
+      redirect(site_url('CFLogin/index'));
+    }
   }
 
   public function tUser()
   {
     $data['role']=$this->Role->getAll();
-    $this->load->view('Administrator/header');
+    $data['title']= "User";
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/User/tUser',$data);
     $this->load->view('Administrator/footer');
   }
@@ -64,18 +85,20 @@ class CUser extends CI_Controller {
 
     if(!isset($id))redirect('CUser/index');
 
+
     $user = $this->User;
     $data['role']=$this->Role->getAll();
     $data["user"]=$user->getByID($id);
     $data['role']=$this->Role->getAll();
     $data['title']= "User";
-    $this->load->view('Administrator/header');
+    $this->load->view('Administrator/header',$data);
     $this->load->view('Administrator/User/eUser',$data);
     $this->load->view('Administrator/footer');
   }
 
   public function update()
   {
+
     $result = $this->User->update();
     if($result>0)$this->sukses();
     else $this->gagal();
@@ -83,9 +106,36 @@ class CUser extends CI_Controller {
 
   public function updateProfil()
   {
+    $post = $this->input->post();
+    if($post["username"] != $this->session->userdata('user_username')){
+      $this->form_validation->set_rules('username','Username','is_unique[user.username]');
+
+      if ($this->form_validation->run() == TRUE){
+      $result = $this->User->updateProfil();
+      if($result>0){
+        $this->session->set_flashdata("globalmsgsuccess", "Sukses");
+        echo "<script>window.history.back();location.reload();</script>";
+      }
+      else {
+        $this->session->set_flashdata("globalmsggagal", "Gagal");
+        echo "<script>window.history.back();location.reload();</script>";
+      }
+    }else{
+      $this->session->set_flashdata("Msginvoice", " Username sudah dipakai, cari yang lain");
+      echo "<script>window.history.back();location.reload();</script>";
+    }
+  }else{
     $result = $this->User->updateProfil();
-    if($result>0)$this->sukses();
-    else $this->gagal();
+    if($result>0){
+      $this->session->set_flashdata("globalmsgsuccess", "Sukses");
+      echo "<script>window.history.back();location.reload();</script>";
+    }
+    else {
+      $this->session->set_flashdata("globalmsggagal", "Gagal");
+      echo "<script>window.history.back();location.reload();</script>";
+    }
+  }
+
   }
 
   public function delete($id)

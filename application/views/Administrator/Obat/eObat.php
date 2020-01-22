@@ -34,7 +34,7 @@
     <div class="card-body">
       <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Nama Obat</label>
+     <label for="nama">Nama Obat *</label>
 	  </div>
 	   <div class="col-md-5">
      <input type="hidden" name="IDObat" value="<?php echo $obat->IDObat?>">
@@ -44,7 +44,7 @@
 
     <div class="row form-group">
 	 <div class="col-md-3">
-        <label for="IDJenis">Jenis Obat</label>
+        <label for="IDJenis">Jenis Obat *</label>
 	</div>
 	 <div class="col-md-5">
 		<?php $jenisData = $obat->IDJenis; ?>
@@ -79,7 +79,7 @@
 
     <div class="row form-group">
 	 <div class="col-md-3">
-        <label for="IDLokasi">Lokasi Obat</label>
+        <label for="IDLokasi">Lokasi Obat *</label>
 	</div>
 	 <div class="col-md-5">
 		<?php $lokasiData = $obat->IDLokasi; ?>
@@ -96,7 +96,7 @@
 
 	<div class="row form-group">
 	 <div class="col-md-3">
-     <label for="nama">Satuan</label>
+     <label for="nama">Satuan *</label>
 	 </div>
 	  <div class="col-md-5">
 	  <select name="Satuan" class="form-control" style="width:100;%" required>
@@ -110,10 +110,10 @@
 
 	 <div class="row form-group">
 	 <div class="col-md-3">
-     <label for="nama">Harga</label>
+     <label for="nama">Harga *</label>
 	 </div>
 	 <div class="col-md-5">
-     <textarea class="form-control" rows="3" placeholder="" name="Harga"><?php echo round($obat->Harga)?></textarea>
+     <input type="number" class="form-control" placeholder="" name="Harga" value="<?php echo round($obat->Harga)?>" required/>
      </div>
 	 </div>
 
@@ -130,23 +130,14 @@
 
 	<div class="row form-group">
 	<div class="col-md-3">
-     <label for="nama">Foto</label>
+     <label for="nama">Foto </label>
 	 </div>
 	 <div class="col-md-5">
      <input class="form-control-file <?php echo form_error('image') ? 'is-invalid':'' ?>" type="file" name="foto" />
 		 <input type="hidden" name="old_foto" value="<?php echo $obat->Foto ?>" />
      </div>
 	 </div>
-   <div class="row form-group">
-      <div class="col-md-3">
-        <label for="nama">Status</label>
-       </div>
-        <div class="col-md-5">
-          <input type="radio" name="status" value="1" <?php if($obat->status==1){echo "checked";}else{echo "";}?> >Aktif
-          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-          <input type="radio" name="status" value="0" <?php if($obat->status==0){echo "checked";}else{echo "";}?> >Nonaktif
-        </div>
-   </div>
+   
 
      <div class="row card-footer">
        <button type="submit" class="btn btn-primary">Submit</button>

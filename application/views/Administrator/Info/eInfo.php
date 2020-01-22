@@ -34,7 +34,7 @@
     <div class="card-body">
       <div class="row form-group">
 	  <div class="col-md-3">
-     <label for="nama">Judul</label>
+     <label for="nama">Judul *</label>
 	 </div>
 	 <div class="col-md-5">
      <input type="hidden" name="IDInfo" value="<?php echo $info->IDInfo?>">
@@ -57,7 +57,7 @@
 	 <label for="nama">Foto</label>
 	 </div>
 	 <div class="col-md-5">
-     <input type="hidden" class="form-control" name="old_gambar" required value="<?php echo $info->gambar?>">
+     <input type="hidden" class="form-control" name="old_gambar" value="<?php echo $info->gambar?>">
      <input type="file" class="form-control" name="gambar">
      </div>
 	 </div>

@@ -114,6 +114,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
   <!-- custom js -->
   <script src="<?php echo base_url('medico/js/custom.js');?>"></script>
+  <!--Plugins SweetAlert2-->
+  <script src="<?php echo base_url('assets/plugins/sweetalert2/sweetalert2.min.js')?>"></script>
 
 
   <script type="text/javascript">
@@ -220,6 +222,44 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     readURL(this);
     });
   </script>
+
+
+  <script type="text/javascript">
+  function checkPassword() {
+      var password = $("#password").val();
+      var old_pass = $("#old_pass").val();
+
+      if (old_pass != password ){
+        $('#newpassword').prop('disabled', true);
+        $('#repassword').prop('disabled', true);
+        $("#divPasswordValidationResult").html("Password salah");
+      }
+        else{
+        $("#divPasswordValidationResult").html("");
+        $('#newpassword').prop('disabled', false);
+        $('#repassword').prop('disabled', false);
+      }
+  }
+
+  function checkPassword2() {
+      var newpassword = $("#newpassword").val();
+      var repassword = $("#repassword").val();
+
+      if (newpassword != repassword ){
+        $("#divvalresult").html("Password tidak sama");
+      }
+        else{
+        $("#divvalresult").html("");
+      }
+  }
+
+  $(document).ready(function () {
+     $("#password").keyup(checkPassword);
+     $("#repassword").keyup(checkPassword2);
+  });
+
+  </script>
+
 
 
 </body>
