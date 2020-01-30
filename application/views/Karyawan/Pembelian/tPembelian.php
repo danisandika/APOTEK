@@ -23,7 +23,7 @@
   <div class="col-12">
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title ">Tambah Data Pembelian</h3>
+        <h3 class="card-title ">Tambah Data Supplier</h3>
       </div>
       <!-- /.card-header -->
       <br>
@@ -31,19 +31,31 @@
         <form class="" action="<?php echo site_url('CPembelian/tambah') ?>" method="post">
         <div class="form-group">
             <label for="role">Supplier</label>
-            <select class="form-control" name="IDSupplier">
+            <select class="form-control" name="" id="mySelect">
               <option value="" disabled selected>--Pilih Salah Satu--</option>
               <?php foreach($supplier as $s) { ?>
               <option value="<?php echo $s->IDSupplier ?>"><?php echo $s->NamaSupplier ?></option>
               <?php } ?>
             </select>
+            <input type="hidden" name="IDSupplier" value="" id="idbeli">
         </div>
         <div class="form-group">
-          <button type="submit" name="submit" class="btn btn-primary">Proses</button>
+          <button type="submit" name="submit" class="btn btn-primary float-right"><span class="fas fa-save"></span> | Proses</button>
         </div>
         </form>
-        <hr> 
-        <table id="table2" class="table table-bordered table-hover">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="col-12" id="card1" style="display:none">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title ">Tambah Data Pembelian</h3>
+      </div>
+      <!-- /.card-header -->
+      <br>
+      <div class="card-body">
+        <table id="table1" class="table table-bordered table-hover">
           <thead>
           <tr>
             <th>No</th>
@@ -51,7 +63,7 @@
             <th>Jenis</th>
             <th>Status</th>
             <th style="width:50px;">Jumlah</th>
-            <th>Harga</th>
+            <th style="width:200px;">Harga</th>
             <th>Add</th>
           </tr>
 
@@ -71,7 +83,7 @@
                   <input type="number" name="jumlah" id="<?php echo $s->IDObat;?>" value="1" class="jumlah form-control">
                 </td>
                 <td>
-                  <input type="number" name="harga" id="H<?php echo $s->IDObat;?>" value="0" class="harga form-control">
+                 <input type="number" name="harga" id="H<?php echo $s->IDObat;?>" value="0" class="harga form-control" style="width:200px;">
                 </td>
                 <td>
                   <button class="btn btn-success btn-block add_cart" data-id_obat="<?php echo $s->IDObat;?>" data-namaobat="<?php echo $s->namaObat;?>"><span class="fas fa-shopping-cart"></span></button>
@@ -82,18 +94,17 @@
           </tbody>
         </table>
       </div>
+    </div>
+  </div>
       <!-- /.card-body -->
 
-    </div>
-    <!-- /.card -->
-</div>
 
 
 
 
 <!-- Main content -->
 
-  <div class="col-12">
+  <div class="col-12" id="card2" style="display:none">
     <div class="card card-success">
       <div class="card-header">
         <h3 class="card-title">Data Pembelian</h3>
@@ -115,7 +126,10 @@
           <tbody id="detail_cart">
           </tbody>
         </table>
+        <br>
+
       </div>
+
       <!-- /.card-body -->
     </div>
     <!-- /.card -->

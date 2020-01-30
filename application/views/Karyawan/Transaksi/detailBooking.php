@@ -201,9 +201,14 @@
                   echo "<button type='submit' name='confirmation' class='btn btn-success float-right' value='confirmation'><i class='far fa-credit-card'></i> Konfirmasi Pembayaran  </button>";
                 }?>
 
-                <button type="button" class="btn btn-danger float-right" style="margin-right: 5px;" onClick = "history.go(-1)">
+                <button type="button" class="btn btn-warning float-right" style="margin-right: 5px;" onClick = "history.go(-1)">
                   <i class="fas fa-undo"></i> Kembali
                 </button>
+                <?php if ($getbooking->statusBooking!=2 && $getbooking->MetodePembayaran!='Transfer') { ?>
+                <a  class="btn btn-danger float-left" style="margin-right: 5px;" href="<?php echo site_url('CBooking/BatalBooking/'.$getbooking->IDBooking) ?>">
+                  <i class="fas fa-stop"></i> Batal
+                </a>
+                <?php } ?>
               </div>
             </div>
           </div>

@@ -26,7 +26,7 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit Supplier</h3>
+              <h3 class="card-title">Ubah Supplier</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -68,11 +68,11 @@
      <input type="number" class="form-control" name="telpSupplier" required value="<?php echo $supplier->noTelp?>">
      </div>
 	 </div>
-   
+
 
      <div class="card-footer">
-       <button type="submit" class="btn btn-primary">Submit</button>
-       <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
+       <button type="submit" class="btn btn-primary">Simpan</button>
+       <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Batal</button>
      </div>
     </div>
      </form>

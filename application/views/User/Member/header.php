@@ -45,6 +45,7 @@ if($this->session->userdata('user_role') != 'User')
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('wizard/css/jquery-ui.min.css')?>">
     <!-- Main Style Css -->
     <link rel="stylesheet" href="<?php echo base_url('wizard/css/style.css')?>"/>
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')?>">
 </head>
 
 <body>
@@ -75,8 +76,17 @@ if($this->session->userdata('user_role') != 'User')
                                     <a class="nav-link" href="<?php echo site_url('CFBooking/view_Info')?>">Artikel</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo site_url('CFBooking/index2')?>">Transaksi Saya</a>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Transaksi
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="<?php echo site_url('CFBooking/index2')?>">Transaksi Saya</a>
+                                        <a class="dropdown-item" href="<?php echo site_url('CFBooking/riwayat_transaksi')?>">Riwayat Transaksi</a>
+
+                                    </div>
                                 </li>
 
                                 <li class="nav-item dropdown">
@@ -89,9 +99,6 @@ if($this->session->userdata('user_role') != 'User')
                                         <a class="dropdown-item" href="<?php echo site_url('CFLogin/logout')?>">Log Out</a>
 
                                     </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">About</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?php echo site_url('CFBooking/daftar_keranjang')?>"><span class="ti-shopping-cart">&nbsp;(<?php echo $keranjang ?>)</span></a>

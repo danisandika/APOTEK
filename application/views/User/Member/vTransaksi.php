@@ -19,7 +19,7 @@
               <?php echo $item->IDBooking ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <?php if($item->MetodePembayaran=='Tunai'){echo "<span class='badge badge-pill badge-success'>Bayar Ditempat</span>";}else{echo "<span class='badge badge-pill badge-primary'>Transfer</span>";} ?>
             </div>
-            <div class="visit"><?php if($item->statusBooking==1){echo "<span class='badge badge-pill badge-warning'>Menunggu Pembayaran</span>";} ?></div>
+            <div class="visit"><?php if($item->statusBooking==1){echo "<span class='badge badge-pill badge-warning'>Menunggu Pembayaran</span>";}elseif($item->statusBooking==2){echo "<span class='badge badge-pill badge-success'>Menunggu Diambil</span>";} ?></div>
             <div class="percentage">
               <a href="<?php echo site_url('CFBooking/detailsTransaksi/'.$item->IDBooking) ?>" class="genric-btn info circle arrow">Detail<span class="lnr lnr-arrow-right"></span></a>&nbsp;&nbsp;&nbsp;
               <?php if($item->MetodePembayaran=='Transfer'){ ?>

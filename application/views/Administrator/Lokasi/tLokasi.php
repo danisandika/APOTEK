@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Lokasi</h1>
+          <h1>Lokasi Penyimpanan</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -60,8 +60,8 @@
 			</div>
 
             <div class="card-footer">
-                 <button type="submit" class="btn btn-primary">Submit</button>
-                 <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
+                 <button type="submit" class="btn btn-primary">Simpan</button>
+                 <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Batal</button>
             </div>
             </div>
         </form>

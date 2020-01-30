@@ -47,7 +47,7 @@
     <!-- /.card -->
 </div>
   <div class="col-12">
-	<form class="" action="<?php echo site_url('CTransaksi/tambah') ?>" method="post" enctype="multipart/form-data">
+	<form class="" name="formbayar" action="<?php echo site_url('CTransaksi/tambah') ?>" method="post"  onsubmit="return validateForm()" enctype="multipart/form-data">
 
     <div class="card card-primary">
       <!-- /.card-header -->
@@ -92,9 +92,9 @@
 				</div>
 			</div>
 
-			<button class="btn btn-primary" onclick="validasi();">Bayar</button>
+			<button class="btn btn-primary" type="submit" name="submit">Bayar</button>
       <div class="" style="visibility:hidden;">
-        <input type="file" name="FotoResep" value="<?php echo $FotoResep ?>" >
+        <input type="text" name="FotoResep" value="<?php echo $FotoResep ?>">
       </div>
 
       </table>
@@ -113,21 +113,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<script type="text/javascript">
-  function validasi()
-  {
-    alert();
-    var firstInput = document.getElementById("qty").value;
-    var secondInput = document.getElementById("price").value;
-    if (qty>price)
-    {
-        alert("Uang Anda Kurang");
-    }
-    else if (qty<price or qty = price) {
-        alert("Transaksi Berhasil");
-    }
-
+<script>
+function validateForm() {
+  var x = parseFloat(document.forms["formbayar"]["qty"].value);
+  var y = parseFloat(document.forms["formbayar"]["price"].value);
+  if (x > y) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Maaf',
+      text: 'Uang anda tidak mencukupi!',
+    })
+    return false;
   }
+}
 </script>
 
 

@@ -13,7 +13,13 @@ class Member extends CI_Model
 
   public function getAll()
   {
-    return $this->db->get($this->_table)->result();
+    $this->db->select('u.*,r.Deskripsi')
+             ->from('user u')
+             ->where('r.Deskripsi','User')
+             ->join('Role r','r.IDRole=u.IDRole');
+   $query = $this->db->get();
+   return $query->result();
+    //return $this->db->get($this->_table)->result();
   }
 
   public function getByID($id)

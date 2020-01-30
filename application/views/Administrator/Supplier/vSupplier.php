@@ -37,9 +37,9 @@
               <th>Nama Supplier</th>
               <th>Alamat</th>
               <th>Email</th>
-              <th>No Telepon</th>
+              <th style="width:100px">No.Telepon</th>
               <th>Status</th>
-              <th>Aksi</th>
+              <th style="width:150px;">Aksi</th>
             </tr>
             </thead>
 
@@ -56,11 +56,11 @@
                     echo "<td><span class='badge bg-danger'>Nonaktif</span></td>";
                   } ?>
                   <td>
-                  <a href="<?php echo site_url('CSupplier/edit/'.$s->IDSupplier) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Edit</a>
+                  <a href="<?php echo site_url('CSupplier/edit/'.$s->IDSupplier) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Ubah</a>
                   <?php if($s->Status==1){ ?>
-                  <a onclick="deleteConfirm('<?php echo site_url('CSupplier/delete/'.$s->IDSupplier) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Delete</a>
+                  <a onclick="deleteConfirm('<?php echo site_url('CSupplier/delete/'.$s->IDSupplier) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Hapus</a>
                   <?php }else{ ?>
-                  <a onclick="activeConfirm('<?php echo site_url('CSupplier/active/'.$s->IDSupplier) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-check"></span> | Active</a>
+                  <a onclick="activeConfirm('<?php echo site_url('CSupplier/active/'.$s->IDSupplier) ?>')" href="#" class="btn btn-info btn-sm"><span class="fas fa-check"></span> | Aktif</a>
                   <?php } ?>
                   </td>
               </tr>

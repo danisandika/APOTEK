@@ -25,15 +25,15 @@
                                     <tbody>
                                       <tr class="space-row">
                                         <th>Nama : </th>
-                                        <td><input type="text" name="nama" class="single-input" id="username" value="<?php echo $user->Nama ?>"></td>
+                                        <td><input type="text" name="nama" class="single-input" id="username" value="<?php echo $user->Nama ?>" readonly></td>
                                       </tr>
                                       <tr class="space-row">
                                         <th>Email : </th>
-                                        <td><input type="text" name="email" class="single-input" id="email" value="<?php echo $user->Email ?>"></td>
+                                        <td><input type="text" name="email" class="single-input" id="email" value="<?php echo $user->Email ?>" readonly></td>
                                       </tr>
                                       <tr class="space-row">
                                         <th>No.Telepon : </th>
-                                        <td><input type="text" name="notelp" class="single-input" id="phone" value="<?php echo $user->NoTelp ?>"></td>
+                                        <td><input type="text" name="notelp" class="single-input" id="phone" value="<?php echo $user->NoTelp ?>" readonly></td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -84,7 +84,7 @@
                                       </div>
                                       <br>
                                       <br>
-                                      <div class="form-row" style="visibility:hidden" id="transfer">
+                                      <div class="form-row" style="visibility:hidden;" id="transfer">
                                       <select name="nama_bank" class="single-input">
                                         <option value="" disabled selected>--Pilih Bank--</option>
                                         <option value="BCA">BCA</option>

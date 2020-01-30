@@ -14,6 +14,7 @@
           <h5><?php echo $obat->namaJenis?></h5>
           <h4><b>Stok</h4>
           <h5>
+
           <?php
           if($obat->JumlahObat<=0){
             echo "<span class='badge badge-pill badge-danger'>Stok Habis</span>";}
@@ -33,7 +34,7 @@
          <br>
          <br>
          <hr>
-         	<button class="genric-btn primary radius add_cart_trans" data-id_obat="<?php echo $obat->IDObat;?>" data-namaobat="<?php echo $obat->namaObat;?>" data-jumlah="1" data-harga="<?php echo $obat->Harga;?>"><span class="ti-shopping-cart"></span> Keranjang</button>
+         	<button class="genric-btn primary radius add_cart_trans" data-id_obat="<?php echo $obat->IDObat;?>" data-namaobat="<?php echo $obat->namaObat;?>" data-jumlah="1" data-harga="<?php echo $obat->Harga;?>" data-jmlobat="<?php echo $obat->JumlahObat; ?>"><span class="ti-shopping-cart"></span> Keranjang</button>
           <a href="<?php echo site_url('CFBooking/tTransaksi') ?>" class="genric-btn success radius"><span class="ti-money"></span> Lanjutkan Pembayaran</a>
         </div>
       </div>

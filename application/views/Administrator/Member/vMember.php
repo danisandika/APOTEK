@@ -38,16 +38,16 @@
               <th>Tanggal Lahir</th>
               <th>Email</th>
               <th>Role</th>
-			  <th hidden ="true">Username</th>
-			  <th hidden ="true">Password</th>
+      			  <th hidden ="true">Username</th>
+      			  <th hidden ="true">Password</th>
             </tr>
             </thead>
 
             <tbody>
               <?php $i=0?>
               <?php foreach ($user as $s) {
-			  if( $s->IDRole == "3") {
-			  ?>
+      			  if( $s->Deskripsi == "User") {
+      			  ?>
               <tr>
                   <td><?php $i++; echo $i?></td>
                   <td><?php echo $s->Nama?></td>
@@ -56,22 +56,11 @@
                   <td><?php echo $s->TglLahir?></td>
 				          <td><?php echo $s->Email?></td>
                   <?php
-                  if($s->IDRole == 1)
-                  {
-                    echo "<td><span class='badge bg-primary'>Admin</span></td>";
-                  }
-                  else if($s->IDRole == 2)
-                  {
-                    echo "<td><span class='badge bg-success'>Karyawan</span></td>";
-                  }
-                  else if($s->IDRole == 3)
+                  if($s->Deskripsi == "User")
                   {
                     echo "<td><span class='badge bg-warning'>Member</span></td>";
                   }
-				  else if($s->IDRole == 3)
-                  {
-                    echo "<td><span class='badge bg-warning'>Manager</span></td>";
-                  }
+
                   ?>
         				  <td hidden ="true"><?php echo $s->username?></td>
         				  <td hidden ="true"><?php echo $s->password?></td>

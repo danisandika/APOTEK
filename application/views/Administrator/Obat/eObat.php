@@ -26,7 +26,7 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit Obat</h3>
+              <h3 class="card-title">Ubah Obat</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -49,7 +49,7 @@
 	 <div class="col-md-5">
 		<?php $jenisData = $obat->IDJenis; ?>
 		<select name="IDJenis" class="form-control" style="width:100%;" required >
-		<option value="" disabled selected>--- Select One ---</option>
+		<option value="" disabled selected>--- Jenis Obat ---</option>
 			<?php foreach ($jenis as $s) {
 			 $jenisValue = $s->IDJenis;
 			?>
@@ -64,7 +64,7 @@
      <label for="nama">Jumlah Obat</label>
 	 </div>
 	  <div class="col-md-5">
-     <input type="jumlah" class="form-control" name="JumlahObat" required value="<?php echo $obat->JumlahObat?>" readonly>
+     <input type="jumlah" class="form-control" name="JumlahObat" value="<?php echo $obat->JumlahObat?>" readonly>
      </div>
 	 </div>
 
@@ -73,7 +73,7 @@
      <label for="nama">Keterangan</label>
 	 </div>
 	  <div class="col-md-5">
-     <input type="text" class="form-control" name="Keterangan" required value="<?php echo $obat->Keterangan?>">
+     <input type="text" class="form-control" name="Keterangan" value="<?php echo $obat->Keterangan?>">
      </div>
 	 </div>
 
@@ -100,10 +100,12 @@
 	 </div>
 	  <div class="col-md-5">
 	  <select name="Satuan" class="form-control" style="width:100;%" required>
-		<option value="" disabled selected>--Pilih Satuan-- </option>
+		<option value="" disabled selected>-- Pilih Satuan -- </option>
 		<option value="Butir">Butir</option>
-		<option value="Butir">Botol</option>
-		<option value="Butir">Strip</option></select>
+		<option value="Botol">Botol</option>
+		<option value="Strip">Strip</option>
+    <option value="Pcs">Pcs</option>
+    </select>
      </div>
 	 </div>
 
@@ -137,12 +139,12 @@
 		 <input type="hidden" name="old_foto" value="<?php echo $obat->Foto ?>" />
      </div>
 	 </div>
-   
+
 
      <div class="row card-footer">
-       <button type="submit" class="btn btn-primary">Submit</button>
+       <button type="submit" class="btn btn-primary">Simpan</button>
        &nbsp;&nbsp;
-       <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
+       <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Batal</button>
      </div>
     </div>
      </form>

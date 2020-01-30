@@ -52,7 +52,7 @@
                 <td><?php echo $p->namaObat?></td>
                 <td><?php echo $p->jumlah?>&nbsp;&nbsp;<?php echo $p->Satuan?></td>
                 <td>Rp.<?php echo number_format($p->subTotal)?></td>
-                <?php if($p->status==1){echo "<td><span class='badge bg-warning'>On The Way</span></td>";} ?>
+                <?php if($p->status==1){echo "<td><span class='badge bg-warning'>Menunggu</span></td>";} ?>
                 <td>
                 <a href="javascript:;"
                 data-id="<?php echo $p->IDObat?>"
@@ -122,7 +122,7 @@
                   <label class="col-lg-2 col-sm-2 control-label">Kadaluarsa</label>
                   <div class="row">
                   <div class="col-lg-12">
-                    <input type="date" name="tanggal" value="" id="tanggal" class="form-control" required>
+                    <input type="date" name="tanggal" value="" id="tanggal" class="form-control" required min="<?php echo date('Y-m-d') ?>">
                   </div>
                 </div>
               </div>

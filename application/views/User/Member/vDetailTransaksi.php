@@ -28,12 +28,15 @@
               if($booking->nama_bank=='BCA'){echo  "&nbsp;&nbsp;&nbsp;<span class='badge badge-pill badge-success'>BCA [6860148755]  &nbsp; A/n  &nbsp; PT.Mustika Farma</span> ";}
               elseif ($booking->nama_bank=='BNI'){echo  "&nbsp;&nbsp;&nbsp;<span class='badge badge-pill badge-success'>BNI [0095555554]  &nbsp; A/n  &nbsp; PT.Mustika Farma</span> ";}
               elseif ($booking->nama_bank=='BRI'){echo  "&nbsp;&nbsp;&nbsp;<span class='badge badge-pill badge-success'>BRI [050401000239300]  &nbsp; A/n  &nbsp; PT.Mustika Farma</span> ";}
-              elseif ($booking->nama_bank=='BNI'){echo  "&nbsp;&nbsp;&nbsp;<span class='badge badge-pill badge-success'>Mandiri [0700001855555]  &nbsp; A/n  &nbsp; PT.Mustika Farma</span> ";}
+              elseif ($booking->nama_bank=='Mandiri'){echo  "&nbsp;&nbsp;&nbsp;<span class='badge badge-pill badge-success'>Mandiri [0700001855555]  &nbsp; A/n  &nbsp; PT.Mustika Farma</span> ";}
             }
             ?>
           </h5>
            <h4><b>Status Pemesanan</b></h4>
-           <h5><?php if($booking->statusBooking==1){echo "<span class='badge badge-pill badge-warning'>Menunggu Pembayaran</span>";} ?></h5>
+           <h5><?php if($booking->statusBooking==1){echo "<span class='badge badge-pill badge-warning'>Menunggu Pembayaran</span>";}
+           elseif($booking->statusBooking==2){echo "<span class='badge badge-pill badge-success'>Menunggu Diambil</span>";}
+           elseif($booking->statusBooking==3){echo "<span class='badge badge-pill badge-danger'>Dibatalkan</span>";}
+           elseif($booking->statusBooking==0){echo "<span class='badge badge-pill badge-info'>Selesai</span>";} ?></h5>
            <h4><b>Deskripsi</b></h4>
            <p><?php echo $booking->Deskripsi ?></p>
            <h4><b>Total Bayar</h4>
@@ -77,7 +80,7 @@
       <hr>
        <a href="<?php echo site_url('CFBooking/index') ?>" class="genric-btn primary radius" ><span class="ti-plus"></span> Pesan Ulang</a>
        <?php if($booking->MetodePembayaran=='Transfer') { ?>
-       <a href="#" class="genric-btn success radius"><span class="ti-money"></span> Konfirmasi Pembayaran</a>
+       <a href="<?php echo site_url('CFBooking/index3/'.$booking->IDBooking) ?>" class="genric-btn success radius"><span class="ti-money"></span> Konfirmasi Pembayaran</a>
        <?php } ?>
     </div>
   </div>

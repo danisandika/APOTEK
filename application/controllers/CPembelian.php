@@ -39,7 +39,7 @@ class CPembelian extends CI_Controller {
 	{
 		$data['data']=$this->Pembelian->getAll();
 		$data['supplier']=$this->Supplier->getAll();
-		$data['countbooking']=$this->Count->getcount('booking');
+		$data['countbooking']=$this->Count->getcountbk('booking');
 		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
 		$data['countexpired']=$this->Count->getcountExpired();
 		$data['title']= "Pembelian";

@@ -19,16 +19,32 @@ class CKonf_Transaksi extends CI_Controller{
 	{
     if(isset($_FILES['FotoResep']['name'])){
     $data['FotoResep']=$_FILES['FotoResep']['name'];
+    $this->_uploadImage($_FILES['FotoResep']['name']);
     }
 		$data['datatran']=$this->Konf_Transaksi->getAll();
 		$data['detail']=$this->Konf_Transaksi->getAll();
-    $data['countbooking']=$this->Count->getcount('booking');
+    $data['countbooking']=$this->Count->getcountbk('booking');
     $data['countjumlahobat']=$this->Count->getcountJumlahObat();
 		$data['countexpired']=$this->Count->getcountExpired();
 		$data['title']= "Konfirmasi";
 		$this->load->view('Karyawan/header',$data);
 		$this->load->view('Karyawan/Transaksi/konfirmTransaksi',$data);
 		$this->load->view('Karyawan/footer');
+	}
+
+  private function _uploadImage($namagambar)
+	{
+    $config['upload_path']          = './upload/transaksi/';
+    $config['allowed_types']        = 'gif|jpg|jpeg|png';
+    $config['file_name']            = $namagambar;
+    $config['overwrite']						= true;
+    $config['max_size']             = 1024;
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('FotoResep')) {
+        return $this->upload->data("file_name");
+    }
+    print_r($this->upload->display_errors());
 	}
 
 	public function add_cart()

@@ -58,7 +58,7 @@ class CDashboard extends CI_Controller {
 	public function index3()
 	{
 			$data['title']= "Dashboard";
-			$data['getcount_booking']=$this->Count->getcount('booking');
+			$data['getcount_booking']=$this->Count->getcountbk('booking');
 			$data['getcount_transaksi']=$this->Count->getcount('transaksi');
 			$data['getcount_user']=$this->Count->getcount('user');
 			$data['getcount_obat']=$this->Count->getcount('obat');

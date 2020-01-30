@@ -51,7 +51,7 @@
 		<label for="nama">Foto</label>
 		</div>
 		<div class="col-md-10">
-		<input type="file" class="form-control" name="FotoResep" id="foto">
+		<input type="file" class="form-control" name="FotoResep" id="foto" accept="image/*">
 		</div>
 		</div>
 		</div>
@@ -70,7 +70,7 @@
             <th>Jenis</th>
             <th>Status</th>
       			<th>Harga</th>
-      			<th>Keterangan </th>
+      			<th>Stok </th>
             <th style="width:50px;">Jumlah</th>
             <th>Add</th>
           </tr>
@@ -88,7 +88,7 @@
                   echo "<td><span class='badge bg-primary'>Aman</span></td>";
                 } ?>
           				<td>Rp.<?php echo number_format($s->Harga)?></td>
-          				<td><?php echo $s->Keterangan?></td>
+          				<td><?php echo $s->JumlahObat?></td>
                 <td>
                   <input type="number" name="jumlah" id="<?php echo $s->IDObat;?>" value="1" class="jumlah form-control">
                 </td>

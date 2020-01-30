@@ -62,6 +62,16 @@ class CFBooking extends CI_Controller {
     $this->load->view('User/Member/footer');
   }
 
+  public function riwayat_transaksi()
+  {
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
+    $data['riwayat']=$this->Booking->getAllRiwayat();
+    $data['title']= "Riwayat Transaksi";
+    $this->load->view('User/Member/header',$data);
+    $this->load->view('User/Member/vRiwayatTransaksi',$data);
+    $this->load->view('User/Member/footer');
+  }
+
   public function daftar_keranjang()
   {
     $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
@@ -97,6 +107,7 @@ class CFBooking extends CI_Controller {
 
   public function index3($id)
   {
+    $data['keranjang']=$this->Count->getcount_keranjang($this->session->userdata('user_userID'));
     $data['booking']=$this->Booking->detailsBooking($id);
     $data['title']= "Konfirmasi Transfer";
     $this->load->view('User/Member/header',$data);

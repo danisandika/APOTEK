@@ -30,7 +30,8 @@
         <!-- /.card-header -->
         <div class="card-body">
           <a href="<?php echo site_url('CLokasi/tLokasi')?>" class="btn btn-primary"><span class="fas fa-plus"></span> | Tambah</a>
-          <table id="table2" class="table table-bordered table-hover">
+          <br><br>
+          <table id="table1" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th>No</th>
@@ -54,12 +55,12 @@
                     echo "<td><span class='badge bg-danger'>Nonaktif</span></td>";
                   } ?>
                   <td>
-                  <a href="#" class="btn btn-primary btn-sm view_detail" relid="<?php echo $s->IDLokasi;  ?>"><span class="fas fa-eye"></span> | Details</a>
-                  <a href="<?php echo site_url('CLokasi/edit/'.$s->IDLokasi) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Edit</a>
+                  <a href="#" class="btn btn-primary btn-sm view_detail" relid="<?php echo $s->IDLokasi;  ?>"><span class="fas fa-eye"></span> | Detail</a>
+                  <a href="<?php echo site_url('CLokasi/edit/'.$s->IDLokasi) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Ubah</a>
                   <?php if($s->Status==1){ ?>
-                  <a onclick="deleteConfirm('<?php echo site_url('CLokasi/delete/'.$s->IDLokasi) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Delete</a>
+                  <a onclick="deleteConfirm('<?php echo site_url('CLokasi/delete/'.$s->IDLokasi) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Hapus</a>
                   <?php }else{ ?>
-                  <a onclick="activeConfirm('<?php echo site_url('CLokasi/active/'.$s->IDLokasi) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-check"></span> | Active</a>
+                  <a onclick="activeConfirm('<?php echo site_url('CLokasi/active/'.$s->IDLokasi) ?>')" href="#" class="btn btn-info btn-sm"><span class="fas fa-check"></span> | Aktif</a>
                   <?php } ?>
                   </td>
               </tr>
@@ -82,7 +83,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 style="font-size: 24px; color: #17919e; text-shadow: 1px 1px #ccc;"><i class="fa fa-folder">&nbsp;</i>Lokasi Details</h3>
+        <h3 style="font-size: 24px; color: #17919e; text-shadow: 1px 1px #ccc;"><i class="fa fa-folder">&nbsp;</i>Lokasi Detail</h3>
       </div>
       <div class="modal-body">
         <h3>Data dari Lokasi Detail Penyimpanan</h3>
@@ -100,7 +101,7 @@
        </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Tutup</button>
       </div>
     </div>
   </div>

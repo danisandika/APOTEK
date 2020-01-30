@@ -30,17 +30,18 @@
         <!-- /.card-header -->
         <div class="card-body">
           <a href="<?php echo site_url('CObat/tObat')?>" class="btn btn-primary"><span class="fas fa-plus"></span> | Tambah</a>
-          <table id="table2" class="table table-bordered table-hover">
+          <br><br>
+          <table id="table1" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th>No</th>
               <th>Nama Obat</th>
-              <th>Jenis Obat</th>
+              <th>Jenis</th>
               <th>Lokasi</th>
-              <th>Jumlah Obat</th>
+              <th>Jumlah</th>
       			  <th>Harga</th>
               <th>Status</th>
-      			  <th>Aksi</th>
+      			  <th style="width:230px;">Aksi</th>
             </tr>
             </thead>
 
@@ -53,17 +54,17 @@
                   <td><?php echo $s->namaJenis?></td>
                   <td><?php echo $s->Nama_Lokasi?></td>
                   <td><?php echo $s->JumlahObat?></td>
-        				  <td>Rp.<?php echo round($s->Harga)?></td>
+        				  <td>Rp.<?php echo number_format(round($s->Harga))?></td>
                   <?php if($s->statusObat==1){echo "<td><span class='badge bg-primary'>Aktif</span></td>";}elseif ($s->statusObat==0) {
                     echo "<td><span class='badge bg-danger '>Nonaktif</span></td>";
                   } ?>
         				  <td>
-                  <a href="#" class="btn btn-primary btn-sm view_obat" relid="<?php echo $s->IDObat;  ?>"><span class="fas fa-eye"></span> | Details</a>
-                  <a href="<?php echo site_url('CObat/edit/'.$s->IDObat) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Edit</a>
+                  <a href="#" class="btn btn-primary btn-sm view_obat" relid="<?php echo $s->IDObat;  ?>"><span class="fas fa-eye"></span> | Detail</a>
+                  <a href="<?php echo site_url('CObat/edit/'.$s->IDObat) ?>" class="btn btn-success btn-sm"><span class="fas fa-edit"></span> | Ubah</a>
                   <?php if($s->statusObat==1){ ?>
-                  <a onclick="deleteConfirm('<?php echo site_url('CObat/delete/'.$s->IDObat) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Delete</a>
+                  <a onclick="deleteConfirm('<?php echo site_url('CObat/delete/'.$s->IDObat) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span> | Hapus</a>
                   <?php }else{ ?>
-                  <a onclick="activeConfirm('<?php echo site_url('CObat/active/'.$s->IDObat) ?>')" href="#" class="btn btn-danger btn-sm"><span class="fas fa-check"></span> | Active</a>
+                  <a onclick="activeConfirm('<?php echo site_url('CObat/active/'.$s->IDObat) ?>')" href="#" class="btn btn-info btn-sm"><span class="fas fa-check"></span> | Aktif</a>
                   <?php } ?>
               </tr>
             <?php } ?>
@@ -119,7 +120,7 @@
        </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Tutup</button>
       </div>
     </div>
   </div>

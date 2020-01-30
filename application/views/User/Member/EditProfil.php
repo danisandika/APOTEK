@@ -147,7 +147,7 @@
   </div>
   <hr>
   <button type="submit" name="submit" class="genric-btn success circle arrow">Simpan<span class="lnr lnr-arrow-right"></span></button>
-  <button type="submit" name="submit" class="genric-btn danger circle arrow" onClick = "history.go(-1)">Kembali<span class="lnr lnr-arrow-right"></span></button>
+  <button type="button" name="submit" class="genric-btn danger circle arrow" onClick = "history.go(-1)">Kembali<span class="lnr lnr-arrow-right"></span></button>
 </form>
 </div>
 </div>

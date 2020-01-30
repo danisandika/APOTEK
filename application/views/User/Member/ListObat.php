@@ -19,7 +19,8 @@
                         <img src="<?php echo base_url('upload/obat/'.$o->Foto)?>" alt="doctor" width="300px" height="300px">
                         <div class="social_icon">
                             <ul>
-                                <li><button class="add_cart_trans" data-id_obat="<?php echo $o->IDObat;?>" data-namaobat="<?php echo $o->namaObat;?>" data-jumlah="1" data-harga="<?php echo $o->Harga;?>"><span class="ti-shopping-cart" ></span> </button></li>
+
+                                <li><button class="add_cart_trans" data-id_obat="<?php echo $o->IDObat;?>" data-namaobat="<?php echo $o->namaObat;?>" data-jumlah="1" data-harga="<?php echo $o->Harga;?>" data-jmlobat="<?php echo $o->JumlahObat; ?>"><span class="ti-shopping-cart" ></span> </button></li>
                                 <li><a href="<?php echo site_url('CFBooking/detailsObat/'.$o->IDObat) ?>"> <i class="ti-info"></i> </a></li>
 
                             </ul>

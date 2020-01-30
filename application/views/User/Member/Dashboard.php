@@ -8,7 +8,7 @@
                         <h5>Kami Menyediakan Obat yang anda butuhkan</h5>
                         <h1>Pelayanan Pembelian Obat Terbaik</h1>
 
-                        <a href="<?php echo site_url('CFBooking/tTransaksi') ?>" class="btn_2">Tambah Pembelian</a>
+                        <a href="<?php echo site_url('CFBooking/tTransaksi') ?>" class="btn_2">Transaksi</a>
 
                     </div>
                 </div>

@@ -37,5 +37,4 @@ class CMember extends CI_Controller {
     $this->load->view('Administrator/footer');
 	}
 
-
 }

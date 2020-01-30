@@ -21,8 +21,8 @@ class CTransaksi extends CI_Controller{
 
 	public function index()
 	{
-		$data['datatran']=$this->Transaksi->getAll();
-		$data['countbooking']=$this->Count->getcount('booking');
+		$data['datatran']=$this->Transaksi->getAllObat();
+		$data['countbooking']=$this->Count->getcountbk('booking');
 		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
 		$data['countexpired']=$this->Count->getcountExpired();
 		$data['title']= "Transaksi";
@@ -38,7 +38,7 @@ class CTransaksi extends CI_Controller{
 		if($cekjumlah >= 0)
 		{
 		$cekData = $this->Transaksi->cekDataSama($this->input->post('id_obat'));
-		echo "<script>alert($this->input->post('id_obat'));</script>";
+		//echo "<script>alert($this->input->post('id_obat'));</script>";
 		if(empty($cekData)){
 		$subtotal = $this->input->post('harga')*$this->input->post('jumlah');
     $data = array(
@@ -108,7 +108,10 @@ class CTransaksi extends CI_Controller{
 	{
 		$transaksi = $this->Transaksi;
     $result = $transaksi->save();
-    if($result>0)$this->sukses();
+    if($result>0){
+			$this->session->set_flashdata("globalmsgsuccess", "Sukses");
+		   redirect(site_url('CTransaksi/index'));
+		}
     else $this->gagal();
 
 	}
@@ -123,7 +126,7 @@ class CTransaksi extends CI_Controller{
   public function gagal()
   {
 	$this->session->set_flashdata("globalmsggagal", "Gagal");
-    redirect(site_url('CKonfirmasi/indexpembelian'));
+    redirect(site_url('CKonf_Transaksi/index'));
   }
 }
 ?>

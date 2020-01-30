@@ -66,15 +66,15 @@
         		  </div>
           <div class="row form-group">
 		  <div class="col-md-3">
-          <label for="">Gambar Info</label>
+          <label for="">Gambar Info *</label>
 		  </div>
 		  <div class="col-md-5">
           <input type="file" class="form-control" name="gambar" id="gambar" required>
           </div>
 		  </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Batal</button>
         </div>
        </div>
         </form>

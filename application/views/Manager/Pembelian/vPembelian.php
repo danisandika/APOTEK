@@ -127,6 +127,16 @@
                       </div>
                     </div>
                     </div>
+                    <div class="col-md-3">
+
+                    <div class="form-group">
+                      <label for="inputName" class="col-sm-12 control-label">&nbsp;</label>
+                      <div class="col-sm-6">
+                      <button type="submit" name="submit" class="btn btn-primary btn-sm add_filter">Filter</button>
+                      </div>
+                    </div>
+
+                    </div>
 
                   </div>
                   </form>

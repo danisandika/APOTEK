@@ -27,11 +27,25 @@ class Booking extends CI_Model
     $this->db->select('*');
     $this->db->from('booking');
     $this->db->where('IDCustomer',$this->session->userdata('user_userID'));
-    $this->db->where('statusBooking !=',0);
+    $this->db->where('statusBooking =',1);
+    $this->db->or_where('statusBooking =',2);
     //$this->db->get_where($this->_table)->result();
     $query = $this->db->get();
     return $query->result();
   //  return $this->db->get($this->_table)->result();
+  }
+
+  public function getAllRiwayat()
+  {
+    $this->db->select('b.*,date_format(b.dateBooking,"%d %M %Y") as tgl,t.totalBayar as total');
+    $this->db->from('booking b');
+    $this->db->where('IDCustomer',$this->session->userdata('user_userID'));
+    $this->db->where('statusBooking =',0);
+    $this->db->or_where('statusBooking =',3);
+    $this->db->join('transaksi t','b.IDTransaksi = t.IDTransaksi');
+    //$this->db->get_where($this->_table)->result();
+    $query = $this->db->get();
+    return $query->result();
   }
 
 
@@ -40,8 +54,8 @@ class Booking extends CI_Model
     $this->db->select('*');
     $this->db->from('booking b');
     $this->db->join('User as c', 'c.IDUser = b.IDCustomer');
-    $this->db->where('statusBooking !=',0);
-    $this->db->where('statusBooking !=',3);
+    $this->db->where('statusBooking =',1);
+    $this->db->or_where('statusBooking =',2);
     $query = $this->db->get();
     return $query->result();
   }
@@ -84,9 +98,13 @@ class Booking extends CI_Model
     'Jumlah' => $item->jumlah,
     'subTotal' => $item->subTotal
     );
+
     $this->deleteCart($item->id_obat);
     $this->db->insert('detailtransaksi',$data);
 
+    $djumlahobat = $this->getJumlahData($item->id_obat) - $item->jumlah;
+    $datajmlobat = array('JumlahObat'=>$djumlahobat);
+    $this->db->update('obat',$datajmlobat,array('IDObat'=>$item->id_obat));
   }
 
   $nama_bank = "-";
@@ -103,13 +121,25 @@ class Booking extends CI_Model
     'Deskripsi'=>$post["deskripsi"]
   );
 
-  $this->db->insert('booking',$databooking);
 
+  return $this->db->insert('booking',$databooking);
 }
 
 public function updateKeranjang($idu,$ido,$data)
 {
   return $this->db->update('keranjang',$data,array('id_obat'=>$ido,'id_user'=>$idu));
+}
+
+
+
+public function getJumlahData($id)
+{
+  $this->db->select('JumlahObat');
+  $this->db->from('obat');
+  $this->db->where('IDObat',$id);
+  $this->db->limit(1);
+  $query = $this->db->get()->row()->JumlahObat;
+  return $query;
 }
 
 public function cekDataSama($idu,$ido)
@@ -191,7 +221,7 @@ public function deleteCart($id)
   {
     $post = $this->input->post();
     $this->IDBooking = $post["idbooking"];
-    $this->statusBooking = 2;
+    $this->statusBooking = 1;
     if (!empty($_FILES["konfirmasigambar"]["name"])) {
         $this->FotoTransfer = $this->_uploadImage();
     } else {
@@ -245,13 +275,10 @@ public function deleteCart($id)
 		$this->db->update('Booking',$this,array('IDBooking'=>$IDBooking));
 
     //Update Detail Transaksi
-    foreach ($this->getdetailTransaksi($strtrans) as $item) {
-    $obat = $this->db->get_where('obat',array('IDObat'=>$item->IDObat))->row();
-    $data=array(
-    'JumlahObat' => $obat->JumlahObat - $item->Jumlah
-    );
-    $this->db->update('obat',$data,array('IDObat'=>$item->IDObat));
-    }
+    //foreach ($this->getdetailTransaksi($strtrans) as $item) {
+    //$obat = $this->db->get_where('obat',array('IDObat'=>$item->IDObat))->row();
+
+    //}
 
 
     //Update Transaksi
@@ -278,5 +305,42 @@ public function deleteCart($id)
     return $this->db->insert('Management_uang',$dataUang);
 
   }
+
+  public function BatalBooking($id)
+  {
+    $strtrans = 'TR'.substr($id,2);
+
+
+    //Update Detail Transaksi
+    foreach ($this->getdetailTransaksi($strtrans) as $item) {
+    $obat = $this->db->get_where('obat',array('IDObat'=>$item->IDObat))->row();
+    $jmlobat = 0;
+    $jmlobat = $item->jumlah - $obat->JumlahObat;
+
+    $arrayobat=array(
+    'JumlahObat' => $jmlobat
+    );
+    $this->db->update('obat',$arrayobat,array('IDObat'=>$item->IDObat));
+
+    }
+    //Update Transaksi
+    $arrayTransaksi=array(
+    'status' => 3
+    );
+    $this->db->update('transaksi',$arrayTransaksi,array('IDTransaksi'=>$strtrans));
+
+    $this->delete_detail($strtrans);
+
+    $arrayBooking=array(
+    'statusBooking' => 3
+    );
+
+    return $this->db->update('Booking',$arrayBooking,array('IDBooking'=>$id));
+  }
+
+  function delete_detail($id){
+    $this->db->where('IDTransaksi', $id);
+	  $this->db->delete('detailtransaksi');
+	}
 
 }

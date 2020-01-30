@@ -315,7 +315,20 @@ $(function() {
 
   	});
   </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#mySelect').change(function() {
+        /* Act on the event */
+        var selectedText = $("#mySelect option:selected").val();
+            //alert(selectedText);
+            $('#idbeli').val(selectedText);
+            $('#mySelect').prop('disabled', 'true');
+            $('#card1').show();
+            $('#card2').show();
+      });
 
+    });
+  </script>
 
 
 </body>

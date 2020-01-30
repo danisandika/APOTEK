@@ -193,7 +193,7 @@
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-primary" id="btnsubmit" >Simpan</button>
-                        <button type="submit" class="btn btn-danger" onClick = "history.go(-1)">Kembali</button>
+                        <button type="button" class="btn btn-danger" onClick = "history.go(-1)">Kembali</button>
                       </div>
                     </div>
                   </form>

@@ -33,7 +33,7 @@ class CBooking extends CI_Controller {
   public function index()
   {
     $data['booking']=$this->Booking->getAllBookingbyKaryawan();
-    $data['countbooking']=$this->Count->getcount('booking');
+    $data['countbooking']=$this->Count->getcountbk('booking');
     $data['countjumlahobat']=$this->Count->getcountJumlahObat();
 		$data['countexpired']=$this->Count->getcountExpired();
     $data['title']= "Booking";
@@ -52,7 +52,7 @@ class CBooking extends CI_Controller {
     $data['transaksi']=$booking->detailsTransaksi($strbk);
     $data["getdetailstrans"]=$booking->getdetailTransaksi($strbk);
     $data["booking"]=$booking->getAll($id);
-    $data['countbooking']=$this->Count->getcount('booking');
+    $data['countbooking']=$this->Count->getcountbk('booking');
     $data['countjumlahobat']=$this->Count->getcountJumlahObat();
 		$data['countexpired']=$this->Count->getcountExpired();
     $data['title']= "Pemesanan";
@@ -80,6 +80,16 @@ class CBooking extends CI_Controller {
       }
     }
 
+  }
+
+  public function BatalBooking($id)
+  {
+    $result = $this->Booking->BatalBooking($id);
+    if($result>0){
+      $this->sukses();
+    }else{
+      $this->gagal();
+    }
   }
 
   public function sukses()

@@ -39,7 +39,7 @@ class CEditProfil extends CI_Controller {
 	public function editUserKaryawan($id)
 	{
 		$data['title']= "Edit Profil";
-		$data['countbooking']=$this->Count->getcount('booking');
+		$data['countbooking']=$this->Count->getcountbk('booking');
 		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
 		$data['countexpired']=$this->Count->getcountExpired();
 		$user = $this->User;

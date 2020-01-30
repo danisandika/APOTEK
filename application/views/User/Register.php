@@ -37,7 +37,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid Username is Required">
-						<input class="input100" type="text" name="nama" placeholder="Nama" autocomplete="off">
+						<input class="input100" type="text" name="nama" placeholder="Nama" autocomplete="off" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -45,7 +45,7 @@
 					</div>
 
           <div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="notelp" placeholder="No Telepon" autocomplete="off">
+						<input class="input100" type="number" name="notelp" placeholder="No Telepon" autocomplete="off" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-phone" aria-hidden="true"></i>
@@ -53,7 +53,7 @@
 					</div>
 
           <div class="wrap-input100 validate-input" data-validate = "Valid Username is Required">
-						<input class="input100" type="email" name="email" placeholder="Email" autocomplete="off">
+						<input class="input100" type="email" name="email" placeholder="Email" autocomplete="off" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope-open" aria-hidden="true"></i>
@@ -61,7 +61,7 @@
 					</div>
 
           <div class="wrap-input100 validate-input" data-validate = "Valid Username is Required">
-            <select class="input100" name="jeniskelamin">
+            <select class="input100" name="jeniskelamin" required>
               <option value="" disabled selected>--Jenis Kelamin--</option>
               <option value="Laki-Laki">Laki-Laki</option>
               <option value="Perempuan">Perempuan</option>
@@ -75,7 +75,7 @@
 
           <div class="wrap-input100 validate-input" data-validate = "Valid Username is Required">
             <label for="nama" hidden>Username *</label>
-						<input class="input100" type="text" name="Username" placeholder="Username" autocomplete="off">
+						<input class="input100" type="text" name="Username" placeholder="Username" autocomplete="off" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -83,7 +83,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password" autocomplete="off">
+						<input class="input100" type="password" name="password" placeholder="Password" autocomplete="off" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -135,7 +135,7 @@
     $(function() {
             Swal.fire(
              'Sukses!',
-             'Pendaftaran Berhasil!',
+             '<?php echo $this->session->flashdata('MsgregistSukses') ?>',
              'success'
            )
     });

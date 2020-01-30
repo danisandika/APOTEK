@@ -24,6 +24,19 @@ class Transaksi extends CI_Model
 		return $query->result();
 	}
 
+	public function getAllObat()
+	{
+		$this->db->select('IDObat,namaObat,namaJenis,Nama_Lokasi,JumlahObat,Harga,o.status as statusObat,Expired,Keterangan,Satuan');
+		$this->db->from('obat o');
+		$this->db->join('jenisobat as jo', 'jo.IDJenis = o.IDJenis');
+		$this->db->join('lokasi_penyimpanan as lp', 'lp.IDLokasi = o.IDLokasi');
+		$this->db->where ('o.Expired >',date('Y-m-d'));
+		$this->db->where ('o.JumlahObat >0');
+		$this->db->where ('o.status =1');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function save()
 	{
 		$dateNow = date("Y-m-d H:i:s");
@@ -33,7 +46,7 @@ class Transaksi extends CI_Model
 		$totalBayar=0;
 
 		foreach ($this->Transaksi->showCart() as $items) {
-
+			$totalBayar=$totalBayar + $items->subTotal;
 		}
 		$userID =$this->session->userdata('user_userID');
 
@@ -42,9 +55,10 @@ class Transaksi extends CI_Model
 		$this->totalBayar = $totalBayar;
 		$this->status = 0;
 		$this->IDKaryawan =$userID;
-		if(isset($_FILES['FotoResep']['name'])){
+		/*if(!empty($_FILES['FotoResep']['name'])){
 			$this->FotoResep = $this->_uploadImage($idTransaksi);
-		}
+		}*/
+		$this->FotoResep = $post["FotoResep"];
 
 		$this->db->insert($this->_table,$this);
 
@@ -65,7 +79,8 @@ class Transaksi extends CI_Model
 				$jumObat = array(
 					'JumlahObat'=>$this->getJumlahData($item->id_obat) - $item->jumlah
 				);
-				$totalBayar = $totalBayar + $items->subTotal;
+
+				//$totalBayar = $totalBayar + $items->subTotal;
 				$this->db->update("obat",$jumObat,array('IDObat'=>$item->id_obat));
 				//$Total = (Double)$this->Management->getLastData() - (Double)$totalBayar;
 			  $this->db->insert('detailtransaksi',$data );
@@ -148,7 +163,7 @@ class Transaksi extends CI_Model
     $config['upload_path']          = './upload/transaksi/';
     $config['allowed_types']        = 'gif|jpg|jpeg|png';
     $config['file_name']            = $namagambar;
-    $config['overwrite']			= true;
+    $config['overwrite']						= true;
     $config['max_size']             = 1024;
     $this->load->library('upload', $config);
 

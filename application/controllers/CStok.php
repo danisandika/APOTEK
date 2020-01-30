@@ -30,7 +30,7 @@ class CStok extends CI_Controller {
 	public function index()
 	{
 		$data['obat']=$this->Obat->getAll();
-		$data['countbooking']=$this->Count->getcount('booking');
+		$data['countbooking']=$this->Count->getcountbk('booking');
 		$data['countjumlahobat']=$this->Count->getcountJumlahObat();
 		$data['countexpired']=$this->Count->getcountExpired();
 		$data['title']= "Cek Obat";

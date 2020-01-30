@@ -104,10 +104,12 @@
 	 </div>
 	 <div class="col-md-5">
 		<select name="Satuan" class="form-control" style="width:100;%" required>
-		<option value="" disabled selected>--Pilih Satuan-- </option>
+		<option value="" disabled selected>--Pilih Satu-- </option>
 		<option value="Butir">Butir</option>
-		<option value="Butir">Botol</option>
-		<option value="Butir">Strip</option></select>
+		<option value="Botol">Botol</option>
+		<option value="Strip">Strip</option>
+    <option value="Pcs">Pcs</option>
+  </select>
 		</div>
 	 </div>
 
@@ -127,7 +129,7 @@
      <label for="nama">Kadaluarsa</label>
 	 </div>
 	  <div class="col-md-5">
-     <input type="date" class="form-control" name="Expired"  >
+     <input type="date" class="form-control" name="Expired" value="<?php echo date('Y-m-d'); ?>" readonly>
      </div>
 	 </div>
 
@@ -142,8 +144,8 @@
 	 </div>
 
 	 <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Cancel</button>
+      <button type="submit" class="btn btn-primary">Simpan</button>
+      <button type="reset" class="btn btn-danger" onClick = "history.go(-1)">Batal</button>
      </div>
 
 </div>

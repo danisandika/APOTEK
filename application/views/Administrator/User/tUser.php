@@ -53,12 +53,12 @@
 
     <div class="form-group">
            <label for="nama">No.Telp *</label>
-           <input type="text" class="form-control" name="NoTelp" required>
+           <input type="number" class="form-control" name="NoTelp" required>
 	 </div>
 
 	 <div class="form-group">
          <label for="nama">Tanggal Lahir</label>
-         <input type="date" class="form-control" name="TglLahir" >
+         <input type="date" class="form-control" name="TglLahir" max="<?php echo date('Y-m-d') ?>" >
        </div>
 
      <div class="form-group">
@@ -72,7 +72,7 @@
      <label for="nama">Username *</label>
      <input type="text" class="form-control" name="Username" required>
 	 </div>
-   
+
 	<div class="form-group">
     <label for="role">Role *</label>
 		<select name="IDRole" class="form-control" style="width:100%;" required >
